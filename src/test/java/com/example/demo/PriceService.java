@@ -29,6 +29,10 @@ public class PriceService {
 		prices = priceRepository.findAll();
 		
 		Iterator<Price> it = prices.iterator();
+		
+		while(it.hasNext()) {
+			it.
+		}
 	}
 	
 	//public boolean
