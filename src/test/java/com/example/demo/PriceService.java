@@ -24,15 +24,30 @@ public class PriceService {
 		
 	}*/
 
-	public void getPrice(Timestamp date) {
+	public Price getCorrectPrice(Timestamp date) {
 		List<Price> prices = new ArrayList<Price>();
 		prices = priceRepository.findAll();
+	
+		List<Price> validPrices = new ArrayList<Price>();
 		
-		Iterator<Price> it = prices.iterator();
-		
-		while(it.hasNext()) {
-			it.
+		for(Price pr : prices ) {
+			if(pr.getStart_date().before(date)) {
+				if(pr.getEnd_date().after(date)) {
+					validPrices.add(pr);
+				}
+			}
 		}
+		
+		Price price = new Price();
+		price = validPrices.get(0);
+		
+		for(Price pr1 : validPrices) {
+			if(pr1.getPriority() > price.getPriority()) {
+				price = pr1;
+			}
+		}
+		
+		return price;
 	}
 	
 	//public boolean

@@ -25,6 +25,10 @@ public class Price {
 	
 	private String curr;
 	
+	public Price () {
+		
+	}
+	
 	public Price(Timestamp start_date, Timestamp end_date, long brand_id, long product_id, int priority, float price,
 			String curr) {
 		this.setStart_date(start_date);
