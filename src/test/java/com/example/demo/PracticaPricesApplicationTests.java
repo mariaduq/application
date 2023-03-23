@@ -25,7 +25,9 @@ class PracticaPricesApplicationTests {
 		long product_id = 35455;
 		
 		//Llamo a función que comprueba el id del producto
+		priceService = new PriceService(priceRepository);
 		
+		priceService.getPrice(date);
 		//Llamo a función que devuelva el precio que debe tener
 		
 		//assertThat el precio que me han devuelto es el que debe tener.
