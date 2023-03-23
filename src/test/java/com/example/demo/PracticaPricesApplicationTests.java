@@ -3,6 +3,7 @@ package com.example.demo;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.sql.Timestamp;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -26,8 +27,7 @@ class PracticaPricesApplicationTests {
 		
 		priceService = new PriceService(priceRepository);
 		
-		Price price = new Price();
-		price = priceService.getCorrectPrice(date);
+		Price price = priceService.getCorrectPrice(date);
 		
 		assertThat(price.getPrice()).isEqualTo(35.50);		
 	}
@@ -79,6 +79,11 @@ class PracticaPricesApplicationTests {
 		price = priceService.getCorrectPrice(date);
 		
 		assertThat(price.getPrice()).isEqualTo(38.95);
+	}
+	
+	@Test
+	void priceForInvalidProduct() {
+		
 	}
 
 }

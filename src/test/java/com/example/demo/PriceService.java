@@ -7,6 +7,8 @@ import java.util.List;
 import com.example.demo.infraestructure.PriceRepository;
 import com.example.demo.infraestructure.model.Price;
 
+import jakarta.persistence.EntityNotFoundException;
+
 public class PriceService {
 	
 	private PriceRepository priceRepository;
@@ -36,6 +38,8 @@ public class PriceService {
 				}
 			}
 		}
+		
+		if (validPrices.isEmpty()) throw new EntityNotFoundException();;
 		
 		Price price = new Price();
 		price = validPrices.get(0);
