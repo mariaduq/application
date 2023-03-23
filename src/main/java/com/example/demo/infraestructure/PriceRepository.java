@@ -1,5 +1,7 @@
 package com.example.demo.infraestructure;
 
-public interface PriceRepository extends Jparepository<Price, long> {
+import com.example.demo.infraestructure.model.Price;
 
+public interface PriceRepository extends Jparepository<Price, long> {
+	
 }
