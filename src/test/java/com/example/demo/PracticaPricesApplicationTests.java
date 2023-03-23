@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.LocalDate;
@@ -9,6 +11,7 @@ import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.demo.infraestructure.PriceRepository;
+import com.example.demo.infraestructure.model.Price;
 
 @SpringBootTest
 class PracticaPricesApplicationTests {
@@ -24,13 +27,12 @@ class PracticaPricesApplicationTests {
 		Timestamp date = Timestamp.valueOf("2020-06-14 10:00:00");
 		long product_id = 35455;
 		
-		//Llamo a función que comprueba el id del producto
 		priceService = new PriceService(priceRepository);
 		
-		priceService.getPrice(date);
-		//Llamo a función que devuelva el precio que debe tener
+		Price price = new Price();
+		price = priceService.getCorrectPrice(date);
 		
-		//assertThat el precio que me han devuelto es el que debe tener.
+		
 		
 		
 	}

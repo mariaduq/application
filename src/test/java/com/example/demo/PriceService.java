@@ -2,7 +2,6 @@ package com.example.demo;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import com.example.demo.infraestructure.PriceRepository;
