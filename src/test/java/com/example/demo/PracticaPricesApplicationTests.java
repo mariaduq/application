@@ -2,9 +2,7 @@ package com.example.demo;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.sql.Date;
 import java.sql.Timestamp;
-import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -57,5 +55,16 @@ class PracticaPricesApplicationTests {
 		
 		assertThat(price.getPrice()).isEqualTo(35.50);
 	}
-
+	
+	@Test
+	void priceForDay15Hour10() {
+		Timestamp date = Timestamp.valueOf("2020-06-15 10:00:00");
+		
+		priceService = new PriceService(priceRepository);
+		
+		Price price = new Price();
+		price = priceService.getCorrectPrice(date);
+		
+		assertThat(price.getPrice()).isEqualTo(30.50);
+	}
 }
