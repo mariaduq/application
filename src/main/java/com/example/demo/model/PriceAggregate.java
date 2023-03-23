@@ -20,5 +20,16 @@ public class PriceAggregate {
 	
 	private String curr;
 	
+	public PriceAggregate(Timestamp start_date, Timestamp end_date, long brand_id, long product_id, int priority, float price,
+			String curr) {
+		this.start_date=start_date;
+		this.end_date=end_date;
+		this.brand_id=brand_id;
+		this.product_id=product_id;
+		this.priority=priority;
+		this.price=price;
+		this.curr=curr;
+	}
+	
 	
 }
