@@ -20,6 +20,8 @@ class PracticaPricesApplicationTests {
 	void priceForDay14Hour10() {
 		Timestamp date = Timestamp.valueOf("2020-06-14 10:00:00");
 		long product_id = 35455;
+		
+		priceRepository.
 	}
 
 }
