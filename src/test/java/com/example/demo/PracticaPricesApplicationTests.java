@@ -67,4 +67,18 @@ class PracticaPricesApplicationTests {
 		
 		assertThat(price.getPrice()).isEqualTo(30.50);
 	}
+	
+	
+	@Test
+	void priceForDay16Hour21() {
+		Timestamp date = Timestamp.valueOf("2020-06-16 21:00:00");
+		
+		priceService = new PriceService(priceRepository);
+		
+		Price price = new Price();
+		price = priceService.getCorrectPrice(date);
+		
+		assertThat(price.getPrice()).isEqualTo(38.95);
+	}
+
 }
