@@ -7,7 +7,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 class PracticaPricesApplicationTests {
 
 	@Test
-	void contextLoads() {
+	void priceForDay14Hour10() {
+		
 	}
 
 }
