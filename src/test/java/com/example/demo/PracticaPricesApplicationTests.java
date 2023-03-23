@@ -21,6 +21,10 @@ class PracticaPricesApplicationTests {
 		Timestamp date = Timestamp.valueOf("2020-06-14 10:00:00");
 		long product_id = 35455;
 		
+		//Llamo a función que devuelva el precio que debe tener
+		
+		//assertThat el precio que me han devuelto es el que debe tener.
+		
 		priceRepository.
 	}
 
