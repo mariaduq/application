@@ -6,18 +6,25 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.application.PriceService;
 import com.example.demo.infraestructure.PriceRepository;
 import com.example.demo.infraestructure.model.Price;
 
 import jakarta.annotation.PostConstruct;
 
 @RestController
+@RequestMapping("/")
 public class PricesController {
 	
 	@Autowired
 	PriceRepository priceRepository;
+	
+	@Autowired
+	PriceService priceService;
 	
 	@PostConstruct
 	public void init() {
@@ -27,9 +34,17 @@ public class PricesController {
 		priceRepository.save(new Price(Timestamp.valueOf("2020-06-15 16:00:00"), Timestamp.valueOf("2020-12-31 23:59:59"), 1, 35455, 1, 38.95f, "EUR"));
 	}
 	
-	@GetMapping("/")
-	ResponseEntity<List<Price>> prices(){
+	@GetMapping
+	public ResponseEntity<List<Price>> prices(){
 		return ResponseEntity.ok().body(priceRepository.findAll());
+	}
+	
+	@GetMapping("{date}/{product_id}/{brand_id}")
+	public ResponseEntity<Price> getPrice(@PathVariable Timestamp date, @PathVariable long product_id, @PathVariable long brand_id){
+		
+		Price price = priceService.getCorrectPrice(date, product_id);
+		
+		return ResponseEntity.ok().body(price);
 	}
 	
 }
