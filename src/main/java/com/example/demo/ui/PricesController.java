@@ -16,7 +16,7 @@ public class PricesController {
 	@Autowired
 	PriceRepository priceRepository;
 	
-	@GetMapping
+	@GetMapping("/")
 	ResponseEntity<List<Price>> prices(){
 		return ResponseEntity.ok().body(priceRepository.findAll());
 	}
