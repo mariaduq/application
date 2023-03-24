@@ -88,7 +88,15 @@ class PracticaPricesApplicationTests {
 	
 	@Test
 	void priceForInvalidProduct() {
+		Timestamp date = Timestamp.valueOf("2020-07-16 21:00:00");
+		long product_id = 35458;
 		
+		priceService = new PriceService(priceRepository);
+		
+		Price price = new Price();
+		price = priceService.getCorrectPrice(date, product_id);
+		
+		assertThat(price.equals(null));
 	}
 
 }
