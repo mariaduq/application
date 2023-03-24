@@ -42,9 +42,7 @@ public class PricesController {
 	@GetMapping("{date}/{product_id}/{brand_id}")
 	public ResponseEntity<Price> getPrice(@PathVariable Timestamp date, @PathVariable long product_id, @PathVariable long brand_id){
 		
-		Price price = priceService.getCorrectPrice(date, product_id);
-		
-		return ResponseEntity.ok().body(price);
+		return ResponseEntity.ok().body(priceService.getCorrectPrice(date, product_id));
 	}
 	
 }
