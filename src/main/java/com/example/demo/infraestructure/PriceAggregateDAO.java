@@ -24,4 +24,5 @@ public class PriceAggregateDAO {
 				.map((priceEntity) -> mapper.map(priceEntity, PriceAggregate.class))
 				.collect(Collectors.toList());
 	}
+	
 }

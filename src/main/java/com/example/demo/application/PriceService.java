@@ -20,6 +20,7 @@ public class PriceService {
 	
 	public PriceService(PriceRepository priceRepository){
 	}
+	
 
 	public boolean validProductId(long product_id) {
 		List<PriceAggregate> prices = new ArrayList<PriceAggregate>();

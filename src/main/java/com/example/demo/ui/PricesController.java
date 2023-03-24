@@ -34,6 +34,7 @@ public class PricesController {
 		priceRepository.save(new Price(Timestamp.valueOf("2020-06-15 16:00:00"), Timestamp.valueOf("2020-12-31 23:59:59"), 1, 35455, 1, 38.95f, "EUR"));
 	}
 	
+	
 	@GetMapping
 	public ResponseEntity<List<PriceDTO>> prices(){
 		return ResponseEntity.ok().body(priceService.findAll());
