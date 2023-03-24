@@ -59,9 +59,7 @@ public class PriceService {
 				price = pr1;
 			}
 		}
-		
 		return price;
-		
 	}
 	
 }
