@@ -26,11 +26,8 @@ public class PriceService {
 		}
 		return false;
 	}
-
-	public Price getCorrectPrice(Timestamp date, long product_id) {
-		
-		if (!validProductId(product_id)) throw new EntityNotFoundException();
-		
+	
+	public List<Price> validPrices(Timestamp date){
 		List<Price> prices = new ArrayList<Price>();
 		prices = priceRepository.findAll();
 	
@@ -43,6 +40,14 @@ public class PriceService {
 				}
 			}
 		}
+		return validPrices;
+	}
+
+	public Price getCorrectPrice(Timestamp date, long product_id) {
+		
+		if (!validProductId(product_id)) throw new EntityNotFoundException();
+		
+		List<Price> validPrices = validPrices(date);
 		
 		if (validPrices.isEmpty()) throw new EntityNotFoundException();
 		
