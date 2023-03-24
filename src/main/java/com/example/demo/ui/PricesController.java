@@ -35,12 +35,12 @@ public class PricesController {
 	}
 	
 	@GetMapping
-	public ResponseEntity<List<Price>> prices(){
+	public ResponseEntity<List<PriceDTO>> prices(){
 		return ResponseEntity.ok().body(priceRepository.findAll());
 	}
 	
 	@GetMapping("{date}/{product_id}/{brand_id}")
-	public ResponseEntity<Price> getPrice(@PathVariable Timestamp date, @PathVariable long product_id, @PathVariable long brand_id){
+	public ResponseEntity<PriceDTO> getPrice(@PathVariable Timestamp date, @PathVariable long product_id, @PathVariable long brand_id){
 		
 		return ResponseEntity.ok().body(priceService.getCorrectPrice(date, product_id));
 	}

@@ -74,4 +74,14 @@ public class PriceService {
 		return price;
 	}
 	
+	public List<PriceDTO> findAll(){
+		ModelMapper mapper = new ModelMapper();
+		
+		return priceAggregateDAO
+				.findAll()
+				.stream()
+				.map((price)->mapper.map(price, PriceDTO.class))
+				.collect(Collectors.toList());
+	}
+	
 }
