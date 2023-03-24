@@ -16,7 +16,7 @@ public class PriceAggregateDAO {
 		this.priceRepository=priceRepository;
 	}
 	
-	public List<PriceAggregate> allPrices(){
+	public List<PriceAggregate> findAll(){
 		ModelMapper mapper = new ModelMapper();
 		
 		return priceRepository
