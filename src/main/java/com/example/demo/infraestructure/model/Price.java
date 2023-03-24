@@ -3,12 +3,15 @@ package com.example.demo.infraestructure.model;
 import java.sql.Timestamp;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
 public class Price {
 	
 	@Id
+	@GeneratedValue (strategy = GenerationType.AUTO)
 	private long price_list;
 	
 	private Timestamp start_date;
