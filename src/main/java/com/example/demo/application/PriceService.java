@@ -9,7 +9,6 @@ import org.modelmapper.ModelMapper;
 
 import com.example.demo.infraestructure.PriceAggregateDAO;
 import com.example.demo.infraestructure.PriceRepository;
-import com.example.demo.infraestructure.model.Price;
 import com.example.demo.model.PriceAggregate;
 import com.example.demo.ui.PriceDTO;
 
@@ -20,7 +19,6 @@ public class PriceService {
 	private PriceAggregateDAO priceAggregateDAO;
 	
 	public PriceService(PriceRepository priceRepository){
-		this.priceAggregateDAO = priceAggregateDAO;
 	}
 
 	public boolean validProductId(long product_id) {

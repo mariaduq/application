@@ -11,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.demo.application.PriceService;
 import com.example.demo.infraestructure.PriceRepository;
-import com.example.demo.infraestructure.model.Price;
+import com.example.demo.ui.PriceDTO;
 
 @SpringBootTest
 class PracticaPricesApplicationTests {
@@ -32,7 +32,7 @@ class PracticaPricesApplicationTests {
 		Timestamp date = Timestamp.valueOf("2020-06-14 10:00:00");
 		long product_id = 35455;
 				
-		Price price = priceService.getCorrectPrice(date, product_id);
+		PriceDTO price = priceService.getCorrectPrice(date, product_id);
 		
 		assertThat(price.getPrice()).isEqualTo(35.50);		
 	}
@@ -42,7 +42,7 @@ class PracticaPricesApplicationTests {
 		Timestamp date = Timestamp.valueOf("2020-06-14 16:00:00");
 		long product_id = 35455;
 		
-		Price price = priceService.getCorrectPrice(date, product_id);
+		PriceDTO price = priceService.getCorrectPrice(date, product_id);
 		
 		assertThat(price.getPrice()).isEqualTo(25.45);
 	}
@@ -52,7 +52,7 @@ class PracticaPricesApplicationTests {
 		Timestamp date = Timestamp.valueOf("2020-06-14 21:00:00");
 		long product_id = 35455;
 				
-		Price price = priceService.getCorrectPrice(date, product_id);
+		PriceDTO price = priceService.getCorrectPrice(date, product_id);
 		
 		assertThat(price.getPrice()).isEqualTo(35.50);
 	}
@@ -62,7 +62,7 @@ class PracticaPricesApplicationTests {
 		Timestamp date = Timestamp.valueOf("2020-06-15 10:00:00");
 		long product_id = 35455;
 				
-		Price price = priceService.getCorrectPrice(date, product_id);
+		PriceDTO price = priceService.getCorrectPrice(date, product_id);
 		
 		assertThat(price.getPrice()).isEqualTo(30.50);
 	}
@@ -73,7 +73,7 @@ class PracticaPricesApplicationTests {
 		Timestamp date = Timestamp.valueOf("2020-06-16 21:00:00");
 		long product_id = 35455;
 				
-		Price price = priceService.getCorrectPrice(date, product_id);
+		PriceDTO price = priceService.getCorrectPrice(date, product_id);
 		
 		assertThat(price.getPrice()).isEqualTo(38.95);
 	}
@@ -83,7 +83,7 @@ class PracticaPricesApplicationTests {
 		Timestamp date = Timestamp.valueOf("2020-07-16 21:00:00");
 		long product_id = 35458;
 				
-		Price price = priceService.getCorrectPrice(date, product_id);
+		PriceDTO price = priceService.getCorrectPrice(date, product_id);
 		
 		assertThat(price.equals(null));
 	}
@@ -93,7 +93,7 @@ class PracticaPricesApplicationTests {
 		Timestamp date = Timestamp.valueOf("2021-07-16 21:00:00");
 		long product_id = 35455;
 				
-		Price price = priceService.getCorrectPrice(date, product_id);
+		PriceDTO price = priceService.getCorrectPrice(date, product_id);
 		
 		assertThat(price.equals(null));
 	}

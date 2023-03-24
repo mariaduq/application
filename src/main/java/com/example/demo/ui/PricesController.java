@@ -36,7 +36,7 @@ public class PricesController {
 	
 	@GetMapping
 	public ResponseEntity<List<PriceDTO>> prices(){
-		return ResponseEntity.ok().body(priceRepository.findAll());
+		return ResponseEntity.ok().body(priceService.findAll());
 	}
 	
 	@GetMapping("{date}/{product_id}/{brand_id}")
