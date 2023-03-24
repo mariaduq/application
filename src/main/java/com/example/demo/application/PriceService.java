@@ -3,28 +3,31 @@ package com.example.demo.application;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 
+import com.example.demo.infraestructure.PriceAggregateDAO;
 import com.example.demo.infraestructure.PriceRepository;
 import com.example.demo.infraestructure.model.Price;
+import com.example.demo.model.PriceAggregate;
 import com.example.demo.ui.PriceDTO;
 
 import jakarta.persistence.EntityNotFoundException;
 
 public class PriceService {
 	
-	private PriceRepository priceRepository;
+	private PriceAggregateDAO priceAggregateDAO;
 	
 	public PriceService(PriceRepository priceRepository){
-		this.priceRepository = priceRepository;
+		this.priceAggregateDAO = priceAggregateDAO;
 	}
 
 	public boolean validProductId(long product_id) {
-		List<Price> prices = new ArrayList<Price>();
-		prices = priceRepository.findAll();
+		List<PriceAggregate> prices = new ArrayList<PriceAggregate>();
+		prices = priceAggregateDAO.findAll();
 		
-		for (Price pr : prices) {
+		for (PriceAggregate pr : prices) {
 			if(pr.getProduct_id() == product_id) return true;
 		}
 		return false;
@@ -34,34 +37,36 @@ public class PriceService {
 		
 		ModelMapper mapper = new ModelMapper();
 		
-		
-		List<Price> prices = new ArrayList<Price>();
-		prices = priceRepository.findAll();
+		List<PriceAggregate> prices = new ArrayList<PriceAggregate>();
+		prices = priceAggregateDAO.findAll();
 	
-		List<Price> validPrices = new ArrayList<Price>();
+		List<PriceAggregate> validPrices = new ArrayList<PriceAggregate>();
 		
-		for(Price pr : prices ) {
+		for(PriceAggregate pr : prices ) {
 			if(pr.getStart_date().before(date)) {
 				if(pr.getEnd_date().after(date)) {
 					validPrices.add(pr);
 				}
 			}
 		}
-		return validPrices;
+		return validPrices
+				.stream()
+				.map((price)->mapper.map(price, PriceDTO.class))
+				.collect(Collectors.toList());
 	}
 
-	public Price getCorrectPrice(Timestamp date, long product_id) {
+	public PriceDTO getCorrectPrice(Timestamp date, long product_id) {
 		
 		if (!validProductId(product_id)) throw new EntityNotFoundException();
 		
-		List<Price> validPrices = validPrices(date);
+		List<PriceDTO> validPrices = validPrices(date);
 		
 		if (validPrices.isEmpty()) throw new EntityNotFoundException();
 		
-		Price price = new Price();
+		PriceDTO price = new PriceDTO();
 		price = validPrices.get(0);
 		
-		for(Price pr1 : validPrices) {
+		for(PriceDTO pr1 : validPrices) {
 			if(pr1.getPriority() > price.getPriority()) {
 				price = pr1;
 			}
