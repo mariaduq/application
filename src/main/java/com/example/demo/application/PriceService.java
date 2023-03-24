@@ -4,8 +4,11 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
+
 import com.example.demo.infraestructure.PriceRepository;
 import com.example.demo.infraestructure.model.Price;
+import com.example.demo.ui.PriceDTO;
 
 import jakarta.persistence.EntityNotFoundException;
 
@@ -30,6 +33,8 @@ public class PriceService {
 	public List<PriceDTO> validPrices(Timestamp date){
 		
 		ModelMapper mapper = new ModelMapper();
+		
+		
 		List<Price> prices = new ArrayList<Price>();
 		prices = priceRepository.findAll();
 	
