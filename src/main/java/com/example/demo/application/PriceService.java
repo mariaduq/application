@@ -27,7 +27,9 @@ public class PriceService {
 		return false;
 	}
 	
-	public List<Price> validPrices(Timestamp date){
+	public List<PriceDTO> validPrices(Timestamp date){
+		
+		ModelMapper mapper = new ModelMapper();
 		List<Price> prices = new ArrayList<Price>();
 		prices = priceRepository.findAll();
 	
