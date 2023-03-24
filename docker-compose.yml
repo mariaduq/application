@@ -7,8 +7,8 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-      - postgresql
-  postgresql:
+      - dbpostgresql
+  dbpostgresql:
     image: postgres
     ports:
       - "5432:5432"

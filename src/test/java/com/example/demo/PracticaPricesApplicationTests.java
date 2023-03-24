@@ -97,5 +97,5 @@ class PracticaPricesApplicationTests {
 		
 		assertThat(price.equals(null));
 	}
-
+	
 }
