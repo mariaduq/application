@@ -17,13 +17,15 @@ public class PriceService {
 		this.priceRepository = priceRepository;
 	}
 
-	/*public void validProductId(long product_id) {
+	public boolean validProductId(long product_id) {
 		List<Price> prices = new ArrayList<Price>();
 		prices = priceRepository.findAll();
 		
-		Iterator<Price> it = prices.iterator();
-		
-	}*/
+		for (Price pr : prices) {
+			if(pr.getProduct_id() == product_id) return true;
+		}
+		return false;
+	}
 
 	public Price getCorrectPrice(Timestamp date) {
 		List<Price> prices = new ArrayList<Price>();
@@ -51,6 +53,8 @@ public class PriceService {
 		}
 		
 		return price;
+		
+		//LO SIGUIENTE QUE TENGO QUE HACER ES COMPROBAR EL ID
 	}
 	
 	//public boolean
