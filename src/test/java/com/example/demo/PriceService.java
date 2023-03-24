@@ -27,7 +27,10 @@ public class PriceService {
 		return false;
 	}
 
-	public Price getCorrectPrice(Timestamp date) {
+	public Price getCorrectPrice(Timestamp date, long product_id) {
+		
+		if (!validProductId(product_id)) throw new EntityNotFoundException();
+		
 		List<Price> prices = new ArrayList<Price>();
 		prices = priceRepository.findAll();
 	
@@ -41,7 +44,7 @@ public class PriceService {
 			}
 		}
 		
-		if (validPrices.isEmpty()) throw new EntityNotFoundException();;
+		if (validPrices.isEmpty()) throw new EntityNotFoundException();
 		
 		Price price = new Price();
 		price = validPrices.get(0);
