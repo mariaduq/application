@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.application;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ public class PriceService {
 	
 	private PriceRepository priceRepository;
 	
-	PriceService(PriceRepository priceRepository){
+	public PriceService(PriceRepository priceRepository){
 		this.priceRepository = priceRepository;
 	}
 
@@ -57,8 +57,6 @@ public class PriceService {
 		
 		return price;
 		
-		//LO SIGUIENTE QUE TENGO QUE HACER ES COMPROBAR EL ID
 	}
 	
-	//public boolean
 }

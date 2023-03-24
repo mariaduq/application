@@ -3,12 +3,12 @@ package com.example.demo;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.sql.Timestamp;
-import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.example.demo.application.PriceService;
 import com.example.demo.infraestructure.PriceRepository;
 import com.example.demo.infraestructure.model.Price;
 
