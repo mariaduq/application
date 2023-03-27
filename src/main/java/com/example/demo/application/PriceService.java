@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
 
 import com.example.demo.infraestructure.PriceAggregateDAO;
 import com.example.demo.infraestructure.PriceRepository;
@@ -14,6 +15,7 @@ import com.example.demo.ui.PriceDTO;
 
 import jakarta.persistence.EntityNotFoundException;
 
+@Service
 public class PriceService {
 	
 	private PriceAggregateDAO priceAggregateDAO;
