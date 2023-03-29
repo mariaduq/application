@@ -56,7 +56,7 @@ public class PriceService {
 				.collect(Collectors.toList());
 	}
 
-	public PriceDTO getCorrectPrice(Timestamp date, long product_id) {
+	public float getCorrectPrice(Timestamp date, long product_id) {
 		
 		if (!validProductId(product_id)) throw new EntityNotFoundException();
 		
@@ -72,7 +72,7 @@ public class PriceService {
 				price = pr1;
 			}
 		}
-		return price;
+		return price.getPrice();
 	}
 	
 	public List<PriceDTO> findAll(){

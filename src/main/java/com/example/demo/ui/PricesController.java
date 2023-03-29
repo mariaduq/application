@@ -41,7 +41,7 @@ public class PricesController {
 	}
 	
 	@GetMapping("{date}/{product_id}/{brand_id}")
-	public ResponseEntity<PriceDTO> getPrice(@PathVariable Timestamp date, @PathVariable long product_id, @PathVariable long brand_id){
+	public ResponseEntity<Float> getPrice(@PathVariable Timestamp date, @PathVariable long product_id, @PathVariable long brand_id){
 		
 		return ResponseEntity.ok().body(priceService.getCorrectPrice(date, product_id));
 	}
