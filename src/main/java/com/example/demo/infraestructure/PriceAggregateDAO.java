@@ -4,17 +4,18 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Component;
 
 import com.example.demo.model.PriceAggregate;
 
 public class PriceAggregateDAO {
 	
-	public PriceRepository priceRepository;
-	
+	private PriceRepository priceRepository;
+
 	public PriceAggregateDAO (PriceRepository priceRepository) {
 		this.priceRepository=priceRepository;
 	}
-	
+
 	public List<PriceAggregate> findAll(){
 		ModelMapper mapper = new ModelMapper();
 		

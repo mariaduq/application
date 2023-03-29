@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.infraestructure.PriceAggregateDAO;
-import com.example.demo.infraestructure.PriceRepository;
 import com.example.demo.model.PriceAggregate;
 import com.example.demo.ui.PriceDTO;
 
@@ -18,11 +18,12 @@ import jakarta.persistence.EntityNotFoundException;
 @Service
 public class PriceService {
 	
+	@Autowired
 	private PriceAggregateDAO priceAggregateDAO;
 	
-	public PriceService(PriceRepository priceRepository){
+	public PriceService(PriceAggregateDAO priceAggregateDAO){
+		this.priceAggregateDAO=priceAggregateDAO;
 	}
-	
 
 	public boolean validProductId(long product_id) {
 		List<PriceAggregate> prices = new ArrayList<PriceAggregate>();
