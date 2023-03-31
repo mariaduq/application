@@ -1,6 +1,5 @@
 package com.example.demo;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
 import java.sql.Timestamp;
@@ -8,37 +7,23 @@ import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.demo.application.PriceService;
 import com.example.demo.infraestructure.PriceAggregateDAO;
-import com.example.demo.infraestructure.PriceRepository;
+import com.example.demo.model.PriceRepository;
 import com.example.demo.infraestructure.model.Price;
-import com.example.demo.ui.PriceDTO;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
-@SpringBootTest
 class PriceServiceTests {
 	
-	@Mock
-	PriceRepository priceRepository;
+	PriceRepository priceRepository = Mockito.mock(PriceRepository.class);
 	
-	PriceAggregateDAO priceAggregateDAO;
+	PriceAggregateDAO priceAggregateDAO = new PriceAggregateDAO(priceRepository);
 	
-	PriceService priceService;
+	PriceService priceService = new PriceService(priceAggregateDAO);
 	
-	@BeforeEach
-	public void setUp() {
-		priceAggregateDAO = new PriceAggregateDAO(priceRepository);
-		
-		priceService = new PriceService(priceAggregateDAO);
-	}
 	
 	@Test
 	void priceForDay14Hour10() {		

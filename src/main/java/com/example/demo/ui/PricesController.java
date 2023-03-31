@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.application.PriceService;
-import com.example.demo.infraestructure.PriceRepository;
+import com.example.demo.infraestructure.PriceRepositoryJpa;
 import com.example.demo.infraestructure.model.Price;
 
 import jakarta.annotation.PostConstruct;
@@ -21,7 +21,7 @@ import jakarta.annotation.PostConstruct;
 public class PricesController {
 	
 	@Autowired
-	PriceRepository priceRepository;
+	PriceRepositoryJpa priceRepository;
 	
 	@Autowired
 	PriceService priceService;

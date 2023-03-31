@@ -18,7 +18,6 @@ import jakarta.persistence.EntityNotFoundException;
 @Service
 public class PriceService {
 	
-	@Autowired
 	private PriceAggregateDAO priceAggregateDAO;
 	
 	public PriceService(PriceAggregateDAO priceAggregateDAO){

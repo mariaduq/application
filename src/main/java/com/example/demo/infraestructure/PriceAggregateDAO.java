@@ -7,6 +7,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
 import com.example.demo.model.PriceAggregate;
+import com.example.demo.model.PriceRepository;
 
 public class PriceAggregateDAO {
 	
