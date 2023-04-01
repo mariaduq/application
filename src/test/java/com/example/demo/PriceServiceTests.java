@@ -27,7 +27,7 @@ class PriceServiceTests {
 	
 	
 	@Test
-	void priceForDay14Hour10() {		
+	void price_when_date_is_2020_06_14_10_00_and_productId_is_35455_and_brandId_is_1() {		
 		when(priceRepository.findAll())
 				.thenReturn(List.of(
 				buildPrice(35.5f, Timestamp.valueOf("2020-06-14 00:00:00"), Timestamp.valueOf("2020-12-31 23:59:59"))));
