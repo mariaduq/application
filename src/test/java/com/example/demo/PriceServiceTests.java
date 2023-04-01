@@ -45,7 +45,7 @@ class PriceServiceTests {
 		when(priceRepository.findAll())
 				.thenReturn(List.of(
 				buildPrice((float)35.5f, Timestamp.valueOf("2020-06-14 00:00:00"), Timestamp.valueOf("2020-12-31 23:59:59"), 0),
-				buildPrice((float) 25.45, Timestamp.valueOf("2020-06-14 15:00:00"), Timestamp.valueOf("2020-06-14 18:30:00"), 1)));
+				buildPrice((float)25.45, Timestamp.valueOf("2020-06-14 15:00:00"), Timestamp.valueOf("2020-06-14 18:30:00"), 1)));
 		
 		Timestamp date = Timestamp.valueOf("2020-06-14 16:00:00");
 		long product_id = 35455;
@@ -56,22 +56,23 @@ class PriceServiceTests {
 		assertEquals((float)25.45, price);
 	}
 	
-	/*
+	
 	@Test
-	void priceForDay14Hour21() {
-		Timestamp date = Timestamp.valueOf("2020-06-14 21:00:00");
-		long product_id = 35455;
-		
+	void price_when_date_is_2020_06_14_21_00_and_productId_is_35455_and_brandId_is_1() {
 		when(priceRepository.findAll())
 				.thenReturn(List.of(
-				buildPrice(35.5f, Timestamp.valueOf("2020-06-14 00:00:00"), Timestamp.valueOf("2020-12-31 23:59:59")),
-				buildPrice(35.5f, Timestamp.valueOf("2020-06-14 10:00:00"), Timestamp.valueOf("2020-06-14 10:00:00"))));
-				
-		PriceDTO price = priceService.getCorrectPrice(date, product_id);
+				buildPrice((float)35.5f, Timestamp.valueOf("2020-06-14 00:00:00"), Timestamp.valueOf("2020-12-31 23:59:59"), 0)));
 		
-		assertThat(price.getPrice()).isEqualTo(35.50);
+		Timestamp date = Timestamp.valueOf("2020-06-14 21:00:00");
+		long product_id = 35455;
+		long brand_id = 1;
+		
+		float price = priceService.getCorrectPrice(date, product_id, brand_id);
+		
+		assertEquals((float)35.5, price);
 	}
 	
+	/*
 	@Test
 	void priceForDay15Hour10() {
 		Timestamp date = Timestamp.valueOf("2020-06-15 10:00:00");
