@@ -80,13 +80,12 @@ public class PriceService {
 		price = validPrices.get(0);
 		
 		for(PriceDTO pr1 : validPrices) {
-			System.out.println(pr1.getPrice());
 
 			if(pr1.getPriority() > price.getPriority()) {
 				price = pr1;
 			}
 		}
-		System.out.println(price.getPrice());
+
 		return price.getPrice();
 	}
 	
