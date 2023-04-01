@@ -73,17 +73,20 @@ public class PriceService {
 		if (!validBrandId(brand_id)) throw new EntityNotFoundException();
 		
 		List<PriceDTO> validPrices = validPrices(date);
-		
+				
 		if (validPrices.isEmpty()) throw new EntityNotFoundException();
 		
 		PriceDTO price = new PriceDTO();
 		price = validPrices.get(0);
 		
 		for(PriceDTO pr1 : validPrices) {
+			System.out.println(pr1.getPrice());
+
 			if(pr1.getPriority() > price.getPriority()) {
 				price = pr1;
 			}
 		}
+		System.out.println(price.getPrice());
 		return price.getPrice();
 	}
 	

@@ -29,7 +29,7 @@ class PriceServiceTests {
 	void price_when_date_is_2020_06_14_10_00_and_productId_is_35455_and_brandId_is_1() {		
 		when(priceRepository.findAll())
 				.thenReturn(List.of(
-				buildPrice(35.5f, Timestamp.valueOf("2020-06-14 00:00:00"), Timestamp.valueOf("2020-12-31 23:59:59"))));
+				buildPrice((float)35.5, Timestamp.valueOf("2020-06-14 00:00:00"), Timestamp.valueOf("2020-12-31 23:59:59"), 0)));
 		
 		Timestamp date = Timestamp.valueOf("2020-06-14 10:00:00");
 		long product_id = 35455;
@@ -37,16 +37,15 @@ class PriceServiceTests {
 
 		float price = priceService.getCorrectPrice(date, product_id, brand_id);
 		
-		assertEquals(35.5, price);
+		assertEquals((float)35.5, price);
 	}
-	
 	
 	@Test
 	void price_when_date_is_2020_06_14_16_00_and_productId_is_35455_and_brandId_is_1() {
 		when(priceRepository.findAll())
 				.thenReturn(List.of(
-				buildPrice(35.5f, Timestamp.valueOf("2020-06-14 00:00:00"), Timestamp.valueOf("2020-12-31 23:59:59")),
-				buildPrice(25.45f, Timestamp.valueOf("2020-06-14 15:00:00"), Timestamp.valueOf("2020-06-14 18:30:00"))));
+				buildPrice((float)35.5f, Timestamp.valueOf("2020-06-14 00:00:00"), Timestamp.valueOf("2020-12-31 23:59:59"), 0),
+				buildPrice((float) 25.45, Timestamp.valueOf("2020-06-14 15:00:00"), Timestamp.valueOf("2020-06-14 18:30:00"), 1)));
 		
 		Timestamp date = Timestamp.valueOf("2020-06-14 16:00:00");
 		long product_id = 35455;
@@ -54,7 +53,7 @@ class PriceServiceTests {
 		
 		float price = priceService.getCorrectPrice(date, product_id, brand_id);
 		
-		assertEquals(25.45, price);
+		assertEquals((float)25.45, price);
 	}
 	
 	/*
@@ -134,7 +133,7 @@ class PriceServiceTests {
 		assertThat(price.equals(null));
 	}*/
 
-	private Price buildPrice(float amount, Timestamp startDate, Timestamp endDate) {
+	private Price buildPrice(float amount, Timestamp startDate, Timestamp endDate, int priority) {
 		Price price = new Price();
 		
 		price.setBrand_id(1);
@@ -143,6 +142,7 @@ class PriceServiceTests {
 		price.setEnd_date(endDate);
 		price.setPrice(amount);
 		price.setProduct_id(35455);
+		price.setPriority(priority);
 		
 		return price;
 	}
