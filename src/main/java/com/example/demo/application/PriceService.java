@@ -34,6 +34,16 @@ public class PriceService {
 		return false;
 	}
 	
+	public boolean validBrandId(long brand_id) {
+		List<PriceAggregate> prices = new ArrayList<PriceAggregate>();
+		prices = priceAggregateDAO.findAll();
+		
+		for (PriceAggregate pr : prices) {
+			if(pr.getBrand_id() == brand_id) return true;
+		}
+		return false;
+	}
+	
 	public List<PriceDTO> validPrices(Timestamp date){
 		
 		ModelMapper mapper = new ModelMapper();
@@ -56,9 +66,11 @@ public class PriceService {
 				.collect(Collectors.toList());
 	}
 
-	public float getCorrectPrice(Timestamp date, long product_id) {
+	public float getCorrectPrice(Timestamp date, long product_id, long brand_id) {
 		
 		if (!validProductId(product_id)) throw new EntityNotFoundException();
+		
+		if (!validBrandId(brand_id)) throw new EntityNotFoundException();
 		
 		List<PriceDTO> validPrices = validPrices(date);
 		

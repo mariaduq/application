@@ -8,6 +8,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.demo.application.PriceService;
 import com.example.demo.infraestructure.PriceAggregateDAO;
@@ -33,11 +34,13 @@ class PriceServiceTests {
 		
 		Timestamp date = Timestamp.valueOf("2020-06-14 10:00:00");
 		long product_id = 35455;
+		long brand_id = 1;
 
-		float price = priceService.getCorrectPrice(date, product_id);
+		float price = priceService.getCorrectPrice(date, product_id, brand_id);
 		
 		assertEquals(35.5, price);
 	}
+	
 	/*
 	@Test
 	void priceForDay14Hour16() {
