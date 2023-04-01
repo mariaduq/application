@@ -89,23 +89,23 @@ class PriceServiceTests {
 		assertEquals((float)30.5, price);
 	}
 	
-	
-	/*
 	@Test
-	void priceForDay16Hour21() {
-		Timestamp date = Timestamp.valueOf("2020-06-16 21:00:00");
-		long product_id = 35455;
-		
+	void price_when_date_is_2020_06_16_21_00_and_productId_is_35455_and_brandId_is_1() {
 		when(priceRepository.findAll())
 				.thenReturn(List.of(
-				buildPrice(35.5f, Timestamp.valueOf("2020-06-14 00:00:00"), Timestamp.valueOf("2020-12-31 23:59:59")),
-				buildPrice(35.5f, Timestamp.valueOf("2020-06-14 10:00:00"), Timestamp.valueOf("2020-06-14 10:00:00"))));
-				
-		PriceDTO price = priceService.getCorrectPrice(date, product_id);
+				buildPrice((float)35.5, Timestamp.valueOf("2020-06-14 00:00:00"), Timestamp.valueOf("2020-12-31 23:59:59"), 0),
+				buildPrice((float)38.95, Timestamp.valueOf("2020-06-15 16:00:00"), Timestamp.valueOf("2020-12-31 23:59:59"), 1)));
 		
-		assertThat(price.getPrice()).isEqualTo(38.95);
+		Timestamp date = Timestamp.valueOf("2020-06-16 21:00:00");
+		long product_id = 35455;
+		long brand_id = 1;
+		
+		float price = priceService.getCorrectPrice(date, product_id, brand_id);
+		
+		assertEquals((float)38.95, price);
 	}
 	
+	/*
 	@Test
 	void priceForInvalidProduct() {
 		Timestamp date = Timestamp.valueOf("2020-07-16 21:00:00");
