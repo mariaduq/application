@@ -8,7 +8,6 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.demo.application.PriceService;
 import com.example.demo.infraestructure.PriceAggregateDAO;
@@ -41,22 +40,24 @@ class PriceServiceTests {
 		assertEquals(35.5, price);
 	}
 	
-	/*
+	
 	@Test
-	void priceForDay14Hour16() {
-		Timestamp date = Timestamp.valueOf("2020-06-14 16:00:00");
-		long product_id = 35455;
-		
+	void price_when_date_is_2020_06_14_16_00_and_productId_is_35455_and_brandId_is_1() {
 		when(priceRepository.findAll())
 				.thenReturn(List.of(
 				buildPrice(35.5f, Timestamp.valueOf("2020-06-14 00:00:00"), Timestamp.valueOf("2020-12-31 23:59:59")),
-				buildPrice(35.5f, Timestamp.valueOf("2020-06-14 10:00:00"), Timestamp.valueOf("2020-06-14 10:00:00"))));
+				buildPrice(25.45f, Timestamp.valueOf("2020-06-14 15:00:00"), Timestamp.valueOf("2020-06-14 18:30:00"))));
 		
-		PriceDTO price = priceService.getCorrectPrice(date, product_id);
+		Timestamp date = Timestamp.valueOf("2020-06-14 16:00:00");
+		long product_id = 35455;
+		long brand_id = 1;
 		
-		assertThat(price.getPrice()).isEqualTo(25.45);
+		float price = priceService.getCorrectPrice(date, product_id, brand_id);
+		
+		assertEquals(25.45, price);
 	}
 	
+	/*
 	@Test
 	void priceForDay14Hour21() {
 		Timestamp date = Timestamp.valueOf("2020-06-14 21:00:00");
