@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.application.GetPricesUseCase;
 import com.example.demo.infraestructure.ddbb.PriceRepositoryJpa;
-import com.example.demo.infraestructure.model.PriceEntity;
+import com.example.demo.infraestructure.ddbb.model.PriceEntity;
 
 import jakarta.annotation.PostConstruct;
 
