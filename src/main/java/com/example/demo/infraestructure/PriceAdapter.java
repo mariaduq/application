@@ -5,10 +5,11 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 
+import com.example.demo.application.ports.PricesPort;
 import com.example.demo.model.Price;
 import com.example.demo.model.PriceRepository;
 
-public class PriceAdapter {
+public class PriceAdapter implements PricesPort{
 	
 	private PriceRepository priceRepository;
 
