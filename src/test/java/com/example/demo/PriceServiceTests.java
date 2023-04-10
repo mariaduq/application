@@ -8,7 +8,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import com.example.demo.application.PriceService;
+import com.example.demo.application.GetPricesUseCase;
 import com.example.demo.infraestructure.PriceAdapter;
 import com.example.demo.model.PriceRepository;
 
@@ -25,7 +25,7 @@ class PriceServiceTests {
 	
 	PriceAdapter priceAggregateDAO = new PriceAdapter(priceRepository);
 	
-	PriceService priceService = new PriceService(priceAggregateDAO);
+	GetPricesUseCase priceService = new GetPricesUseCase(priceAggregateDAO);
 	
 	
 	@Test

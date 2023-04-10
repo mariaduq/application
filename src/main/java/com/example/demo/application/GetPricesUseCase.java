@@ -15,11 +15,11 @@ import com.example.demo.model.Price;
 import jakarta.persistence.EntityNotFoundException;
 
 @Service
-public class PriceService {
+public class GetPricesUseCase {
 	
 	private PricesPort pricesPort;
 	
-	public PriceService(PricesPort pricesPort){
+	public GetPricesUseCase(PricesPort pricesPort){
 		this.pricesPort=pricesPort;
 	}
 

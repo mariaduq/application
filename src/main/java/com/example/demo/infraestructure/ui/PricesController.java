@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.application.PriceService;
+import com.example.demo.application.GetPricesUseCase;
 import com.example.demo.infraestructure.PriceRepositoryJpa;
 import com.example.demo.infraestructure.model.PriceEntity;
 
@@ -24,7 +24,7 @@ public class PricesController {
 	PriceRepositoryJpa priceRepository;
 	
 	@Autowired
-	PriceService priceService;
+	GetPricesUseCase priceService;
 	
 	@PostConstruct
 	public void init() {
