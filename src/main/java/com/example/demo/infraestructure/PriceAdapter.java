@@ -17,7 +17,7 @@ public class PriceAdapter implements PricesPort{
 		this.priceRepository=priceRepository;
 	}
 
-	public List<Price> findAll(){
+	public List<Price> getPrices(){
 		ModelMapper mapper = new ModelMapper();
 		
 		return priceRepository

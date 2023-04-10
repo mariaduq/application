@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.infraestructure.PriceAdapter;
+import com.example.demo.application.ports.PricesPort;
 import com.example.demo.model.Price;
 import com.example.demo.ui.PriceDTO;
 
@@ -17,15 +17,15 @@ import jakarta.persistence.EntityNotFoundException;
 @Service
 public class PriceService {
 	
-	private PriceAdapter priceAggregateDAO;
+	private PricesPort pricesPort;
 	
-	public PriceService(PriceAdapter priceAggregateDAO){
-		this.priceAggregateDAO=priceAggregateDAO;
+	public PriceService(PricesPort pricesPort){
+		this.pricesPort=pricesPort;
 	}
 
 	public boolean validProductId(long product_id) {
 		List<Price> prices = new ArrayList<Price>();
-		prices = priceAggregateDAO.findAll();
+		prices = pricesPort.getPrices();
 		
 		for (Price pr : prices) {
 			if(pr.getProduct_id() == product_id) return true;
@@ -35,7 +35,7 @@ public class PriceService {
 	
 	public boolean validBrandId(long brand_id) {
 		List<Price> prices = new ArrayList<Price>();
-		prices = priceAggregateDAO.findAll();
+		prices = pricesPort.getPrices();
 		
 		for (Price pr : prices) {
 			if(pr.getBrand_id() == brand_id) return true;
@@ -48,7 +48,7 @@ public class PriceService {
 		ModelMapper mapper = new ModelMapper();
 		
 		List<Price> prices = new ArrayList<Price>();
-		prices = priceAggregateDAO.findAll();
+		prices = pricesPort.getPrices();
 	
 		List<Price> validPrices = new ArrayList<Price>();
 		
@@ -91,8 +91,8 @@ public class PriceService {
 	public List<PriceDTO> findAll(){
 		ModelMapper mapper = new ModelMapper();
 		
-		return priceAggregateDAO
-				.findAll()
+		return pricesPort
+				.getPrices()
 				.stream()
 				.map((price)->mapper.map(price, PriceDTO.class))
 				.collect(Collectors.toList());

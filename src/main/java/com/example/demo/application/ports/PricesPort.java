@@ -6,5 +6,5 @@ import com.example.demo.model.Price;
 
 public interface PricesPort {
 	
-	public List<Price> findAll();
+	public List<Price> getPrices();
 }
