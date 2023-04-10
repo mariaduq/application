@@ -9,11 +9,11 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import com.example.demo.application.GetPricesUseCase;
-import com.example.demo.infraestructure.PriceAdapter;
 import com.example.demo.model.PriceRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 
+import com.example.demo.infraestructure.ddbb.PriceAdapter;
 import com.example.demo.infraestructure.model.PriceEntity;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

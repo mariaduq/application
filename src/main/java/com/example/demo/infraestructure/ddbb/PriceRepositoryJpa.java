@@ -1,4 +1,4 @@
-package com.example.demo.infraestructure;
+package com.example.demo.infraestructure.ddbb;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
