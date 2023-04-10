@@ -125,7 +125,7 @@ class PriceServiceTests {
 	}
 	
 	
-	/*@Test
+	@Test
 	void priceForInvalidDate() {
 		when(priceRepository.findAll())
 				.thenReturn(List.of(
@@ -135,11 +135,9 @@ class PriceServiceTests {
 		Timestamp date = Timestamp.valueOf("2021-06-16 21:00:00");
 		long product_id = 35455;
 		long brand_id = 1;
-		
-		float price = priceService.getCorrectPrice(date, product_id, brand_id);
-		
-		assertEquals((float)38.95, price);
-	}*/
+				
+		assertThrows(EntityNotFoundException.class, ()->priceService.getCorrectPrice(date, product_id, brand_id));
+	}
 
 	private Price buildPrice(float amount, Timestamp startDate, Timestamp endDate, int priority) {
 		Price price = new Price();
