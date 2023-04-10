@@ -8,11 +8,11 @@ import org.modelmapper.ModelMapper;
 import com.example.demo.model.Price;
 import com.example.demo.model.PriceRepository;
 
-public class PriceAggregateDAO {
+public class PriceAdapter {
 	
 	private PriceRepository priceRepository;
 
-	public PriceAggregateDAO (PriceRepository priceRepository) {
+	public PriceAdapter (PriceRepository priceRepository) {
 		this.priceRepository=priceRepository;
 	}
 

@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import com.example.demo.application.PriceService;
-import com.example.demo.infraestructure.PriceAggregateDAO;
+import com.example.demo.infraestructure.PriceAdapter;
 import com.example.demo.model.PriceRepository;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -23,7 +23,7 @@ class PriceServiceTests {
 	
 	PriceRepository priceRepository = Mockito.mock(PriceRepository.class);
 	
-	PriceAggregateDAO priceAggregateDAO = new PriceAggregateDAO(priceRepository);
+	PriceAdapter priceAggregateDAO = new PriceAdapter(priceRepository);
 	
 	PriceService priceService = new PriceService(priceAggregateDAO);
 	
