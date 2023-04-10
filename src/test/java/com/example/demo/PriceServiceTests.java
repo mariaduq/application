@@ -12,9 +12,13 @@ import org.mockito.Mockito;
 import com.example.demo.application.PriceService;
 import com.example.demo.infraestructure.PriceAggregateDAO;
 import com.example.demo.model.PriceRepository;
+
+import jakarta.persistence.EntityNotFoundException;
+
 import com.example.demo.infraestructure.model.Price;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class PriceServiceTests {
 	
@@ -116,26 +120,25 @@ class PriceServiceTests {
 		Timestamp date = Timestamp.valueOf("2020-06-16 21:00:00");
 		long product_id = 35457;
 		long brand_id = 1;
+				
+		assertThrows(EntityNotFoundException.class, ()->priceService.getCorrectPrice(date, product_id, brand_id));
+	}
+	
+	
+	/*@Test
+	void priceForInvalidDate() {
+		when(priceRepository.findAll())
+				.thenReturn(List.of(
+				buildPrice((float)35.5, Timestamp.valueOf("2020-06-14 00:00:00"), Timestamp.valueOf("2020-12-31 23:59:59"), 0),
+				buildPrice((float)38.95, Timestamp.valueOf("2020-06-15 16:00:00"), Timestamp.valueOf("2020-12-31 23:59:59"), 1)));
+
+		Timestamp date = Timestamp.valueOf("2021-06-16 21:00:00");
+		long product_id = 35455;
+		long brand_id = 1;
 		
 		float price = priceService.getCorrectPrice(date, product_id, brand_id);
 		
 		assertEquals((float)38.95, price);
-	}
-	
-	/*
-	@Test
-	void priceForInvalidDate() {
-		Timestamp date = Timestamp.valueOf("2021-07-16 21:00:00");
-		long product_id = 35455;
-		
-		when(priceRepository.findAll())
-				.thenReturn(List.of(
-				buildPrice(35.5f, Timestamp.valueOf("2020-06-14 00:00:00"), Timestamp.valueOf("2020-12-31 23:59:59")),
-				buildPrice(35.5f, Timestamp.valueOf("2020-06-14 10:00:00"), Timestamp.valueOf("2020-06-14 10:00:00"))));
-				
-		PriceDTO price = priceService.getCorrectPrice(date, product_id);
-		
-		assertThat(price.equals(null));
 	}*/
 
 	private Price buildPrice(float amount, Timestamp startDate, Timestamp endDate, int priority) {
