@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
-import org.springframework.stereotype.Component;
 
 import com.example.demo.model.PriceAggregate;
 import com.example.demo.model.PriceRepository;

@@ -8,7 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Price {
+public class PriceEntity {
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.AUTO)
@@ -28,11 +28,11 @@ public class Price {
 	
 	private String curr;
 	
-	public Price () {
+	public PriceEntity () {
 		
 	}
 	
-	public Price(Timestamp start_date, Timestamp end_date, long brand_id, long product_id, int priority, float price,
+	public PriceEntity(Timestamp start_date, Timestamp end_date, long brand_id, long product_id, int priority, float price,
 			String curr) {
 		this.setStart_date(start_date);
 		this.setEnd_date(end_date);

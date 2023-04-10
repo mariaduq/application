@@ -2,9 +2,9 @@ package com.example.demo.model;
 
 import java.util.List;
 
-import com.example.demo.infraestructure.model.Price;
+import com.example.demo.infraestructure.model.PriceEntity;
 
 public interface PriceRepository {
 	
-	public List<Price> findAll();
+	public List<PriceEntity> findAll();
 }

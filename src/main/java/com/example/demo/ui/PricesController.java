@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.application.PriceService;
 import com.example.demo.infraestructure.PriceRepositoryJpa;
-import com.example.demo.infraestructure.model.Price;
+import com.example.demo.infraestructure.model.PriceEntity;
 
 import jakarta.annotation.PostConstruct;
 
@@ -28,10 +28,10 @@ public class PricesController {
 	
 	@PostConstruct
 	public void init() {
-		priceRepository.save(new Price(Timestamp.valueOf("2020-06-14 00:00:00"), Timestamp.valueOf("2020-12-31 23:59:59"), 1, 35455, 0, 35.50f, "EUR"));
-		priceRepository.save(new Price(Timestamp.valueOf("2020-06-14 15:00:00"), Timestamp.valueOf("2020-06-14 18:30:00"), 1, 35455, 1, 25.45f, "EUR"));
-		priceRepository.save(new Price(Timestamp.valueOf("2020-06-15 00:00:00"), Timestamp.valueOf("2020-06-15 11:00:00"), 1, 35455, 1, 30.50f, "EUR"));
-		priceRepository.save(new Price(Timestamp.valueOf("2020-06-15 16:00:00"), Timestamp.valueOf("2020-12-31 23:59:59"), 1, 35455, 1, 38.95f, "EUR"));
+		priceRepository.save(new PriceEntity(Timestamp.valueOf("2020-06-14 00:00:00"), Timestamp.valueOf("2020-12-31 23:59:59"), 1, 35455, 0, 35.50f, "EUR"));
+		priceRepository.save(new PriceEntity(Timestamp.valueOf("2020-06-14 15:00:00"), Timestamp.valueOf("2020-06-14 18:30:00"), 1, 35455, 1, 25.45f, "EUR"));
+		priceRepository.save(new PriceEntity(Timestamp.valueOf("2020-06-15 00:00:00"), Timestamp.valueOf("2020-06-15 11:00:00"), 1, 35455, 1, 30.50f, "EUR"));
+		priceRepository.save(new PriceEntity(Timestamp.valueOf("2020-06-15 16:00:00"), Timestamp.valueOf("2020-12-31 23:59:59"), 1, 35455, 1, 38.95f, "EUR"));
 	}
 	
 	

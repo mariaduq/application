@@ -5,7 +5,6 @@ import static org.mockito.Mockito.when;
 import java.sql.Timestamp;
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -15,7 +14,7 @@ import com.example.demo.model.PriceRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 
-import com.example.demo.infraestructure.model.Price;
+import com.example.demo.infraestructure.model.PriceEntity;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -139,8 +138,8 @@ class PriceServiceTests {
 		assertThrows(EntityNotFoundException.class, ()->priceService.getCorrectPrice(date, product_id, brand_id));
 	}
 
-	private Price buildPrice(float amount, Timestamp startDate, Timestamp endDate, int priority) {
-		Price price = new Price();
+	private PriceEntity buildPrice(float amount, Timestamp startDate, Timestamp endDate, int priority) {
+		PriceEntity price = new PriceEntity();
 		
 		price.setBrand_id(1);
 		price.setCurr("EUR");
