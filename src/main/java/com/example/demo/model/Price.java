@@ -2,7 +2,7 @@ package com.example.demo.model;
 
 import java.sql.Timestamp;
 
-public class PriceAggregate {
+public class Price {
 	
 	private long price_list;
 	
@@ -20,11 +20,11 @@ public class PriceAggregate {
 	
 	private String curr;
 	
-	public PriceAggregate () {
+	public Price () {
 		
 	}
 	
-	public PriceAggregate(Timestamp start_date, Timestamp end_date, long brand_id, long product_id, int priority, float price,
+	public Price(Timestamp start_date, Timestamp end_date, long brand_id, long product_id, int priority, float price,
 			String curr) {
 		this.setStart_date(start_date);
 		this.setEnd_date(end_date);

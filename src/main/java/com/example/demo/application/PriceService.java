@@ -9,7 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.infraestructure.PriceAggregateDAO;
-import com.example.demo.model.PriceAggregate;
+import com.example.demo.model.Price;
 import com.example.demo.ui.PriceDTO;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -24,20 +24,20 @@ public class PriceService {
 	}
 
 	public boolean validProductId(long product_id) {
-		List<PriceAggregate> prices = new ArrayList<PriceAggregate>();
+		List<Price> prices = new ArrayList<Price>();
 		prices = priceAggregateDAO.findAll();
 		
-		for (PriceAggregate pr : prices) {
+		for (Price pr : prices) {
 			if(pr.getProduct_id() == product_id) return true;
 		}
 		return false;
 	}
 	
 	public boolean validBrandId(long brand_id) {
-		List<PriceAggregate> prices = new ArrayList<PriceAggregate>();
+		List<Price> prices = new ArrayList<Price>();
 		prices = priceAggregateDAO.findAll();
 		
-		for (PriceAggregate pr : prices) {
+		for (Price pr : prices) {
 			if(pr.getBrand_id() == brand_id) return true;
 		}
 		return false;
@@ -47,12 +47,12 @@ public class PriceService {
 		
 		ModelMapper mapper = new ModelMapper();
 		
-		List<PriceAggregate> prices = new ArrayList<PriceAggregate>();
+		List<Price> prices = new ArrayList<Price>();
 		prices = priceAggregateDAO.findAll();
 	
-		List<PriceAggregate> validPrices = new ArrayList<PriceAggregate>();
+		List<Price> validPrices = new ArrayList<Price>();
 		
-		for(PriceAggregate pr : prices ) {
+		for(Price pr : prices ) {
 			if(pr.getStart_date().before(date)) {
 				if(pr.getEnd_date().after(date)) {
 					validPrices.add(pr);

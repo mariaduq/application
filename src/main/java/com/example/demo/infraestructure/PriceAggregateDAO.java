@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 
-import com.example.demo.model.PriceAggregate;
+import com.example.demo.model.Price;
 import com.example.demo.model.PriceRepository;
 
 public class PriceAggregateDAO {
@@ -16,13 +16,13 @@ public class PriceAggregateDAO {
 		this.priceRepository=priceRepository;
 	}
 
-	public List<PriceAggregate> findAll(){
+	public List<Price> findAll(){
 		ModelMapper mapper = new ModelMapper();
 		
 		return priceRepository
 				.findAll()
 				.stream()
-				.map((priceEntity) -> mapper.map(priceEntity, PriceAggregate.class))
+				.map((priceEntity) -> mapper.map(priceEntity, Price.class))
 				.collect(Collectors.toList());
 	}
 	
