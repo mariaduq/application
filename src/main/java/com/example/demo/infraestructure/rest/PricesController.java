@@ -1,4 +1,4 @@
-package com.example.demo.infraestructure.ui;
+package com.example.demo.infraestructure.rest;
 
 import java.sql.Timestamp;
 import java.util.List;
