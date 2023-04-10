@@ -9,8 +9,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.application.ports.PricesPort;
+import com.example.demo.infraestructure.ui.PriceDTO;
 import com.example.demo.model.Price;
-import com.example.demo.ui.PriceDTO;
 
 import jakarta.persistence.EntityNotFoundException;
 
