@@ -27,7 +27,7 @@ public class PricesController {
 	PriceRepositoryJpa priceRepository;
 	
 	@Autowired
-	GetPricesUseCase priceService;
+	GetPricesUseCase getPricesUseCase;
 	
 	@PostConstruct
 	public void init() {
@@ -43,7 +43,7 @@ public class PricesController {
 		ModelMapper mapper = new ModelMapper();
 
 		return ResponseEntity.ok()
-				.body(priceService
+				.body(getPricesUseCase
 					.findAll()
 					.stream()
 					.map((price) -> mapper.map(price, PriceDTO.class))
@@ -54,7 +54,7 @@ public class PricesController {
 	public ResponseEntity<PriceDTO> getPrice(@PathVariable Timestamp date, @PathVariable long product_id, @PathVariable long brand_id){
 		ModelMapper mapper = new ModelMapper();
 		
-		Price price = priceService.getCorrectPrice(date, product_id, brand_id);
+		Price price = getPricesUseCase.getCorrectPrice(date, product_id, brand_id);
 		PriceDTO priceDTO = mapper.map(price, PriceDTO.class);
 		
 		return ResponseEntity.ok()
