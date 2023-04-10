@@ -2,7 +2,9 @@ package com.example.demo.infraestructure.rest;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.application.GetPricesUseCase;
 import com.example.demo.infraestructure.ddbb.PriceRepositoryJpa;
 import com.example.demo.infraestructure.ddbb.model.PriceEntity;
+import com.example.demo.model.Price;
 
 import jakarta.annotation.PostConstruct;
 
@@ -37,13 +40,25 @@ public class PricesController {
 	
 	@GetMapping
 	public ResponseEntity<List<PriceDTO>> prices(){
-		return ResponseEntity.ok().body(priceService.findAll());
+		ModelMapper mapper = new ModelMapper();
+
+		return ResponseEntity.ok()
+				.body(priceService
+					.findAll()
+					.stream()
+					.map((price) -> mapper.map(price, PriceDTO.class))
+					.collect(Collectors.toList()));
 	}
 	
 	@GetMapping("{date}/{product_id}/{brand_id}")
-	public ResponseEntity<Float> getPrice(@PathVariable Timestamp date, @PathVariable long product_id, @PathVariable long brand_id){
+	public ResponseEntity<PriceDTO> getPrice(@PathVariable Timestamp date, @PathVariable long product_id, @PathVariable long brand_id){
+		ModelMapper mapper = new ModelMapper();
 		
-		return ResponseEntity.ok().body(priceService.getCorrectPrice(date, product_id, brand_id));
+		Price price = priceService.getCorrectPrice(date, product_id, brand_id);
+		PriceDTO priceDTO = mapper.map(price, PriceDTO.class);
+		
+		return ResponseEntity.ok()
+				.body(priceDTO);
 	}
 	
 }

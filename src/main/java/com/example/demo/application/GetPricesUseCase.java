@@ -5,11 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.application.ports.PricesPort;
-import com.example.demo.infraestructure.rest.PriceDTO;
 import com.example.demo.model.Price;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -85,13 +83,10 @@ public class GetPricesUseCase {
 		return price;
 	}
 	
-	public List<PriceDTO> findAll(){
-		ModelMapper mapper = new ModelMapper();
-		
+	public List<Price> findAll(){		
 		return pricesPort
 				.getPrices()
 				.stream()
-				.map((price)->mapper.map(price, PriceDTO.class))
 				.collect(Collectors.toList());
 	}
 	
