@@ -43,10 +43,8 @@ public class GetPricesUseCase {
 		return false;
 	}
 	
-	public List<PriceDTO> validPrices(Timestamp date){
-		
-		ModelMapper mapper = new ModelMapper();
-		
+	public List<Price> validPrices(Timestamp date){
+				
 		List<Price> prices = new ArrayList<Price>();
 		prices = pricesPort.getPrices();
 	
@@ -61,31 +59,30 @@ public class GetPricesUseCase {
 		}
 		return validPrices
 				.stream()
-				.map((price)->mapper.map(price, PriceDTO.class))
 				.collect(Collectors.toList());
 	}
 
-	public float getCorrectPrice(Timestamp date, long product_id, long brand_id) {
+	public Price getCorrectPrice(Timestamp date, long product_id, long brand_id) {
 		
 		if (!validProductId(product_id)) throw new EntityNotFoundException();
 		
 		if (!validBrandId(brand_id)) throw new EntityNotFoundException();
 		
-		List<PriceDTO> validPrices = validPrices(date);
+		List<Price> validPrices = validPrices(date);
 				
 		if (validPrices.isEmpty()) throw new EntityNotFoundException();
 		
-		PriceDTO price = new PriceDTO();
+		Price price = new Price();
 		price = validPrices.get(0);
 		
-		for(PriceDTO pr1 : validPrices) {
+		for(Price pr1 : validPrices) {
 
 			if(pr1.getPriority() > price.getPriority()) {
 				price = pr1;
 			}
 		}
 
-		return price.getPrice();
+		return price;
 	}
 	
 	public List<PriceDTO> findAll(){

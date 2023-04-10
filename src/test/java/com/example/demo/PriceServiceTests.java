@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import com.example.demo.application.GetPricesUseCase;
+import com.example.demo.model.Price;
 import com.example.demo.model.PriceRepository;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -38,9 +39,9 @@ class PriceServiceTests {
 		long product_id = 35455;
 		long brand_id = 1;
 
-		float price = priceService.getCorrectPrice(date, product_id, brand_id);
+		Price price = priceService.getCorrectPrice(date, product_id, brand_id);
 		
-		assertEquals((float)35.5, price);
+		assertEquals((float)35.5, price.getPrice());
 	}
 	
 	@Test
@@ -54,9 +55,9 @@ class PriceServiceTests {
 		long product_id = 35455;
 		long brand_id = 1;
 		
-		float price = priceService.getCorrectPrice(date, product_id, brand_id);
+		Price price = priceService.getCorrectPrice(date, product_id, brand_id);
 		
-		assertEquals((float)25.45, price);
+		assertEquals((float)25.45, price.getPrice());
 	}
 	
 	
@@ -70,9 +71,9 @@ class PriceServiceTests {
 		long product_id = 35455;
 		long brand_id = 1;
 		
-		float price = priceService.getCorrectPrice(date, product_id, brand_id);
+		Price price = priceService.getCorrectPrice(date, product_id, brand_id);
 		
-		assertEquals((float)35.5, price);
+		assertEquals((float)35.5, price.getPrice());
 	}
 	
 	
@@ -87,9 +88,9 @@ class PriceServiceTests {
 		long product_id = 35455;
 		long brand_id = 1;
 		
-		float price = priceService.getCorrectPrice(date, product_id, brand_id);
+		Price price = priceService.getCorrectPrice(date, product_id, brand_id);
 		
-		assertEquals((float)30.5, price);
+		assertEquals((float)30.5, price.getPrice());
 	}
 	
 	@Test
@@ -103,9 +104,9 @@ class PriceServiceTests {
 		long product_id = 35455;
 		long brand_id = 1;
 		
-		float price = priceService.getCorrectPrice(date, product_id, brand_id);
+		Price price = priceService.getCorrectPrice(date, product_id, brand_id);
 		
-		assertEquals((float)38.95, price);
+		assertEquals((float)38.95, price.getPrice());
 	}
 	
 	
