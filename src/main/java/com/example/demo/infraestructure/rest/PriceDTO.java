@@ -2,16 +2,8 @@ package com.example.demo.infraestructure.rest;
 
 import java.sql.Timestamp;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
-@Entity
 public class PriceDTO {
-	
-	@Id
-	@GeneratedValue (strategy = GenerationType.AUTO)
+
 	private long price_list;
 	
 	private Timestamp start_date;
@@ -97,5 +89,13 @@ public class PriceDTO {
 
 	public void setCurr(String curr) {
 		this.curr = curr;
+	}
+
+	public long getPrice_list() {
+		return price_list;
+	}
+
+	public void setPrice_list(long price_list) {
+		this.price_list = price_list;
 	}
 }
