@@ -1,5 +1,7 @@
 version: '3.1'
+
 services:
+
   app:
     container_name: app-prices
     image: app-prices
@@ -8,11 +10,13 @@ services:
       - "8080:8080"
     depends_on:
       - dbpostgresql
+      
   dbpostgresql:
-    image: postgres
+    image: postgres:latest
     ports:
-      - "5432:5432"
+      - 5432:5432
     environment:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_DB=postgres
+      - POSTGRES_HOST_AUTH_METHOD=trust
