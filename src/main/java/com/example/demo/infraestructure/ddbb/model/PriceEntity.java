@@ -2,30 +2,41 @@ package com.example.demo.infraestructure.ddbb.model;
 
 import java.sql.Timestamp;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "PRICES")
 public class PriceEntity {
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.AUTO)
+	@Column(name = "PRICE_ID")
 	private long price_list;
 	
+	@Column(name = "START_DATE")
 	private Timestamp start_date;
 	
+	@Column(name = "END_DATE")
 	private Timestamp end_date;
 	
+	@Column(name = "BRAND_ID")
 	private long brand_id;
 	
+	@Column(name = "PRODUCT_ID")
 	private long product_id;
 	
+	@Column(name = "PRIORITY")
 	private int priority;
 	
+	@Column(name = "PRICE")
 	private float price;
 	
+	@Column(name = "CURR")
 	private String curr;
 	
 	public PriceEntity () {
