@@ -24,9 +24,9 @@ class PriceServiceTests {
 	
 	PriceRepository priceRepository = Mockito.mock(PriceRepository.class);
 	
-	PriceAdapter priceAggregateDAO = new PriceAdapter(priceRepository);
+	PriceAdapter priceAdapter = new PriceAdapter(priceRepository);
 	
-	GetPricesUseCase priceService = new GetPricesUseCase(priceAggregateDAO);
+	GetPricesUseCase priceService = new GetPricesUseCase(priceAdapter);
 	
 	
 	@Test
