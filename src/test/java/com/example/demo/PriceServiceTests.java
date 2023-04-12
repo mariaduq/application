@@ -26,7 +26,7 @@ class PriceServiceTests {
 	
 	PriceAdapter priceAdapter = new PriceAdapter(priceRepository);
 	
-	GetPricesUseCase priceService = new GetPricesUseCase(priceAdapter);
+	GetPricesUseCase getPricesUseCase = new GetPricesUseCase(priceAdapter);
 	
 	
 	@Test
@@ -39,7 +39,7 @@ class PriceServiceTests {
 		long product_id = 35455;
 		long brand_id = 1;
 
-		Price price = priceService.getCorrectPrice(date, product_id, brand_id);
+		Price price = getPricesUseCase.getCorrectPrice(date, product_id, brand_id);
 		
 		assertEquals((float)35.5, price.getPrice());
 	}
@@ -55,7 +55,7 @@ class PriceServiceTests {
 		long product_id = 35455;
 		long brand_id = 1;
 		
-		Price price = priceService.getCorrectPrice(date, product_id, brand_id);
+		Price price = getPricesUseCase.getCorrectPrice(date, product_id, brand_id);
 		
 		assertEquals((float)25.45, price.getPrice());
 	}
@@ -71,7 +71,7 @@ class PriceServiceTests {
 		long product_id = 35455;
 		long brand_id = 1;
 		
-		Price price = priceService.getCorrectPrice(date, product_id, brand_id);
+		Price price = getPricesUseCase.getCorrectPrice(date, product_id, brand_id);
 		
 		assertEquals((float)35.5, price.getPrice());
 	}
@@ -88,7 +88,7 @@ class PriceServiceTests {
 		long product_id = 35455;
 		long brand_id = 1;
 		
-		Price price = priceService.getCorrectPrice(date, product_id, brand_id);
+		Price price = getPricesUseCase.getCorrectPrice(date, product_id, brand_id);
 		
 		assertEquals((float)30.5, price.getPrice());
 	}
@@ -104,7 +104,7 @@ class PriceServiceTests {
 		long product_id = 35455;
 		long brand_id = 1;
 		
-		Price price = priceService.getCorrectPrice(date, product_id, brand_id);
+		Price price = getPricesUseCase.getCorrectPrice(date, product_id, brand_id);
 		
 		assertEquals((float)38.95, price.getPrice());
 	}
@@ -121,7 +121,7 @@ class PriceServiceTests {
 		long product_id = 35457;
 		long brand_id = 1;
 				
-		assertThrows(EntityNotFoundException.class, ()->priceService.getCorrectPrice(date, product_id, brand_id));
+		assertThrows(EntityNotFoundException.class, ()->getPricesUseCase.getCorrectPrice(date, product_id, brand_id));
 	}
 	
 	
@@ -136,7 +136,7 @@ class PriceServiceTests {
 		long product_id = 35455;
 		long brand_id = 1;
 				
-		assertThrows(EntityNotFoundException.class, ()->priceService.getCorrectPrice(date, product_id, brand_id));
+		assertThrows(EntityNotFoundException.class, ()->getPricesUseCase.getCorrectPrice(date, product_id, brand_id));
 	}
 
 	private PriceEntity buildPrice(float amount, Timestamp startDate, Timestamp endDate, int priority) {
