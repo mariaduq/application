@@ -17,7 +17,7 @@ import jakarta.persistence.EntityNotFoundException;
 public class GetPricesUseCase {
 	
 	@Autowired
-	PricesPort pricesPort;
+	private PricesPort pricesPort;
 	
 	public GetPricesUseCase(PricesPort pricesPort){
 		this.pricesPort=pricesPort;
