@@ -8,8 +8,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.application.GetPricesUseCase;
@@ -20,7 +19,6 @@ import com.example.demo.model.Price;
 import jakarta.annotation.PostConstruct;
 
 @RestController
-@RequestMapping("/")
 public class PricesController {
 	
 	@Autowired
@@ -38,7 +36,7 @@ public class PricesController {
 	}
 	
 	
-	@GetMapping
+	@GetMapping("/allprices")
 	public ResponseEntity<List<PriceDTO>> prices(){
 		ModelMapper mapper = new ModelMapper();
 
@@ -50,9 +48,13 @@ public class PricesController {
 					.collect(Collectors.toList()));
 	}
 	
-	@GetMapping("{date}/{product_id}/{brand_id}")
-	public ResponseEntity<PriceDTO> getPrice(@PathVariable Timestamp date, @PathVariable long product_id, @PathVariable long brand_id){
+	@GetMapping("/price/search")
+	public ResponseEntity<PriceDTO> getPrice(@RequestParam(required=true) String dateString,
+			@RequestParam(required=true) long product_id, @RequestParam(required=true) long brand_id){
+		
 		ModelMapper mapper = new ModelMapper();
+		
+		Timestamp date = mapper.map(dateString, Timestamp.class);
 		
 		Price price = getPricesUseCase.getCorrectPrice(date, product_id, brand_id);
 		PriceDTO priceDTO = mapper.map(price, PriceDTO.class);
