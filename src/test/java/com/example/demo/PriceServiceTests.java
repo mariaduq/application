@@ -10,7 +10,6 @@ import org.mockito.Mockito;
 
 import com.example.demo.application.GetPricesUseCase;
 import com.example.demo.model.Price;
-import com.example.demo.model.PriceRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 
