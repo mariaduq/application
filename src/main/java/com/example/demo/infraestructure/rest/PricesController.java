@@ -49,7 +49,7 @@ public class PricesController {
 	}
 	
 	@GetMapping("/price/search")
-	public ResponseEntity<PriceDTO> getPrice(@RequestParam(required=true) String dateString,
+	public ResponseEntity<PriceReduce> getPrice(@RequestParam(required=true) String dateString,
 			@RequestParam(required=true) long product_id, @RequestParam(required=true) long brand_id){
 		
 		ModelMapper mapper = new ModelMapper();
@@ -57,10 +57,10 @@ public class PricesController {
 		Timestamp date = mapper.map(dateString, Timestamp.class);
 		
 		Price price = getPricesUseCase.getCorrectPrice(date, product_id, brand_id);
-		PriceDTO priceDTO = mapper.map(price, PriceDTO.class);
+		PriceReduce priceReduce = mapper.map(price, PriceReduce.class);
 		
 		return ResponseEntity.ok()
-				.body(priceDTO);
+				.body(priceReduce);
 	}
 	
 }
