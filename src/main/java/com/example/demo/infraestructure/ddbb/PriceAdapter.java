@@ -13,16 +13,16 @@ import com.example.demo.model.PriceRepository;
 @Service
 public class PriceAdapter implements PricesPort{
 	
-	private PriceRepository priceRepository;
+	private PriceRepositoryJpa priceRepositoryJpa;
 
-	public PriceAdapter (PriceRepository priceRepository) {
-		this.priceRepository=priceRepository;
+	public PriceAdapter (PriceRepositoryJpa priceRepositoryJpa) {
+		this.priceRepositoryJpa=priceRepositoryJpa;
 	}
 
 	public List<Price> getPrices(){
 		ModelMapper mapper = new ModelMapper();
 		
-		return priceRepository
+		return priceRepositoryJpa
 				.findAll()
 				.stream()
 				.map((priceEntity) -> mapper.map(priceEntity, Price.class))

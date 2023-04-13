@@ -15,6 +15,7 @@ import com.example.demo.model.PriceRepository;
 import jakarta.persistence.EntityNotFoundException;
 
 import com.example.demo.infraestructure.ddbb.PriceAdapter;
+import com.example.demo.infraestructure.ddbb.PriceRepositoryJpa;
 import com.example.demo.infraestructure.ddbb.model.PriceEntity;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -22,16 +23,16 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class PriceServiceTests {
 	
-	PriceRepository priceRepository = Mockito.mock(PriceRepository.class);
+	PriceRepositoryJpa priceRepositoryJpa = Mockito.mock(PriceRepositoryJpa.class);
 	
-	PriceAdapter priceAdapter = new PriceAdapter(priceRepository);
+	PriceAdapter priceAdapter = new PriceAdapter(priceRepositoryJpa);
 	
 	GetPricesUseCase getPricesUseCase = new GetPricesUseCase(priceAdapter);
 	
 	
 	@Test
 	void price_when_date_is_2020_06_14_10_00_and_productId_is_35455_and_brandId_is_1() {		
-		when(priceRepository.findAll())
+		when(priceRepositoryJpa.findAll())
 				.thenReturn(List.of(
 				buildPrice((float)35.5, Timestamp.valueOf("2020-06-14 00:00:00"), Timestamp.valueOf("2020-12-31 23:59:59"), 0)));
 		
@@ -46,7 +47,7 @@ class PriceServiceTests {
 	
 	@Test
 	void price_when_date_is_2020_06_14_16_00_and_productId_is_35455_and_brandId_is_1() {
-		when(priceRepository.findAll())
+		when(priceRepositoryJpa.findAll())
 				.thenReturn(List.of(
 				buildPrice((float)35.5, Timestamp.valueOf("2020-06-14 00:00:00"), Timestamp.valueOf("2020-12-31 23:59:59"), 0),
 				buildPrice((float)25.45, Timestamp.valueOf("2020-06-14 15:00:00"), Timestamp.valueOf("2020-06-14 18:30:00"), 1)));
@@ -63,7 +64,7 @@ class PriceServiceTests {
 	
 	@Test
 	void price_when_date_is_2020_06_14_21_00_and_productId_is_35455_and_brandId_is_1() {
-		when(priceRepository.findAll())
+		when(priceRepositoryJpa.findAll())
 				.thenReturn(List.of(
 				buildPrice((float)35.5, Timestamp.valueOf("2020-06-14 00:00:00"), Timestamp.valueOf("2020-12-31 23:59:59"), 0)));
 		
@@ -79,7 +80,7 @@ class PriceServiceTests {
 	
 	@Test
 	void price_when_date_is_2020_06_15_10_00_and_productId_is_35455_and_brandId_is_1() {
-		when(priceRepository.findAll())
+		when(priceRepositoryJpa.findAll())
 				.thenReturn(List.of(
 				buildPrice((float)35.5, Timestamp.valueOf("2020-06-14 00:00:00"), Timestamp.valueOf("2020-12-31 23:59:59"), 0),
 				buildPrice((float)30.5, Timestamp.valueOf("2020-06-15 00:00:00"), Timestamp.valueOf("2020-06-15 11:00:00"), 1)));
@@ -95,7 +96,7 @@ class PriceServiceTests {
 	
 	@Test
 	void price_when_date_is_2020_06_16_21_00_and_productId_is_35455_and_brandId_is_1() {
-		when(priceRepository.findAll())
+		when(priceRepositoryJpa.findAll())
 				.thenReturn(List.of(
 				buildPrice((float)35.5, Timestamp.valueOf("2020-06-14 00:00:00"), Timestamp.valueOf("2020-12-31 23:59:59"), 0),
 				buildPrice((float)38.95, Timestamp.valueOf("2020-06-15 16:00:00"), Timestamp.valueOf("2020-12-31 23:59:59"), 1)));
@@ -112,7 +113,7 @@ class PriceServiceTests {
 	
 	@Test
 	void priceForInvalidProduct() {
-		when(priceRepository.findAll())
+		when(priceRepositoryJpa.findAll())
 				.thenReturn(List.of(
 				buildPrice((float)35.5, Timestamp.valueOf("2020-06-14 00:00:00"), Timestamp.valueOf("2020-12-31 23:59:59"), 0),
 				buildPrice((float)38.95, Timestamp.valueOf("2020-06-15 16:00:00"), Timestamp.valueOf("2020-12-31 23:59:59"), 1)));
@@ -127,7 +128,7 @@ class PriceServiceTests {
 	
 	@Test
 	void priceForInvalidDate() {
-		when(priceRepository.findAll())
+		when(priceRepositoryJpa.findAll())
 				.thenReturn(List.of(
 				buildPrice((float)35.5, Timestamp.valueOf("2020-06-14 00:00:00"), Timestamp.valueOf("2020-12-31 23:59:59"), 0),
 				buildPrice((float)38.95, Timestamp.valueOf("2020-06-15 16:00:00"), Timestamp.valueOf("2020-12-31 23:59:59"), 1)));
