@@ -20,8 +20,9 @@ public class PriceReduce {
 		
 	}
 	
-	public PriceReduce(Timestamp start_date, Timestamp end_date, long brand_id, long product_id, float price,
+	public PriceReduce(long price_list, Timestamp start_date, Timestamp end_date, long brand_id, long product_id, float price,
 			String curr) {
+		this.setPrice_list(price_list);
 		this.setStart_date(start_date);
 		this.setEnd_date(end_date);
 		this.setBrand_id(brand_id);
