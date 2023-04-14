@@ -29,10 +29,10 @@ public class PricesController {
 	
 	@PostConstruct
 	public void init() {
-		priceRepository.save(new PriceEntity(Timestamp.valueOf("2020-06-14 00:00:00"), Timestamp.valueOf("2020-12-31 23:59:59"), 1, 35455, 0, 35.50f, "EUR"));
-		priceRepository.save(new PriceEntity(Timestamp.valueOf("2020-06-14 15:00:00"), Timestamp.valueOf("2020-06-14 18:30:00"), 1, 35455, 1, 25.450f, "EUR"));
-		priceRepository.save(new PriceEntity(Timestamp.valueOf("2020-06-15 00:00:00"), Timestamp.valueOf("2020-06-15 11:00:00"), 1, 35455, 1, 30.50f, "EUR"));
-		priceRepository.save(new PriceEntity(Timestamp.valueOf("2020-06-15 16:00:00"), Timestamp.valueOf("2020-12-31 23:59:59"), 1, 35455, 1, 38.950f, "EUR"));
+		priceRepository.save(new PriceEntity(1, Timestamp.valueOf("2020-06-14 00:00:00"), Timestamp.valueOf("2020-12-31 23:59:59"), 1, 35455, 0, 35.50f, "EUR"));
+		priceRepository.save(new PriceEntity(2, Timestamp.valueOf("2020-06-14 15:00:00"), Timestamp.valueOf("2020-06-14 18:30:00"), 1, 35455, 1, 25.450f, "EUR"));
+		priceRepository.save(new PriceEntity(3, Timestamp.valueOf("2020-06-15 00:00:00"), Timestamp.valueOf("2020-06-15 11:00:00"), 1, 35455, 1, 30.50f, "EUR"));
+		priceRepository.save(new PriceEntity(4, Timestamp.valueOf("2020-06-15 16:00:00"), Timestamp.valueOf("2020-12-31 23:59:59"), 1, 35455, 1, 38.950f, "EUR"));
 	}
 	
 	

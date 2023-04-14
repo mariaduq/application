@@ -14,7 +14,6 @@ import jakarta.persistence.Table;
 public class PriceEntity {
 	
 	@Id
-	@GeneratedValue (strategy = GenerationType.AUTO)
 	@Column(name = "PRICE_ID")
 	private long price_list;
 	
@@ -43,8 +42,9 @@ public class PriceEntity {
 		
 	}
 	
-	public PriceEntity(Timestamp start_date, Timestamp end_date, long brand_id, long product_id, int priority, float price,
+	public PriceEntity(long price_list, Timestamp start_date, Timestamp end_date, long brand_id, long product_id, int priority, float price,
 			String curr) {
+		this.setPrice_list(price_list);
 		this.setStart_date(start_date);
 		this.setEnd_date(end_date);
 		this.setBrand_id(brand_id);
@@ -53,7 +53,15 @@ public class PriceEntity {
 		this.setPrice(price);
 		this.setCurr(curr);
 	}
+	
+	public long getPrice_list() {
+		return price_list;
+	}
 
+	public void setPrice_list(Long price_list) {
+		this.price_list = price_list;
+	}
+	
 	public Timestamp getStart_date() {
 		return start_date;
 	}
