@@ -2,8 +2,10 @@ package com.example.demo.application;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,42 +26,33 @@ public class GetPricesUseCase {
 	}
 
 	public boolean validProductId(long product_id) {
-		List<Price> prices = new ArrayList<Price>();
-		prices = pricesPort.getPrices();
+		List<Price> prices = pricesPort.getPrices().stream()
+				.filter(price -> price.getProduct_id() == product_id)
+				.collect(Collectors.toList());
 		
-		for (Price pr : prices) {
-			if(pr.getProduct_id() == product_id) return true;
-		}
+		if(prices.size() >= 1) return true;
+
 		return false;
 	}
 	
 	public boolean validBrandId(long brand_id) {
-		List<Price> prices = new ArrayList<Price>();
-		prices = pricesPort.getPrices();
+		List<Price> prices = pricesPort.getPrices().stream()
+				.filter(price -> price.getBrand_id() == brand_id)
+				.collect(Collectors.toList());
 		
-		for (Price pr : prices) {
-			if(pr.getBrand_id() == brand_id) return true;
-		}
+		if(prices.size() >= 1) return true;
+		
 		return false;
 	}
 	
 	public List<Price> validPrices(Timestamp date){
-				
-		List<Price> prices = new ArrayList<Price>();
-		prices = pricesPort.getPrices();
 	
-		List<Price> validPrices = new ArrayList<Price>();
-		
-		for(Price pr : prices ) {
-			if(pr.getStart_date().before(date)) {
-				if(pr.getEnd_date().after(date)) {
-					validPrices.add(pr);
-				}
-			}
-		}
-		return validPrices
-				.stream()
+		List<Price> validPrices = pricesPort.getPrices().stream()
+				.filter(price -> price.getStart_date().before(date))
+				.filter(price -> price.getEnd_date().after(date))
 				.collect(Collectors.toList());
+		
+		return validPrices;
 	}
 
 	public Price getCorrectPrice(Timestamp date, long product_id, long brand_id) {
@@ -68,11 +61,25 @@ public class GetPricesUseCase {
 		
 		if (!validBrandId(brand_id)) throw new EntityNotFoundException();
 		
-		List<Price> validPrices = validPrices(date);
-				
-		if (validPrices.isEmpty()) throw new EntityNotFoundException();
+		Price price = validPrices(date).stream()
+				.sorted(Comparator.comparingInt(Price::getPriority).reversed())
+				.findFirst()
+				.get();
+			
+		return price;
 		
-		Price price = new Price();
+		//if (validPrices.isEmpty()) throw new EntityNotFoundException();
+		
+		/*Price price = validPrices(date).stream()
+				.sorted(Comparator.comparingInt(Price::getPriority))
+				.findFirst()
+				.get();*/
+
+		/*Price price = validPrices.stream()
+				.s
+		
+		return price;*/
+		/*Price price = new Price();
 		price = validPrices.get(0);
 		
 		for(Price pr1 : validPrices) {
@@ -82,7 +89,7 @@ public class GetPricesUseCase {
 			}
 		}
 
-		return price;
+		return price;*/
 	}
 	
 	public List<Price> findAll(){		

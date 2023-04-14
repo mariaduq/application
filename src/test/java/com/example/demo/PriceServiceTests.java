@@ -4,6 +4,7 @@ import static org.mockito.Mockito.when;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -136,7 +137,7 @@ class PriceServiceTests {
 		long product_id = 35455;
 		long brand_id = 1;
 				
-		assertThrows(EntityNotFoundException.class, ()->getPricesUseCase.getCorrectPrice(date, product_id, brand_id));
+		assertThrows(NoSuchElementException.class, ()->getPricesUseCase.getCorrectPrice(date, product_id, brand_id));
 	}
 
 	private PriceEntity buildPrice(float amount, Timestamp startDate, Timestamp endDate, int priority) {
