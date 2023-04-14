@@ -1,11 +1,9 @@
 package com.example.demo.application;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -67,29 +65,6 @@ public class GetPricesUseCase {
 				.get();
 			
 		return price;
-		
-		//if (validPrices.isEmpty()) throw new EntityNotFoundException();
-		
-		/*Price price = validPrices(date).stream()
-				.sorted(Comparator.comparingInt(Price::getPriority))
-				.findFirst()
-				.get();*/
-
-		/*Price price = validPrices.stream()
-				.s
-		
-		return price;*/
-		/*Price price = new Price();
-		price = validPrices.get(0);
-		
-		for(Price pr1 : validPrices) {
-
-			if(pr1.getPriority() > price.getPriority()) {
-				price = pr1;
-			}
-		}
-
-		return price;*/
 	}
 	
 	public List<Price> findAll(){		
