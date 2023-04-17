@@ -26,7 +26,7 @@ $ docker-compose up --build
 Once the application is already running, if you make the following request:
 
 ```
-http://localhost:8080/price/search?dateString=2020-06-16 21:00:00&product_id=35455&brand_id=1
+http://localhost:8080/practicaPrices/v1/prices?dateString=2020-06-16 21:00:00&productId=35455&brandId=1
 ```
 
 You get the price 38.95 EUR
