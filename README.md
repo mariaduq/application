@@ -10,8 +10,6 @@ To run it, you need to have Docker installed locally.
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
-
 First, you have to clone the repository in the desired directory with the following command:
 
 ```
