@@ -67,11 +67,4 @@ public class GetPricesUseCase {
 		return price;
 	}
 	
-	public List<Price> findAll(){		
-		return pricesPort
-				.getPrices()
-				.stream()
-				.collect(Collectors.toList());
-	}
-	
 }

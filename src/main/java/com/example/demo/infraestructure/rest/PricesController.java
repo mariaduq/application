@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.application.GetAllPricesUseCase;
 import com.example.demo.application.GetPricesUseCase;
 import com.example.demo.infraestructure.ddbb.PriceRepositoryJpa;
 import com.example.demo.infraestructure.ddbb.model.PriceEntity;
@@ -27,6 +28,9 @@ public class PricesController {
 	@Autowired
 	GetPricesUseCase getPricesUseCase;
 	
+	@Autowired
+	GetAllPricesUseCase getAllPricesUseCase;
+	
 	@PostConstruct
 	public void init() {
 		priceRepository.save(new PriceEntity(1, Timestamp.valueOf("2020-06-14 00:00:00"), Timestamp.valueOf("2020-12-31 23:59:59"), 1, 35455, 0, 35.50f, "EUR"));
@@ -41,7 +45,7 @@ public class PricesController {
 		ModelMapper mapper = new ModelMapper();
 
 		return ResponseEntity.ok()
-				.body(getPricesUseCase
+				.body(getAllPricesUseCase
 					.findAll()
 					.stream()
 					.map((price) -> mapper.map(price, PriceDTO.class))
