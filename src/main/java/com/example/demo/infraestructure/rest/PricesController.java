@@ -56,13 +56,13 @@ public class PricesController {
 	
 	@GetMapping("/v1/prices")
 	public ResponseEntity<PriceReduce> getPrice(@RequestParam(required=true) String dateString,
-			@RequestParam(required=true) long product_id, @RequestParam(required=true) long brand_id){
+			@RequestParam(required=true) long productId, @RequestParam(required=true) long brandId){
 		
 		ModelMapper mapper = new ModelMapper();
 		
 		Timestamp date = mapper.map(dateString, Timestamp.class);
 		
-		Price price = getPricesUseCase.getCorrectPrice(date, product_id, brand_id);
+		Price price = getPricesUseCase.getCorrectPrice(date, productId, brandId);
 		PriceReduce priceReduce = mapper.map(price, PriceReduce.class);
 		
 		return ResponseEntity.ok()

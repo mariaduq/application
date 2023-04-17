@@ -13,19 +13,19 @@ public class PriceEntity {
 	
 	@Id
 	@Column(name = "PRICE_ID")
-	private long price_list;
+	private long priceList;
 	
 	@Column(name = "START_DATE")
-	private Timestamp start_date;
+	private Timestamp startDate;
 	
 	@Column(name = "END_DATE")
-	private Timestamp end_date;
+	private Timestamp endDate;
 	
 	@Column(name = "BRAND_ID")
-	private long brand_id;
+	private long brandId;
 	
 	@Column(name = "PRODUCT_ID")
-	private long product_id;
+	private long productId;
 	
 	@Column(name = "PRIORITY")
 	private int priority;
@@ -40,56 +40,56 @@ public class PriceEntity {
 		
 	}
 	
-	public PriceEntity(long price_list, Timestamp start_date, Timestamp end_date, long brand_id, long product_id, int priority, float price,
+	public PriceEntity(long priceList, Timestamp startDate, Timestamp endDate, long brandId, long productId, int priority, float price,
 			String curr) {
-		this.setPrice_list(price_list);
-		this.setStart_date(start_date);
-		this.setEnd_date(end_date);
-		this.setBrand_id(brand_id);
-		this.setProduct_id(product_id);
+		this.setPriceList(priceList);
+		this.setStartDate(startDate);
+		this.setEndDate(endDate);
+		this.setBrandId(brandId);
+		this.setProductId(productId);
 		this.setPriority(priority);
 		this.setPrice(price);
 		this.setCurr(curr);
 	}
 	
-	public long getPrice_list() {
-		return price_list;
+	public long getPriceList() {
+		return priceList;
 	}
 
-	public void setPrice_list(Long price_list) {
-		this.price_list = price_list;
+	public void setPriceList(Long price_list) {
+		this.priceList = price_list;
 	}
 	
-	public Timestamp getStart_date() {
-		return start_date;
+	public Timestamp getStartDate() {
+		return startDate;
 	}
 
-	public void setStart_date(Timestamp start_date) {
-		this.start_date = start_date;
+	public void setStartDate(Timestamp start_date) {
+		this.startDate = start_date;
 	}
 
-	public Timestamp getEnd_date() {
-		return end_date;
+	public Timestamp getEndDate() {
+		return endDate;
 	}
 
-	public void setEnd_date(Timestamp end_date) {
-		this.end_date = end_date;
+	public void setEndDate(Timestamp end_date) {
+		this.endDate = end_date;
 	}
 
-	public long getBrand_id() {
-		return brand_id;
+	public long getBrandId() {
+		return brandId;
 	}
 
-	public void setBrand_id(long brand_id) {
-		this.brand_id = brand_id;
+	public void setBrandId(long brand_id) {
+		this.brandId = brand_id;
 	}
 
-	public long getProduct_id() {
-		return product_id;
+	public long getProductId() {
+		return productId;
 	}
 
-	public void setProduct_id(long product_id) {
-		this.product_id = product_id;
+	public void setProductId(long product_id) {
+		this.productId = product_id;
 	}
 
 	public int getPriority() {

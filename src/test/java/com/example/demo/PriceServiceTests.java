@@ -37,10 +37,10 @@ class PriceServiceTests {
 				buildPrice((float)35.5, Timestamp.valueOf("2020-06-14 00:00:00"), Timestamp.valueOf("2020-12-31 23:59:59"), 0)));
 		
 		Timestamp date = Timestamp.valueOf("2020-06-14 10:00:00");
-		long product_id = 35455;
-		long brand_id = 1;
+		long productId = 35455;
+		long brandId = 1;
 
-		Price price = getPricesUseCase.getCorrectPrice(date, product_id, brand_id);
+		Price price = getPricesUseCase.getCorrectPrice(date, productId, brandId);
 		
 		assertEquals((float)35.5, price.getPrice());
 	}
@@ -53,10 +53,10 @@ class PriceServiceTests {
 				buildPrice((float)25.45, Timestamp.valueOf("2020-06-14 15:00:00"), Timestamp.valueOf("2020-06-14 18:30:00"), 1)));
 		
 		Timestamp date = Timestamp.valueOf("2020-06-14 16:00:00");
-		long product_id = 35455;
-		long brand_id = 1;
+		long productId = 35455;
+		long brandId = 1;
 		
-		Price price = getPricesUseCase.getCorrectPrice(date, product_id, brand_id);
+		Price price = getPricesUseCase.getCorrectPrice(date, productId, brandId);
 		
 		assertEquals((float)25.45, price.getPrice());
 	}
@@ -69,10 +69,10 @@ class PriceServiceTests {
 				buildPrice((float)35.5, Timestamp.valueOf("2020-06-14 00:00:00"), Timestamp.valueOf("2020-12-31 23:59:59"), 0)));
 		
 		Timestamp date = Timestamp.valueOf("2020-06-14 21:00:00");
-		long product_id = 35455;
-		long brand_id = 1;
+		long productId = 35455;
+		long brandId = 1;
 		
-		Price price = getPricesUseCase.getCorrectPrice(date, product_id, brand_id);
+		Price price = getPricesUseCase.getCorrectPrice(date, productId, brandId);
 		
 		assertEquals((float)35.5, price.getPrice());
 	}
@@ -86,10 +86,10 @@ class PriceServiceTests {
 				buildPrice((float)30.5, Timestamp.valueOf("2020-06-15 00:00:00"), Timestamp.valueOf("2020-06-15 11:00:00"), 1)));
 		
 		Timestamp date = Timestamp.valueOf("2020-06-15 10:00:00");
-		long product_id = 35455;
-		long brand_id = 1;
+		long productId = 35455;
+		long brandId = 1;
 		
-		Price price = getPricesUseCase.getCorrectPrice(date, product_id, brand_id);
+		Price price = getPricesUseCase.getCorrectPrice(date, productId, brandId);
 		
 		assertEquals((float)30.5, price.getPrice());
 	}
@@ -102,10 +102,10 @@ class PriceServiceTests {
 				buildPrice((float)38.95, Timestamp.valueOf("2020-06-15 16:00:00"), Timestamp.valueOf("2020-12-31 23:59:59"), 1)));
 		
 		Timestamp date = Timestamp.valueOf("2020-06-16 21:00:00");
-		long product_id = 35455;
-		long brand_id = 1;
+		long productId = 35455;
+		long brandId = 1;
 		
-		Price price = getPricesUseCase.getCorrectPrice(date, product_id, brand_id);
+		Price price = getPricesUseCase.getCorrectPrice(date, productId, brandId);
 		
 		assertEquals((float)38.95, price.getPrice());
 	}
@@ -119,10 +119,10 @@ class PriceServiceTests {
 				buildPrice((float)38.95, Timestamp.valueOf("2020-06-15 16:00:00"), Timestamp.valueOf("2020-12-31 23:59:59"), 1)));
 		
 		Timestamp date = Timestamp.valueOf("2020-06-16 21:00:00");
-		long product_id = 35457;
-		long brand_id = 1;
+		long productId = 35457;
+		long brandId = 1;
 				
-		assertThrows(EntityNotFoundException.class, ()->getPricesUseCase.getCorrectPrice(date, product_id, brand_id));
+		assertThrows(EntityNotFoundException.class, ()->getPricesUseCase.getCorrectPrice(date, productId, brandId));
 	}
 	
 	
@@ -134,21 +134,21 @@ class PriceServiceTests {
 				buildPrice((float)38.95, Timestamp.valueOf("2020-06-15 16:00:00"), Timestamp.valueOf("2020-12-31 23:59:59"), 1)));
 
 		Timestamp date = Timestamp.valueOf("2021-06-16 21:00:00");
-		long product_id = 35455;
-		long brand_id = 1;
+		long productId = 35455;
+		long brandId = 1;
 				
-		assertThrows(NoSuchElementException.class, ()->getPricesUseCase.getCorrectPrice(date, product_id, brand_id));
+		assertThrows(NoSuchElementException.class, ()->getPricesUseCase.getCorrectPrice(date, productId, brandId));
 	}
 
 	private PriceEntity buildPrice(float amount, Timestamp startDate, Timestamp endDate, int priority) {
 		PriceEntity price = new PriceEntity();
 		
-		price.setBrand_id(1);
+		price.setBrandId(1);
 		price.setCurr("EUR");
-		price.setStart_date(startDate);
-		price.setEnd_date(endDate);
+		price.setStartDate(startDate);
+		price.setEndDate(endDate);
 		price.setPrice(amount);
-		price.setProduct_id(35455);
+		price.setProductId(35455);
 		price.setPriority(priority);
 		
 		return price;

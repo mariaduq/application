@@ -4,15 +4,15 @@ import java.sql.Timestamp;
 
 public class Price {
 	
-	private long price_list;
+	private long priceList;
 	
-	private Timestamp start_date;
+	private Timestamp startDate;
 	
-	private Timestamp end_date;
+	private Timestamp endDate;
 	
-	private long brand_id;
+	private long brandId;
 	
-	private long product_id;
+	private long productId;
 	
 	private int priority;
 	
@@ -24,47 +24,56 @@ public class Price {
 		
 	}
 	
-	public Price(Timestamp start_date, Timestamp end_date, long brand_id, long product_id, int priority, float price,
+	public Price(long priceList, Timestamp startDate, Timestamp endDate, long brandId, long productId, int priority, float price,
 			String curr) {
-		this.setStart_date(start_date);
-		this.setEnd_date(end_date);
-		this.setBrand_id(brand_id);
-		this.setProduct_id(product_id);
+		this.setPriceList(priceList);
+		this.setStartDate(startDate);
+		this.setEndDate(endDate);
+		this.setBrandId(brandId);
+		this.setProductId(productId);
 		this.setPriority(priority);
 		this.setPrice(price);
 		this.setCurr(curr);
 	}
-
-	public Timestamp getStart_date() {
-		return start_date;
+	
+	public long getPriceList() {
+		return priceList;
 	}
 
-	public void setStart_date(Timestamp start_date) {
-		this.start_date = start_date;
+	public void setPriceList(long priceList) {
+		this.priceList = priceList;
+	}
+	
+	public Timestamp getStartDate() {
+		return startDate;
 	}
 
-	public Timestamp getEnd_date() {
-		return end_date;
+	public void setStartDate(Timestamp start_date) {
+		this.startDate = start_date;
 	}
 
-	public void setEnd_date(Timestamp end_date) {
-		this.end_date = end_date;
+	public Timestamp getEndDate() {
+		return endDate;
 	}
 
-	public long getBrand_id() {
-		return brand_id;
+	public void setEndDate(Timestamp end_date) {
+		this.endDate = end_date;
 	}
 
-	public void setBrand_id(long brand_id) {
-		this.brand_id = brand_id;
+	public long getBrandId() {
+		return brandId;
 	}
 
-	public long getProduct_id() {
-		return product_id;
+	public void setBrandId(long brand_id) {
+		this.brandId = brand_id;
 	}
 
-	public void setProduct_id(long product_id) {
-		this.product_id = product_id;
+	public long getProductId() {
+		return productId;
+	}
+
+	public void setProductId(long product_id) {
+		this.productId = product_id;
 	}
 
 	public int getPriority() {
@@ -89,13 +98,5 @@ public class Price {
 
 	public void setCurr(String curr) {
 		this.curr = curr;
-	}
-
-	public long getPrice_list() {
-		return price_list;
-	}
-
-	public void setPrice_list(long price_list) {
-		this.price_list = price_list;
 	}
 }

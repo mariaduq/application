@@ -23,9 +23,9 @@ public class GetPricesUseCase {
 		this.pricesPort=pricesPort;
 	}
 
-	private boolean validProductId(long product_id) {
+	private boolean validProductId(long productId) {
 		List<Price> prices = pricesPort.getPrices().stream()
-				.filter(price -> price.getProduct_id() == product_id)
+				.filter(price -> price.getProductId() == productId)
 				.collect(Collectors.toList());
 		
 		if(prices.size() >= 1) return true;
@@ -33,9 +33,9 @@ public class GetPricesUseCase {
 		return false;
 	}
 	
-	private boolean validBrandId(long brand_id) {
+	private boolean validBrandId(long brandId) {
 		List<Price> prices = pricesPort.getPrices().stream()
-				.filter(price -> price.getBrand_id() == brand_id)
+				.filter(price -> price.getBrandId() == brandId)
 				.collect(Collectors.toList());
 		
 		if(prices.size() >= 1) return true;
@@ -46,18 +46,18 @@ public class GetPricesUseCase {
 	private List<Price> validPrices(Timestamp date){
 	
 		List<Price> validPrices = pricesPort.getPrices().stream()
-				.filter(price -> price.getStart_date().before(date))
-				.filter(price -> price.getEnd_date().after(date))
+				.filter(price -> price.getStartDate().before(date))
+				.filter(price -> price.getEndDate().after(date))
 				.collect(Collectors.toList());
 		
 		return validPrices;
 	}
 
-	public Price getCorrectPrice(Timestamp date, long product_id, long brand_id) {
+	public Price getCorrectPrice(Timestamp date, long productId, long brandId) {
 		
-		if (!validProductId(product_id)) throw new EntityNotFoundException();
+		if (!validProductId(productId)) throw new EntityNotFoundException();
 		
-		if (!validBrandId(brand_id)) throw new EntityNotFoundException();
+		if (!validBrandId(brandId)) throw new EntityNotFoundException();
 		
 		Price price = validPrices(date).stream()
 				.sorted(Comparator.comparingInt(Price::getPriority).reversed())
