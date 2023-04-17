@@ -23,7 +23,7 @@ public class GetPricesUseCase {
 		this.pricesPort=pricesPort;
 	}
 
-	public boolean validProductId(long product_id) {
+	private boolean validProductId(long product_id) {
 		List<Price> prices = pricesPort.getPrices().stream()
 				.filter(price -> price.getProduct_id() == product_id)
 				.collect(Collectors.toList());
@@ -33,7 +33,7 @@ public class GetPricesUseCase {
 		return false;
 	}
 	
-	public boolean validBrandId(long brand_id) {
+	private boolean validBrandId(long brand_id) {
 		List<Price> prices = pricesPort.getPrices().stream()
 				.filter(price -> price.getBrand_id() == brand_id)
 				.collect(Collectors.toList());
@@ -43,7 +43,7 @@ public class GetPricesUseCase {
 		return false;
 	}
 	
-	public List<Price> validPrices(Timestamp date){
+	private List<Price> validPrices(Timestamp date){
 	
 		List<Price> validPrices = pricesPort.getPrices().stream()
 				.filter(price -> price.getStart_date().before(date))
