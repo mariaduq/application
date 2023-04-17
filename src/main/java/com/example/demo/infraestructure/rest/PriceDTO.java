@@ -2,7 +2,7 @@ package com.example.demo.infraestructure.rest;
 
 import java.sql.Timestamp;
 
-public class PriceReduce {
+public class PriceDTO {
 	
 	private long priceList;
 	
@@ -16,11 +16,11 @@ public class PriceReduce {
 		
 	private String price;
 		
-	public PriceReduce () {
+	public PriceDTO () {
 		
 	}
 	
-	public PriceReduce(long priceList, Timestamp startDate, Timestamp endDate, long brandId, long productId, float price,
+	public PriceDTO(long priceList, Timestamp startDate, Timestamp endDate, long brandId, long productId, float price,
 			String curr) {
 		this.setPriceList(priceList);
 		this.setStartDate(startDate);

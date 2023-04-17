@@ -43,19 +43,19 @@ public class PricesController {
 	
 	
 	@GetMapping("/v1/allprices")
-	public ResponseEntity<List<PriceReduce>> prices(){
+	public ResponseEntity<List<PriceDTO>> prices(){
 		ModelMapper mapper = new ModelMapper();
 
 		return ResponseEntity.ok()
 				.body(getAllPricesUseCase
 					.findAll()
 					.stream()
-					.map((price) -> mapper.map(price, PriceReduce.class))
+					.map((price) -> mapper.map(price, PriceDTO.class))
 					.collect(Collectors.toList()));
 	}
 	
 	@GetMapping("/v1/prices")
-	public ResponseEntity<PriceReduce> getPrice(@RequestParam(required=true) String dateString,
+	public ResponseEntity<PriceDTO> getPrice(@RequestParam(required=true) String dateString,
 			@RequestParam(required=true) long productId, @RequestParam(required=true) long brandId){
 		
 		ModelMapper mapper = new ModelMapper();
@@ -63,10 +63,10 @@ public class PricesController {
 		Timestamp date = mapper.map(dateString, Timestamp.class);
 		
 		Price price = getPricesUseCase.getCorrectPrice(date, productId, brandId);
-		PriceReduce priceReduce = mapper.map(price, PriceReduce.class);
+		PriceDTO priceDTO = mapper.map(price, PriceDTO.class);
 		
 		return ResponseEntity.ok()
-				.body(priceReduce);
+				.body(priceDTO);
 	}
 	
 }
