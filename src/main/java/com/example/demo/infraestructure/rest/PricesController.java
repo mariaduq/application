@@ -43,14 +43,14 @@ public class PricesController {
 	
 	
 	@GetMapping("/v1/allprices")
-	public ResponseEntity<List<PriceDTO>> prices(){
+	public ResponseEntity<List<PriceReduce>> prices(){
 		ModelMapper mapper = new ModelMapper();
 
 		return ResponseEntity.ok()
 				.body(getAllPricesUseCase
 					.findAll()
 					.stream()
-					.map((price) -> mapper.map(price, PriceDTO.class))
+					.map((price) -> mapper.map(price, PriceReduce.class))
 					.collect(Collectors.toList()));
 	}
 	
