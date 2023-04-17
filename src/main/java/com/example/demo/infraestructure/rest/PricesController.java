@@ -8,6 +8,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,6 +21,7 @@ import com.example.demo.model.Price;
 import jakarta.annotation.PostConstruct;
 
 @RestController
+@RequestMapping("/practicaPrices")
 public class PricesController {
 	
 	@Autowired
@@ -40,7 +42,7 @@ public class PricesController {
 	}
 	
 	
-	@GetMapping("/allprices")
+	@GetMapping("/v1/allprices")
 	public ResponseEntity<List<PriceDTO>> prices(){
 		ModelMapper mapper = new ModelMapper();
 
@@ -52,7 +54,7 @@ public class PricesController {
 					.collect(Collectors.toList()));
 	}
 	
-	@GetMapping("/price/search")
+	@GetMapping("/v1/prices")
 	public ResponseEntity<PriceReduce> getPrice(@RequestParam(required=true) String dateString,
 			@RequestParam(required=true) long product_id, @RequestParam(required=true) long brand_id){
 		
