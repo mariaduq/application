@@ -15,8 +15,12 @@ First, you have to clone the repository in the desired directory with the follow
 ```
 $ git clone https://github.com/mariaduq/practicaPrices.git
 ```
+Once this is done, you have to run the following command to create the .jar file:
 
-Once this is done, you have to run the following command to create and run the containers with Docker:
+```
+$ mvn install
+```
+Finally, you have to run the following command to create and run the containers with Docker:
 
 ```
 $ docker-compose up --build
