@@ -11,10 +11,8 @@ import com.example.demo.model.Price;
 
 import jakarta.persistence.EntityNotFoundException;
 
-@Service
 public class GetPricesUseCase {
 	
-	@Autowired
 	private PricesPort pricesPort;
 	
 	public GetPricesUseCase(PricesPort pricesPort){

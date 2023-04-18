@@ -9,10 +9,8 @@ import org.springframework.stereotype.Service;
 import com.example.demo.application.ports.PricesPort;
 import com.example.demo.model.Price;
 
-@Service
 public class GetAllPricesUseCase {
 	
-	@Autowired
 	private PricesPort pricesPort;
 	
 	public GetAllPricesUseCase(PricesPort pricesPort){
