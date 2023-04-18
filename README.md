@@ -25,6 +25,7 @@ Finally, you have to run the following command to create and run the containers 
 ```
 $ docker-compose up --build
 ```
+
 ### Example
 
 Once the application is already running, if you make the following request:
