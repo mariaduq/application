@@ -3,9 +3,6 @@ package com.example.demo.application;
 import java.sql.Timestamp;
 import java.util.Comparator;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.example.demo.application.ports.PricesPort;
 import com.example.demo.model.Price;
 
