@@ -21,12 +21,12 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 				
 	}
 	
-	/*@ExceptionHandler
+	@ExceptionHandler
 	protected ResponseEntity<String> handleMappingException(MappingException exc){
 		
 		return ResponseEntity
 				.status(HttpStatus.BAD_REQUEST)
 				.body("Date must be in JDBC format [yyyy-MM-dd HH:mm:ss.fffffffff]. Try again.");
 				
-	}*/
+	}
 }

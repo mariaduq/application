@@ -6,7 +6,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -51,9 +50,7 @@ public class PricesController {
 		ModelMapper mapper = new ModelMapper();
 		
 		if (dateString != null && productId != null && brandId != null) {
-			
-			//LocalDateTime date = mapper.map(dateString, LocalDateTime.class);
-			
+						
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 			LocalDateTime dateTime = LocalDateTime.parse(dateString, formatter);
 			

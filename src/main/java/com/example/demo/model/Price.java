@@ -1,6 +1,5 @@
 package com.example.demo.model;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 import lombok.Data;
