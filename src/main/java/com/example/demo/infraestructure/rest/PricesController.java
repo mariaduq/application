@@ -1,11 +1,11 @@
 package com.example.demo.infraestructure.rest;
 
 import java.sql.Timestamp;
-import java.util.List;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,31 +41,38 @@ public class PricesController {
 		priceRepository.save(new PriceEntity(4, Timestamp.valueOf("2020-06-15 16:00:00"), Timestamp.valueOf("2020-12-31 23:59:59"), 1, 35455, 1, 38.950f, "EUR"));
 	}
 	
-	@GetMapping("/v1/allprices")
-	public ResponseEntity<List<PriceDTO>> prices(){
-		ModelMapper mapper = new ModelMapper();
-
-		return ResponseEntity.ok()
-				.body(getAllPricesUseCase
-					.findAll()
-					.stream()
-					.map((price) -> mapper.map(price, PriceDTO.class))
-					.collect(Collectors.toList()));
-	}
-	
 	@GetMapping("/v1/prices")
-	public ResponseEntity<PriceDTO> getPrice(@RequestParam(required=true) String dateString,
-			@RequestParam(required=true) long productId, @RequestParam(required=true) long brandId){
+	public ResponseEntity<?> getPrice(@RequestParam (required=false) String dateString,
+			@RequestParam (required=false) Long productId, @RequestParam (required=false) Long brandId){
 		
 		ModelMapper mapper = new ModelMapper();
 		
-		Timestamp date = mapper.map(dateString, Timestamp.class);
+		if (dateString != null && productId != null && brandId != null) {
+			
+			Timestamp date = mapper.map(dateString, Timestamp.class);
+			
+			Price price = getPricesUseCase.getCorrectPrice(date, productId, brandId);
+			PriceDTO priceDTO = mapper.map(price, PriceDTO.class);
+			
+			return ResponseEntity.ok()
+					.body(priceDTO);
+		}
 		
-		Price price = getPricesUseCase.getCorrectPrice(date, productId, brandId);
-		PriceDTO priceDTO = mapper.map(price, PriceDTO.class);
+		else if (dateString == null && productId == null && brandId == null) {
+			
+			return ResponseEntity.ok()
+					.body(getAllPricesUseCase
+						.findAll()
+						.stream()
+						.map((price) -> mapper.map(price, PriceDTO.class))
+						.collect(Collectors.toList()));
+		}
 		
-		return ResponseEntity.ok()
-				.body(priceDTO);
+		else {
+			return ResponseEntity
+					.status(HttpStatus.BAD_REQUEST)
+					.body("HTTP ERROR 400");
+		}
 	}
 	
 }
