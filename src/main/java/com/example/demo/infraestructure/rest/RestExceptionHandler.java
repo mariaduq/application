@@ -1,5 +1,6 @@
 package com.example.demo.infraestructure.rest;
 
+import org.modelmapper.MappingException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -12,11 +13,20 @@ import jakarta.persistence.EntityNotFoundException;
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 	
 	@ExceptionHandler
-	protected ResponseEntity<String> hadleException(EntityNotFoundException exc){
+	protected ResponseEntity<String> handleExceptionEntityNotFound(EntityNotFoundException exc){
 		
 		return ResponseEntity
 				.status(HttpStatus.BAD_REQUEST)
 				.body("There are no results for your request. Try again.");
+				
+	}
+	
+	@ExceptionHandler
+	protected ResponseEntity<String> handleMappingException(MappingException exc){
+		
+		return ResponseEntity
+				.status(HttpStatus.BAD_REQUEST)
+				.body("Date must be in JDBC format [yyyy-MM-dd HH:mm:ss.fffffffff]. Try again.");
 				
 	}
 }
