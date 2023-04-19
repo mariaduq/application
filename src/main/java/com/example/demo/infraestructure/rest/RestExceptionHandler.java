@@ -1,5 +1,7 @@
 package com.example.demo.infraestructure.rest;
 
+import java.time.format.DateTimeParseException;
+
 import org.modelmapper.MappingException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,4 +31,14 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 				.body("Date must be in JDBC format [yyyy-MM-dd HH:mm:ss.fffffffff]. Try again.");
 				
 	}
+	
+	@ExceptionHandler
+	protected ResponseEntity<String> handleDateTimeParseException(DateTimeParseException exc){
+		
+		return ResponseEntity
+				.status(HttpStatus.BAD_REQUEST)
+				.body("Date must be in format [yyyy-MM-dd HH:mm:ss]. Try again.");
+				
+	}
+	
 }
