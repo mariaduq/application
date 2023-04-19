@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import lombok.Data;
 
@@ -8,9 +9,9 @@ public @Data class Price {
 	
 	private long priceList;
 	
-	private Timestamp startDate;
+	private LocalDateTime startDate;
 	
-	private Timestamp endDate;
+	private LocalDateTime endDate;
 	
 	private long brandId;
 	

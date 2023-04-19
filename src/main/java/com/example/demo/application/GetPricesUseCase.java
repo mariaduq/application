@@ -1,6 +1,7 @@
 package com.example.demo.application;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Comparator;
 
 import com.example.demo.application.ports.PricesPort;
@@ -16,13 +17,13 @@ public class GetPricesUseCase {
 		this.pricesPort=pricesPort;
 	}
 	
-	public Price getCorrectPrice(Timestamp date, long productId, long brandId){
+	public Price getCorrectPrice(LocalDateTime date, long productId, long brandId){
 	
 		return pricesPort.getPrices().stream()
 				.filter(price -> price.getProductId() == productId)
 				.filter(price -> price.getBrandId() == brandId)
-				.filter(price -> price.getStartDate().before(date))
-				.filter(price -> price.getEndDate().after(date))
+				.filter(price -> price.getStartDate().isBefore(date))
+				.filter(price -> price.getEndDate().isAfter(date))
 				.sorted(Comparator.comparingInt(Price::getPriority).reversed())
 				.findFirst()
 				.orElseThrow(() -> new EntityNotFoundException());

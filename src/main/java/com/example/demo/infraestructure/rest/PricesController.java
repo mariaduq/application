@@ -1,9 +1,12 @@
 package com.example.demo.infraestructure.rest;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -49,9 +52,12 @@ public class PricesController {
 		
 		if (dateString != null && productId != null && brandId != null) {
 			
-			Timestamp date = mapper.map(dateString, Timestamp.class);
+			//LocalDateTime date = mapper.map(dateString, LocalDateTime.class);
 			
-			Price price = getPricesUseCase.getCorrectPrice(date, productId, brandId);
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+			LocalDateTime dateTime = LocalDateTime.parse(dateString, formatter);
+			
+			Price price = getPricesUseCase.getCorrectPrice(dateTime, productId, brandId);
 			PriceDTO priceDTO = mapper.map(price, PriceDTO.class);
 			
 			return ResponseEntity.ok()
