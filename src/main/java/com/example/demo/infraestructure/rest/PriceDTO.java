@@ -1,16 +1,14 @@
 package com.example.demo.infraestructure.rest;
 
-import java.sql.Timestamp;
-
 import lombok.Data;
 
 public @Data class PriceDTO {
 	
 	private long priceList;
 	
-	private Timestamp startDate;
+	private String startDate;
 	
-	private Timestamp endDate;
+	private String endDate;
 	
 	private long brandId;
 	
