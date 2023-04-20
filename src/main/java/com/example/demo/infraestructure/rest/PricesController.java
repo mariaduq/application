@@ -3,7 +3,6 @@ package com.example.demo.infraestructure.rest;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -75,7 +74,7 @@ public class PricesController {
 		}
 		
 		else {
-			throw new BadRequestException("BAD REQUEST. Try again.");
+			throw new BadRequestException();
 		}
 	}
 	

@@ -14,7 +14,7 @@ import jakarta.persistence.EntityNotFoundException;
 @ControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 	
-	@ExceptionHandler
+	@ExceptionHandler(EntityNotFoundException.class)
 	protected ResponseEntity<String> handleExceptionEntityNotFound(EntityNotFoundException exc){
 		
 		return ResponseEntity
@@ -23,7 +23,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 				
 	}
 	
-	@ExceptionHandler
+	@ExceptionHandler(MappingException.class)
 	protected ResponseEntity<String> handleMappingException(MappingException exc){
 		
 		return ResponseEntity
@@ -32,7 +32,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 				
 	}
 	
-	@ExceptionHandler
+	@ExceptionHandler(DateTimeParseException.class)
 	protected ResponseEntity<String> handleDateTimeParseException(DateTimeParseException exc){
 		
 		return ResponseEntity
@@ -41,7 +41,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 				
 	}
 	
-	@ExceptionHandler
+	@ExceptionHandler(BadRequestException.class)
     public ResponseEntity<String> handleAuthenticationException(BadRequestException ex) {
         
 		return ResponseEntity
