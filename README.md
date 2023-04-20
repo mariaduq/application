@@ -45,6 +45,15 @@ $ mvn test
 ```
 These tests test different situations, including error situations.
 
+
+## Documentation 📄
+
+You can access the API documentation with the following request:
+
+```
+http://localhost:8080/swagger-ui/index.html
+```
+
 ## Built With ⚒️
 
 * [Spring Boot](https://spring.io) - The web framework used
