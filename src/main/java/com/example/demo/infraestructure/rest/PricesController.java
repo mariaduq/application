@@ -38,16 +38,21 @@ public class PricesController {
 	@Autowired
 	GetAllPricesUseCase getAllPricesUseCase;
 	
-	@Operation(summary = "Get price", description = "Get price of a product", operationId = "getPrice")
+	@Operation(summary = "Get price", description = "Get the correct price of a product", operationId = "getPrice")
 	@ApiResponses(value = {
-	       @ApiResponse(responseCode = "200", description = "price",
-	       content = { @Content(mediaType = "application/json", schema = @Schema(implementation =
-	       List.class))})})
+	       @ApiResponse(responseCode = "200", description = "Price",
+	    		   content = { @Content(mediaType = "application/json", schema = @Schema(implementation = List.class))}),
+	       @ApiResponse(responseCode = "400", description = "Bad Request",
+	       		   content = { @Content(mediaType = "application/json", schema = @Schema(implementation = String.class))}),
+	       @ApiResponse(responseCode = "404", description = "Not Found",
+	       		   content = { @Content(mediaType = "application/json", schema = @Schema(implementation = String.class))})
+	       })
 	@GetMapping("/v1/prices")
 	public ResponseEntity<List<PriceDTO>> getPrice(
-			@Parameter(description = "date") @RequestParam (required=false) String dateString,
-			@Parameter(description = "product") @RequestParam (required=false) Long productId,
-			@Parameter(description = "brand") @RequestParam (required=false) Long brandId){
+			@Parameter(description = "The date for which we want to know the product price",
+			schema = @Schema(type = "string", format = "YYYY-MM-DD HH:mm:ss")) @RequestParam (required=false) String dateString,
+			@Parameter(description = "The product for which we want to know the price") @RequestParam (required=false) Long productId,
+			@Parameter(description = "The brand of the desired product") @RequestParam (required=false) Long brandId){
 		
 		ModelMapper mapper = new ModelMapper();
 		
