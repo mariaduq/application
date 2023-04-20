@@ -48,12 +48,4 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 				.status(HttpStatus.BAD_REQUEST)
 				.body("Invalid number of parameters. Try again.");
     }
-	
-	@ExceptionHandler(	StringIndexOutOfBoundsException.class)
-    public ResponseEntity<String> handleStringIndexOutOfBoundsException(StringIndexOutOfBoundsException ex) {
-        
-		return ResponseEntity
-				.status(HttpStatus.BAD_REQUEST)
-				.body("Invalid URL. Try again.");
-    }
 }
