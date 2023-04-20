@@ -41,4 +41,12 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 				
 	}
 	
+	@ExceptionHandler
+    public ResponseEntity<String> handleAuthenticationException(BadRequestException ex) {
+        
+		return ResponseEntity
+				.status(HttpStatus.BAD_REQUEST)
+				.body("Invalid number of parameters. Try again.");
+    }
+	
 }

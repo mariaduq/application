@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -61,11 +60,8 @@ public class PricesController {
 			Price price = getPricesUseCase.getCorrectPrice(dateTime, productId, brandId);
 			PriceDTO priceDTO = mapper.map(price, PriceDTO.class);
 			
-			List<PriceDTO> priceReturned = new ArrayList<>();
-			priceReturned.add(priceDTO);
-			
 			return ResponseEntity.ok()
-					.body(priceReturned);
+					.body(List.of(priceDTO));
 		}
 		
 		else if (dateString == null && productId == null && brandId == null) {
@@ -79,9 +75,7 @@ public class PricesController {
 		}
 		
 		else {
-			return ResponseEntity
-					.status(HttpStatus.BAD_REQUEST)
-					.body("HTTP ERROR 400");
+			throw new BadRequestException("BAD REQUEST. Try again.");
 		}
 	}
 	
