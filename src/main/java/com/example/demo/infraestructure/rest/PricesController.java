@@ -21,6 +21,13 @@ import com.example.demo.infraestructure.ddbb.model.PriceEntity;
 import com.example.demo.model.Price;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+
+
 import jakarta.annotation.PostConstruct;
 
 @RestController
@@ -44,10 +51,16 @@ public class PricesController {
 		priceRepository.save(new PriceEntity(4, Timestamp.valueOf("2020-06-15 16:00:00"), Timestamp.valueOf("2020-12-31 23:59:59"), 1, 35455, 1, 38.950f, "EUR"));
 	}
 	
+	@Operation(summary = "Get price", description = "Get price of a product", operationId = "getPrice")
+	@ApiResponses(value = {
+	       @ApiResponse(responseCode = "200", description = "price",
+	       content = { @Content(mediaType = "application/json", schema = @Schema(implementation =
+	       List.class))})})
 	@GetMapping("/v1/prices")
-	@Operation(summary = "Prices endpoint")
-	public ResponseEntity<List<PriceDTO>> getPrice(@RequestParam (required=false) String dateString,
-			@RequestParam (required=false) Long productId, @RequestParam (required=false) Long brandId){
+	public ResponseEntity<List<PriceDTO>> getPrice(
+			@Parameter(description = "date") @RequestParam (required=false) String dateString,
+			@Parameter(description = "product") @RequestParam (required=false) Long productId,
+			@Parameter(description = "brand") @RequestParam (required=false) Long brandId){
 		
 		ModelMapper mapper = new ModelMapper();
 		
