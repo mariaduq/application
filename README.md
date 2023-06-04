@@ -1,6 +1,6 @@
-# practicaPrices
+# application
 
-Project that provides the price of an Inditex product of a specific brand at a specific time.
+Project
 
 ## Getting Started 🚀
 
@@ -13,7 +13,7 @@ To run it, you need to have Docker installed locally.
 First, you have to clone the repository in the desired directory with the following command:
 
 ```
-$ git clone https://github.com/mariaduq/practicaPrices.git
+$ git clone https://github.com/mariaduq/application.git
 ```
 Once this is done, you have to run the following command to create the .jar file:
 
@@ -28,13 +28,6 @@ $ docker-compose up --build
 
 ### Example
 
-Once the application is already running, if you make the following request:
-
-```
-http://localhost:8080/practicaPrices/v1/prices?dateString=2020-06-16 21:00:00&productId=35455&brandId=1
-```
-
-You get the price 38.95 EUR
 
 ## Running the tests ✅
 
