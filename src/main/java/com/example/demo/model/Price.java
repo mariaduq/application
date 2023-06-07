@@ -12,7 +12,7 @@ public @Data class Price {
 	
 	private LocalDateTime endDate;
 	
-	private long brandId;
+	private Long brandId;
 	
 	private long productId;
 	
