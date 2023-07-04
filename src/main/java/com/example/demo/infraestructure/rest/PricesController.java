@@ -2,6 +2,7 @@ package com.example.demo.infraestructure.rest;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -63,9 +64,12 @@ public class PricesController {
 			
 			Price price = getPricesUseCase.getCorrectPrice(dateTime, productId, brandId);
 			PriceDTO priceDTO = mapper.map(price, PriceDTO.class);
+
+			List<PriceDTO> list = new ArrayList<>();
+			list.add(priceDTO);
 			
 			return ResponseEntity.ok()
-					.body(List.of(priceDTO));
+					.body(list);
 		}
 		
 		else if (dateString == null && productId == null && brandId == null) {
