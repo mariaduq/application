@@ -16,6 +16,9 @@ import lombok.NoArgsConstructor;
 public @Data class UserEntity {
 
     @Id
+    @Column(name = "USER_ID")
+    private Long id;
+
     @Column(name = "USERNAME")
     private String username;
 
