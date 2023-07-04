@@ -42,31 +42,34 @@
                     <div class="alert alert-info">
                         Se ha registrado exitosamente a la aplicación
                     </div>
-
-                    <h1>Regístrate</h1>
-                    <form th:action="@{/user-form}" method="post" th:object="${user}">
-                        <div class="form-group">
-                            <label class="form-control" for="nombre">Nombre : </label>
-                            <input id="nombre" type="text" class="form-control" th:field="*{nombre}" required autofocus="autofocus">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-control" for="apellido">Apellido : </label>
-                            <input id="apellido" type="text" class="form-control" th:field="*{apellido}" required autofocus="autofocus">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-control" for="email">Email : </label>
-                            <input id="email" type="email" class="form-control" th:field="*{email}" required autofocus="autofocus">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-control" for="password">Password : </label>
-                            <input id="password" class="form-control" th:field="*{password}" required autofocus="autofocus">
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-success">Registrar</button>
-                            <span>Si estas registrado <a>Iniciar sesion aqui</a></span>
-                        </div>
-                    </form>
                 </div>
+                <h1>Sign up</h1>
+                <form th:action="@{/user-form}" method="post" th:object="${user}">
+                    <div class="form-group">
+                        <label class="control-label" for="name">Name : </label>
+                        <input id="name" type="text" class="form-control" th:field="*{name}" required autofocus="autofocus">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="surname">Surname : </label>
+                        <input id="surname" type="text" class="form-control" th:field="*{surname}" required autofocus="autofocus">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="nickname">Nickname : </label>
+                        <input id="nickname" type="text" class="form-control" th:field="*{nickname}" required autofocus="autofocus">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="email">Email : </label>
+                        <input id="email" type="email" class="form-control" th:field="*{email}" required autofocus="autofocus">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="password">Password : </label>
+                        <input id="password" type="password" class="form-control" th:field="*{password}" required autofocus="autofocus">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success">Registrar</button>
+                        <span>Si estas registrado <a th:href="@{/login}">Iniciar sesion aqui</a></span>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
