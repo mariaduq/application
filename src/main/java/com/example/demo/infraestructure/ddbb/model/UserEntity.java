@@ -4,13 +4,13 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-
+import jakarta.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "USERS")
+@Table(name = "USERS", uniqueConstraints = @UniqueConstraint(columnNames = "EMAIL"))
 @AllArgsConstructor
 @NoArgsConstructor
 public @Data class UserEntity {
@@ -19,8 +19,8 @@ public @Data class UserEntity {
     @Column(name = "USER_ID")
     private Long id;
 
-    @Column(name = "USERNAME")
-    private String username;
+    @Column(name = "NICKNAME")
+    private String nickname;
 
     @Column(name = "NAME")
     private String name;
