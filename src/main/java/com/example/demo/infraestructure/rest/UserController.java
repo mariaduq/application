@@ -8,6 +8,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -26,7 +27,8 @@ public class UserController {
     }
 
     @GetMapping
-    public String showRegistryForm() {
+    public String getUserModel(Model model) {
+        model.addAttribute("user", new UserDTO());
         return "user-form";
     }
 
