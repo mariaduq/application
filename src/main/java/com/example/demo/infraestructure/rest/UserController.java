@@ -7,9 +7,10 @@ import com.example.demo.model.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@Controller
 @RequestMapping("/signup")
 public class UserController {
 
@@ -35,6 +36,6 @@ public class UserController {
         User user = mapper.map(userDTO, User.class);
         saveUserUseCase.execute(user);
 
-        return "redirect:/user-form?success";
+        return "redirect:/user-form?exito";
     }
 }
