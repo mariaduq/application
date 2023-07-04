@@ -3,7 +3,9 @@ package com.example.demo.infraestructure.ddbb;
 import com.example.demo.application.ports.UsersPort;
 import com.example.demo.infraestructure.ddbb.mappers.UserMapper;
 import com.example.demo.model.User;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserAdapter implements UsersPort {
 
     private UserRepositoryJpa userRepositoryJpa;
