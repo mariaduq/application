@@ -79,6 +79,7 @@
                         <button type="submit" class="btn btn-success">Registrar</button>
                         <span>Si estas registrado <a th:href="@{/login}">Iniciar sesion aqui</a></span>
                     </div>
+                    <div class="alert-danger" th:if="${formErrorMessage}" th:text="${formErrorMessage}">Error Message</div>
                 </form>
             </div>
         </div>
