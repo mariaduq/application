@@ -25,6 +25,11 @@ public class UserController {
 
     private final UserMapper userMapper;
 
+    @GetMapping({"/", "/homepage"})
+    public String homepage() {
+        return "index";
+    }
+
     @GetMapping("/signup")
     public String getUserForm(Model model) {
         model.addAttribute("user", new UserDTO());
@@ -56,8 +61,9 @@ public class UserController {
         return "login";
     }
 
-    /*@PostMapping("login")
+    @PostMapping("login")
     public String login(@Valid @ModelAttribute("user") UserDTO userDTO, BindingResult result, ModelMap model) {
-        returin
-    }*/
+        //TODO
+        return "login";
+    }
 }
