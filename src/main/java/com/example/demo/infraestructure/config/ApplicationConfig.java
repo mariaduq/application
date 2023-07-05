@@ -1,6 +1,7 @@
 package com.example.demo.infraestructure.config;
 
 import com.example.demo.application.SaveUserUseCase;
+import com.example.demo.application.mapper.UserMapper;
 import com.example.demo.application.ports.UsersPort;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,8 +24,8 @@ public class ApplicationConfig {
 	}
 
 	@Bean
-	public SaveUserUseCase saveUserUseCase (UsersPort usersPort) {
-		return new SaveUserUseCase(usersPort);
+	public SaveUserUseCase saveUserUseCase (UsersPort usersPort, UserMapper userMapper) {
+		return new SaveUserUseCase(usersPort, userMapper);
 	}
 
 }
