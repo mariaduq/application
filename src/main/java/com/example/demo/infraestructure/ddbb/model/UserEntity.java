@@ -22,7 +22,6 @@ public @Data class UserEntity {
 
     @Column(name = "NAME")
     @NotBlank
-    @Size(min=5,max=8, message="Invalid size")
     private String name;
 
     @Column(name = "SURNAME")

@@ -23,6 +23,7 @@ public class UserMapper {
                 .email(userEntity.getEmail())
                 .nickname(userEntity.getNickname())
                 .password(userEntity.getPassword())
+                .confirmPassword(userEntity.getConfirmPassword())
                 .build();
     }
 
@@ -37,6 +38,7 @@ public class UserMapper {
                 .email(user.getEmail())
                 .nickname(user.getNickname())
                 .password(user.getPassword())
+                .confirmPassword(user.getConfirmPassword())
                 .build();
     }
 
