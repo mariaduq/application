@@ -2,11 +2,13 @@ package com.example.demo.infraestructure.ddbb.mappers;
 
 import com.example.demo.infraestructure.ddbb.model.UserEntity;
 import com.example.demo.model.User;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.Objects;
 
 @Component
+@NoArgsConstructor
 public class UserMapper {
 
     public User toDomain(UserEntity userEntity) {
