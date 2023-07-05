@@ -38,12 +38,12 @@ public class UserController {
             model.addAttribute("user", userDTO);
         }
         else{
-            //try{
+            try{
                 saveUserUseCase.execute(userMapper.toUserInput(userDTO));
-            //} catch (Exception e) {
-            //    model.addAttribute("formErrorMessage", e.getMessage());
-            //    model.addAttribute("user", userDTO);
-            //}
+            } catch (Exception e) {
+                model.addAttribute("formErrorMessage", e.getMessage());
+                model.addAttribute("user", userDTO);
+            }
 
         }
         return "user-form";

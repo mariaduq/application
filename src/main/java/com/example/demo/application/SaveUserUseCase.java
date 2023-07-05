@@ -13,7 +13,7 @@ public class SaveUserUseCase {
 
     private final UserMapper userMapper;
 
-    public User execute(UserInput userInput) /*throws Exception*/ {
+    public User execute(UserInput userInput) throws Exception {
         return usersPort.save(userMapper.fromInput(userInput));
     }
 }

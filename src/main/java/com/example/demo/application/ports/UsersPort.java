@@ -5,5 +5,5 @@ import com.example.demo.model.User;
 
 public interface UsersPort {
 
-    public User save(User newUser) /*throws Exception*/;
+    public User save(User newUser) throws Exception;
 }
