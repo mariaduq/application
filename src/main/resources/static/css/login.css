@@ -48,7 +48,7 @@ body{
     content: "\f007";
 }
 
-.form-group#contrasena-group::before{
+.form-group#password-group::before{
     content: "\f023";
 }
 
