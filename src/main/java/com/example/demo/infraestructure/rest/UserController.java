@@ -40,6 +40,7 @@ public class UserController {
         else{
             try{
                 saveUserUseCase.execute(userMapper.toUserInput(userDTO));
+                model.addAttribute("user", new UserDTO());
             } catch (Exception e) {
                 model.addAttribute("formErrorMessage", e.getMessage());
                 model.addAttribute("user", userDTO);
