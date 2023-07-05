@@ -17,7 +17,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/signup")
 @RequiredArgsConstructor
 public class UserController {
 
@@ -26,13 +25,13 @@ public class UserController {
 
     private final UserMapper userMapper;
 
-    @GetMapping
+    @GetMapping("/signup")
     public String getUserForm(Model model) {
         model.addAttribute("user", new UserDTO());
         return "user-form";
     }
 
-    @PostMapping
+    @PostMapping("/signup")
     public String createUser(@Valid @ModelAttribute("user") UserDTO userDTO, BindingResult result, ModelMap model) {
         if(result.hasErrors()) {
             model.addAttribute("user", userDTO);
@@ -49,4 +48,11 @@ public class UserController {
         }
         return "user-form";
     }
+
+    @GetMapping("/login")
+    public String getLoginForm(Model model) {
+        model.addAttribute("user", new UserDTO());
+        return "login";
+    }
+    //public String login()
 }
