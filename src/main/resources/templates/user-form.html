@@ -26,7 +26,7 @@
                         class="icon-bar"></span> <span class="icon-bar"></span> <span
                         class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#" th:href="@{/}">Registro y
+                <a class="navbar-brand" href="#" th:href="@{/login}">Registro y
                     inicio de sesión</a>
             </div>
         </div>
@@ -80,6 +80,7 @@
                         <span>Si estas registrado <a th:href="@{/login}">Iniciar sesion aqui</a></span>
                     </div>
                     <div class="alert-danger" th:if="${formErrorMessage}" th:text="${formErrorMessage}">Error Message</div>
+                    <div class="alert-success" th:if="${successMessage}" th:text="${successMessage}">Success Message</div>
                 </form>
             </div>
         </div>

@@ -40,6 +40,7 @@ public class UserController {
             try{
                 saveUserUseCase.execute(userMapper.toUserInput(userDTO));
                 model.addAttribute("user", new UserDTO());
+                model.addAttribute("successMessage", "Successful registration. You can now access the app");
             } catch (Exception e) {
                 model.addAttribute("formErrorMessage", e.getMessage());
                 model.addAttribute("user", userDTO);
@@ -54,5 +55,9 @@ public class UserController {
         model.addAttribute("user", new UserDTO());
         return "login";
     }
-    //public String login()
+
+    /*@PostMapping("login")
+    public String login(@Valid @ModelAttribute("user") UserDTO userDTO, BindingResult result, ModelMap model) {
+        returin
+    }*/
 }
