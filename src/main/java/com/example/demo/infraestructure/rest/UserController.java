@@ -1,5 +1,6 @@
 package com.example.demo.infraestructure.rest;
 
+import com.example.demo.application.LoginUserUseCase;
 import com.example.demo.application.SaveUserUseCase;
 import com.example.demo.infraestructure.ddbb.PriceRepositoryJpa;
 import com.example.demo.infraestructure.ddbb.UserRepositoryJpa;
@@ -22,6 +23,9 @@ public class UserController {
 
     @Autowired
     private SaveUserUseCase saveUserUseCase;
+
+    @Autowired
+    private LoginUserUseCase loginUserUseCase;
 
     private final UserMapper userMapper;
 
@@ -61,9 +65,27 @@ public class UserController {
         return "login";
     }
 
-    @PostMapping("login")
+    @PostMapping("/login")
     public String login(@Valid @ModelAttribute("user") UserDTO userDTO, BindingResult result, ModelMap model) {
-        //TODO
+        if(result.hasErrors()) {
+            model.addAttribute("user", userDTO);
+            System.out.println("Hola 1");
+            return "login";
+        }
+        else{
+            try{
+                loginUserUseCase.execute(userMapper.toUserInput(userDTO));
+                System.out.println("Hola 2");
+                model.addAttribute("successMessage", "Successful login. You can now access the app");
+                return "index";
+            } catch (Exception e) {
+                System.out.println(userDTO.getEmail());
+                System.out.println(userDTO.getPassword());
+                System.out.println("Hola 3");
+                model.addAttribute("formErrorMessage", e.getMessage());
+                model.addAttribute("user", userDTO);
+            }
+        }
         return "login";
     }
 }
