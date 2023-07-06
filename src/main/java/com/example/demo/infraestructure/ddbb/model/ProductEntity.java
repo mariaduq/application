@@ -2,6 +2,7 @@ package com.example.demo.infraestructure.ddbb.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,9 +13,11 @@ import java.util.List;
 @Table(name = "PRODUCTS")
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public @Data class ProductEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "PRODUCT_ID")
     private long productId;
 
@@ -26,6 +29,9 @@ public @Data class ProductEntity {
 
     @Column(name = "BRAND_ID")
     private long brandId;
+
+    @Column(name = "DESCRIPTION")
+    private String description;
 
     @Column(name = "STOCK")
     private int stock;
