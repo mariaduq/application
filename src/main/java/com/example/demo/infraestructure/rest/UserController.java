@@ -34,6 +34,11 @@ public class UserController {
         return "index";
     }
 
+    @GetMapping({"/loggedUser"})
+    public String welcome() {
+        return "loggedUser";
+    }
+
     @GetMapping("/signup")
     public String getUserForm(Model model) {
         model.addAttribute("user", new UserDTO());
@@ -75,7 +80,7 @@ public class UserController {
             try{
                 loginUserUseCase.execute(userMapper.toUserInput(userDTO));
                 model.addAttribute("successMessage", "Successful login. You can now access the app");
-                return "index";
+                return "loggedUser";
             } catch (Exception e) {
                 model.addAttribute("formErrorMessage", e.getMessage());
                 model.addAttribute("user", userDTO);
