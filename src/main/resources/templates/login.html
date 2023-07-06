@@ -25,12 +25,14 @@
             <div class="col-12 user-img">
                 <img src="../static/img/user.png" th:src="@{/img/user.png}"/>
             </div>
-            <form class="col-12" th:action="@{/login}">
+            <form class="col-12" th:object="${user}" th:action="@{/login}" method="post">
                 <div class="form-group" id="user-group">
-                    <input type="text" class="form-control" placeholder="Email" name="email"/>
+                    <input id="email" type="text" class="form-control" th:field="${user.email}" required autofocus="autofocus" placeholder="Email" name="email"/>
+                    <div class="alert-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</div>
                 </div>
                 <div class="form-group" id="password-group">
-                    <input type="password" class="form-control" placeholder="Password" name="password"/>
+                    <input id="password" type="password" class="form-control" th:field="${user.password}" required autofocus="autofocus" placeholder="Password" name="password"/>
+                    <div class="alert-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</div>
                 </div>
                 <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i>  Sign in</button>
             </form>
@@ -38,12 +40,8 @@
                 <p><a href="#">Forgot password?</a></p>
                 <p><a href="#" th:href="@{/signup}">New user - Sign up</a> </p>
             </div>
-            <div th:if="${param.error}" class="alert alert-danger" role="alert">
-                Invalid email and password
-            </div>
-            <div th:if="${param.logout}" class="alert alert-success" role="alert">
-                You have been logged out
-            </div>
+            <div class="alert alert-danger" th:if="${formErrorMessage}">Invalid email or password</div>
+            <div class="alert alert-success" th:if="${successMessage}" th:text="${successMessage}">Success Message</div>
         </div>
     </div>
 </div>
