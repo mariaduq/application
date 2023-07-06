@@ -35,7 +35,6 @@ public class UserAdapter implements UsersPort {
 
     @Override
     public User login(User userLogin) throws Exception {
-        System.out.println(userLogin.getEmail() + "Es el email que hay que buscar");
         Optional<UserEntity> userFound = userRepositoryJpa.findByEmail(userLogin.getEmail());
         if(userFound.isPresent()){
             if(checkPassword(userMapper.toDomain(userFound.get()), userLogin.getPassword())) {

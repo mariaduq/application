@@ -69,19 +69,14 @@ public class UserController {
     public String login(@Valid @ModelAttribute("user") UserDTO userDTO, BindingResult result, ModelMap model) {
         if(result.hasErrors()) {
             model.addAttribute("user", userDTO);
-            System.out.println("Hola 1");
             return "login";
         }
         else{
             try{
                 loginUserUseCase.execute(userMapper.toUserInput(userDTO));
-                System.out.println("Hola 2");
                 model.addAttribute("successMessage", "Successful login. You can now access the app");
                 return "index";
             } catch (Exception e) {
-                System.out.println(userDTO.getEmail());
-                System.out.println(userDTO.getPassword());
-                System.out.println("Hola 3");
                 model.addAttribute("formErrorMessage", e.getMessage());
                 model.addAttribute("user", userDTO);
             }
