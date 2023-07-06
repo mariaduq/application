@@ -1,5 +1,6 @@
 package com.example.demo.infraestructure.config;
 
+import com.example.demo.application.LoginUserUseCase;
 import com.example.demo.application.SaveUserUseCase;
 import com.example.demo.application.mapper.UserMapper;
 import com.example.demo.application.ports.UsersPort;
@@ -26,6 +27,11 @@ public class ApplicationConfig {
 	@Bean
 	public SaveUserUseCase saveUserUseCase (UsersPort usersPort, UserMapper userMapper) {
 		return new SaveUserUseCase(usersPort, userMapper);
+	}
+
+	@Bean
+	public LoginUserUseCase loginUserUseCase (UsersPort usersPort, UserMapper userMapper) {
+		return new LoginUserUseCase(usersPort, userMapper);
 	}
 
 }
