@@ -40,7 +40,7 @@
                 <p><a href="#">Forgot password?</a></p>
                 <p><a href="#" th:href="@{/signup}">New user - Sign up</a> </p>
             </div>
-            <div class="alert alert-danger" th:if="${formErrorMessage}">Invalid email or password</div>
+            <div class="alert alert-danger" th:if="${formErrorMessage}" th:text="${formErrorMessage}">Error Message</div>
             <div class="alert alert-success" th:if="${successMessage}" th:text="${successMessage}">Success Message</div>
         </div>
     </div>
