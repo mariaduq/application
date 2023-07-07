@@ -2,6 +2,7 @@ package com.example.demo.infraestructure.rest.mappers;
 
 import com.example.demo.application.UserInput;
 import com.example.demo.infraestructure.rest.UserDTO;
+import com.example.demo.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -19,6 +20,18 @@ public class UserMapper {
                 .email(userDTO.getEmail())
                 .password(userDTO.getPassword())
                 .confirmPassword(userDTO.getConfirmPassword())
+                .build();
+    }
+
+    public UserDTO fromUserToUserDTO(User user) {
+        return UserDTO.builder()
+                .id(user.getId())
+                .name(user.getName())
+                .surname(user.getSurname())
+                .nickname(user.getNickname())
+                .email(user.getEmail())
+                .password(user.getPassword())
+                .confirmPassword(user.getConfirmPassword())
                 .build();
     }
 }
