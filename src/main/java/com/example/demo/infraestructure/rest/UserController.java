@@ -39,7 +39,8 @@ public class UserController {
     }
 
     @GetMapping({"/loggedUser"})
-    public String welcome() {
+    public String welcome(ModelMap model) {
+        System.out.println(model.getAttribute("user"));
         return "loggedUser";
     }
 
@@ -82,9 +83,10 @@ public class UserController {
         }
         else{
             try{
-                loginUserUseCase.execute(userMapper.toUserInput(userDTO));
+                User userFound = loginUserUseCase.execute(userMapper.toUserInput(userDTO));
+                model.addAttribute("user", userFound);
                 model.addAttribute("successMessage", "Successful login. You can now access the app");
-                return "loggedUser";
+                return welcome(model);
             } catch (Exception e) {
                 model.addAttribute("formErrorMessage", e.getMessage());
                 model.addAttribute("user", userDTO);
