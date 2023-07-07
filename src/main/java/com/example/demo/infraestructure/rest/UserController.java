@@ -3,6 +3,7 @@ package com.example.demo.infraestructure.rest;
 import com.example.demo.application.GetUserByIdUseCase;
 import com.example.demo.application.LoginUserUseCase;
 import com.example.demo.application.SaveUserUseCase;
+import com.example.demo.application.UpdateUserUseCase;
 import com.example.demo.infraestructure.ddbb.PriceRepositoryJpa;
 import com.example.demo.infraestructure.ddbb.UserRepositoryJpa;
 import com.example.demo.infraestructure.rest.mappers.UserMapper;
@@ -31,6 +32,9 @@ public class UserController {
     @Autowired
     private GetUserByIdUseCase getUserByIdUseCase;
 
+    @Autowired
+    private UpdateUserUseCase updateUserUseCase;
+
     private final UserMapper userMapper;
 
     @GetMapping({"/", "/homepage"})
@@ -40,7 +44,6 @@ public class UserController {
 
     @GetMapping({"/loggedUser"})
     public String welcome(ModelMap model) {
-        System.out.println(model.getAttribute("user"));
         return "loggedUser";
     }
 
@@ -100,6 +103,29 @@ public class UserController {
         User userToEdit = getUserByIdUseCase.execute(id);
         model.addAttribute("user", userToEdit);
         model.addAttribute("editMode", "true");
+        return "user-form";
+    }
+
+    @PostMapping("/editUser")
+    public String editUser(@Valid @ModelAttribute("user") UserDTO userDTO, BindingResult result, ModelMap model) {
+        if(result.hasErrors()) {
+            model.addAttribute("user", userDTO);
+            model.addAttribute("editMode", "true");
+        }
+        else{
+            try{
+                updateUserUseCase.execute(userMapper.toUserInput(userDTO));
+                model.addAttribute("user", userDTO);
+                model.addAttribute("successMessage", "Successful registration. You can now access the app");
+                return welcome(model);
+            } catch (Exception e) {
+                model.addAttribute("formErrorMessage", e.getMessage());
+                model.addAttribute("user", userDTO);
+                model.addAttribute("editMode", "true");
+
+            }
+
+        }
         return "user-form";
     }
 
