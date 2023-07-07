@@ -1,14 +1,11 @@
 package com.example.demo.infraestructure.config;
 
-import com.example.demo.application.LoginUserUseCase;
-import com.example.demo.application.SaveUserUseCase;
+import com.example.demo.application.*;
 import com.example.demo.application.mapper.UserMapper;
 import com.example.demo.application.ports.UsersPort;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.example.demo.application.GetAllPricesUseCase;
-import com.example.demo.application.GetPricesUseCase;
 import com.example.demo.application.ports.PricesPort;
 
 @Configuration
@@ -32,6 +29,11 @@ public class ApplicationConfig {
 	@Bean
 	public LoginUserUseCase loginUserUseCase (UsersPort usersPort, UserMapper userMapper) {
 		return new LoginUserUseCase(usersPort, userMapper);
+	}
+
+	@Bean
+	public GetUserByIdUseCase getUserByIdUseCase (UsersPort usersPort) {
+		return new GetUserByIdUseCase(usersPort);
 	}
 
 }

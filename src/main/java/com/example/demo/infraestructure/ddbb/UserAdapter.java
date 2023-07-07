@@ -43,6 +43,11 @@ public class UserAdapter implements UsersPort {
         } else throw new EntityNotFoundException("There is no user registered with this email. Try again.");
     }
 
+    @Override
+    public User getUserById(Long id) {
+        return userMapper.toDomain(userRepositoryJpa.findById(id).orElseThrow(EntityNotFoundException::new));
+    }
+
     private boolean checkNicknameAndEmailAvailable(User user) throws Exception {
         Optional<UserEntity> userFound = userRepositoryJpa.findByNicknameOrEmail(user.getNickname(), user.getEmail());
         if(userFound.isPresent()) {
