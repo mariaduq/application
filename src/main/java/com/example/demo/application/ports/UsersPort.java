@@ -2,6 +2,7 @@ package com.example.demo.application.ports;
 
 import com.example.demo.application.UserInput;
 import com.example.demo.model.User;
+import jakarta.persistence.EntityNotFoundException;
 
 public interface UsersPort {
 
@@ -11,5 +12,5 @@ public interface UsersPort {
 
     public User getUserById(Long id);
 
-    public User update(User userToUpdate);
+    public User update(User userToUpdate) throws Exception;
 }

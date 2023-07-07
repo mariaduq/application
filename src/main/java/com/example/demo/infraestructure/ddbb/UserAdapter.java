@@ -49,16 +49,17 @@ public class UserAdapter implements UsersPort {
     }
 
     @Override
-    public User update(User updateUser) {
+    public User update(User updateUser) throws Exception {
+        System.out.println(updateUser);
         UserEntity userFound = userRepositoryJpa.findById(updateUser.getId())
-                .orElseThrow(EntityNotFoundException::new);
+                .orElseThrow(() -> new Exception("This user doesn't exists"));
 
         if(updateUser.getPassword().equals(userFound.getPassword())) {
             userFound.setName(updateUser.getName());
             userFound.setSurname(updateUser.getSurname());
             userFound.setNickname(updateUser.getNickname());
             userFound.setEmail(updateUser.getEmail());
-        }
+        } else throw new Exception("Incorrect password");
 
         return userMapper.toDomain(userRepositoryJpa.save(userFound));
     }
