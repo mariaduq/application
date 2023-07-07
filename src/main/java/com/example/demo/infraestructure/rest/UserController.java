@@ -8,6 +8,7 @@ import com.example.demo.infraestructure.ddbb.PriceRepositoryJpa;
 import com.example.demo.infraestructure.ddbb.UserRepositoryJpa;
 import com.example.demo.infraestructure.rest.mappers.UserMapper;
 import com.example.demo.model.User;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -108,6 +109,8 @@ public class UserController {
 
     @PostMapping("/editUser")
     public String editUser(@Valid @ModelAttribute("user") UserDTO userDTO, BindingResult result, ModelMap model) {
+
+        System.out.println(userDTO);
         if(result.hasErrors()) {
             model.addAttribute("user", userDTO);
             model.addAttribute("editMode", "true");
@@ -116,8 +119,9 @@ public class UserController {
             try{
                 updateUserUseCase.execute(userMapper.toUserInput(userDTO));
                 model.addAttribute("user", userDTO);
-                model.addAttribute("successMessage", "Successful registration. You can now access the app");
-                return welcome(model);
+                model.addAttribute("successMessage", "Profile successfully edited!");
+                model.addAttribute("editMode", "true");
+                //return welcome(model);
             } catch (Exception e) {
                 model.addAttribute("formErrorMessage", e.getMessage());
                 model.addAttribute("user", userDTO);
