@@ -45,6 +45,9 @@ public class UserController {
 
     @GetMapping({"/loggedUser"})
     public String welcome(@Valid @ModelAttribute("user") UserDTO userDTO, BindingResult result, ModelMap model) {
+        System.out.println("WELCOME");
+        System.out.println(userDTO);
+        model.addAttribute("user", userDTO);
         return "loggedUser";
     }
 
@@ -131,11 +134,6 @@ public class UserController {
 
         }
         return "user-form";
-    }
-
-    @GetMapping("/editUser/cancel")
-    public String cancelEditUser(ModelMap model) {
-        return "redirect:/loggedUser";
     }
 
 }
