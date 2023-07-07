@@ -1,5 +1,6 @@
 package com.example.demo.infraestructure.rest;
 
+import com.example.demo.application.GetUserByIdUseCase;
 import com.example.demo.application.LoginUserUseCase;
 import com.example.demo.application.SaveUserUseCase;
 import com.example.demo.infraestructure.ddbb.PriceRepositoryJpa;
@@ -26,6 +27,9 @@ public class UserController {
 
     @Autowired
     private LoginUserUseCase loginUserUseCase;
+
+    @Autowired
+    private GetUserByIdUseCase getUserByIdUseCase;
 
     private final UserMapper userMapper;
 
@@ -88,4 +92,13 @@ public class UserController {
         }
         return "login";
     }
+
+    @GetMapping("/editUser/{id}")
+    public String getEditUserForm(Model model, @PathVariable(name="id")Long id) {
+        User userToEdit = getUserByIdUseCase.execute(id);
+        model.addAttribute("user", userToEdit);
+        model.addAttribute("editMode", "true");
+        return "user-form";
+    }
+
 }

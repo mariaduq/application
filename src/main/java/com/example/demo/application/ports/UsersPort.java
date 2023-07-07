@@ -8,4 +8,6 @@ public interface UsersPort {
     public User save(User newUser) throws Exception;
 
     public User login(User userLogin) throws Exception;
+
+    public User getUserById(Long id);
 }
