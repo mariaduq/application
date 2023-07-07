@@ -12,6 +12,7 @@ import java.util.List;
 public class UserMapper {
     public UserInput toUserInput(UserDTO userDTO) {
         return UserInput.builder()
+                .id(userDTO.getId())
                 .name(userDTO.getName())
                 .surname(userDTO.getSurname())
                 .nickname(userDTO.getNickname())

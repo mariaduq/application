@@ -14,6 +14,7 @@ public class UserMapper {
 
     public User fromInput(UserInput userInput) {
         return User.builder()
+                .id(userInput.getId())
                 .name(userInput.getName())
                 .surname(userInput.getSurname())
                 .nickname(userInput.getNickname())
