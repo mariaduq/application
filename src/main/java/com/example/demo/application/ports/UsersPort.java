@@ -10,4 +10,6 @@ public interface UsersPort {
     public User login(User userLogin) throws Exception;
 
     public User getUserById(Long id);
+
+    public User update(User userToUpdate);
 }

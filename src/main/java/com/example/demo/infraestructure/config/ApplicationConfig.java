@@ -36,4 +36,9 @@ public class ApplicationConfig {
 		return new GetUserByIdUseCase(usersPort);
 	}
 
+	@Bean
+	public UpdateUserUseCase updateUserUseCase (UsersPort usersPort, UserMapper userMapper) {
+		return new UpdateUserUseCase(usersPort, userMapper);
+	}
+
 }

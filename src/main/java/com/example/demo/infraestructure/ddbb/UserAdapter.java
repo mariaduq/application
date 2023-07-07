@@ -48,6 +48,21 @@ public class UserAdapter implements UsersPort {
         return userMapper.toDomain(userRepositoryJpa.findById(id).orElseThrow(EntityNotFoundException::new));
     }
 
+    @Override
+    public User update(User updateUser) {
+        UserEntity userFound = userRepositoryJpa.findById(updateUser.getId())
+                .orElseThrow(EntityNotFoundException::new);
+
+        if(updateUser.getPassword().equals(userFound.getPassword())) {
+            userFound.setName(updateUser.getName());
+            userFound.setSurname(updateUser.getSurname());
+            userFound.setNickname(updateUser.getNickname());
+            userFound.setEmail(updateUser.getEmail());
+        }
+
+        return userMapper.toDomain(userRepositoryJpa.save(userFound));
+    }
+
     private boolean checkNicknameAndEmailAvailable(User user) throws Exception {
         Optional<UserEntity> userFound = userRepositoryJpa.findByNicknameOrEmail(user.getNickname(), user.getEmail());
         if(userFound.isPresent()) {
