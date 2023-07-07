@@ -44,7 +44,7 @@ public class UserController {
     }
 
     @GetMapping({"/loggedUser"})
-    public String welcome(ModelMap model) {
+    public String welcome(@Valid @ModelAttribute("user") UserDTO userDTO, BindingResult result, ModelMap model) {
         return "loggedUser";
     }
 
@@ -90,7 +90,7 @@ public class UserController {
                 User userFound = loginUserUseCase.execute(userMapper.toUserInput(userDTO));
                 model.addAttribute("user", userFound);
                 model.addAttribute("successMessage", "Successful login. You can now access the app");
-                return welcome(model);
+                return welcome(userMapper.fromUserToUserDTO(userFound), result, model);
             } catch (Exception e) {
                 model.addAttribute("formErrorMessage", e.getMessage());
                 model.addAttribute("user", userDTO);
@@ -100,7 +100,7 @@ public class UserController {
     }
 
     @GetMapping("/editUser/{id}")
-    public String getEditUserForm(Model model, @PathVariable(name="id")Long id) {
+    public String getEditUserForm(ModelMap model, @PathVariable(name="id")Long id) {
         User userToEdit = getUserByIdUseCase.execute(id);
         model.addAttribute("user", userToEdit);
         model.addAttribute("editMode", "true");
@@ -131,6 +131,11 @@ public class UserController {
 
         }
         return "user-form";
+    }
+
+    @GetMapping("/editUser/cancel")
+    public String cancelEditUser(ModelMap model) {
+        return "redirect:/loggedUser";
     }
 
 }
