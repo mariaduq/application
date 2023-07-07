@@ -23,7 +23,7 @@
     <h1>Welcome to Electroshop</h1>
     <nav>
         <ul>
-            <li><a href="/login">Edit profile</a></li>
+            <a href="#" th:object="${user}" th:href="@{'/editUser/' + ${user.id}}"><i class="fas fa-edit"></i></a>
             <li><a href="/products">See available products</a></li>
             <li><a href="/application/v1/prices">Get all prices</a></li>
             <li><a href="/application/v1/prices">Get product price</a></li>
