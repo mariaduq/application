@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.example.demo.application.ports.PricesPort;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 public class ApplicationConfig {
@@ -39,6 +40,11 @@ public class ApplicationConfig {
 	@Bean
 	public UpdateUserUseCase updateUserUseCase (UsersPort usersPort, UserMapper userMapper) {
 		return new UpdateUserUseCase(usersPort, userMapper);
+	}
+
+	@Bean
+	public BCryptPasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder(4);
 	}
 
 }
