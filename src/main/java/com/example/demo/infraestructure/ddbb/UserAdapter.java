@@ -7,6 +7,7 @@ import com.example.demo.infraestructure.ddbb.model.UserEntity;
 import com.example.demo.model.User;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -19,15 +20,18 @@ public class UserAdapter implements UsersPort {
 
     private final UserMapper userMapper;
 
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
     @Override
     public User save(User newUser) throws Exception {
         if(checkNicknameAndEmailAvailable(newUser) && checkPasswordMatch(newUser)) {
-            System.out.println(newUser.getName());
-            System.out.println(newUser.getSurname());
-            System.out.println(newUser.getEmail());
-            System.out.println(newUser.getNickname());
-            System.out.println(newUser.getPassword());
-            System.out.println(newUser.getName());
+
+            String encodedPassword = bCryptPasswordEncoder.encode(newUser.getPassword());
+            String encodedConfirmPassword = bCryptPasswordEncoder.encode(newUser.getConfirmPassword());
+
+            newUser.setPassword(encodedPassword);
+            newUser.setConfirmPassword(encodedConfirmPassword);
+
             return userMapper.toDomain(userRepositoryJpa.save(userMapper.toEntity(newUser)));
         }
         return newUser;
