@@ -73,12 +73,12 @@ public class UserController {
             }
 
         }
-        return "user-form";
+        return getLoginForm(model, userDTO);
     }
 
     @GetMapping("/login")
-    public String getLoginForm(Model model) {
-        model.addAttribute("user", new UserDTO());
+    public String getLoginForm(ModelMap model, UserDTO userDTO) {
+        model.addAttribute("user", userDTO);
         return "login";
     }
 
@@ -86,6 +86,8 @@ public class UserController {
     public String login(@Valid @ModelAttribute("user") UserDTO userDTO, BindingResult result, ModelMap model) {
         if(result.hasErrors()) {
             model.addAttribute("user", userDTO);
+            System.out.println("Hola1");
+            System.out.println(userDTO);
             return "login";
         }
         else{
@@ -93,9 +95,12 @@ public class UserController {
                 User userFound = loginUserUseCase.execute(userMapper.toUserInput(userDTO));
                 model.addAttribute("user", userFound);
                 model.addAttribute("successMessage", "Successful login. You can now access the app");
+                System.out.println(userFound);
                 return welcome(userMapper.fromUserToUserDTO(userFound), result, model);
             } catch (Exception e) {
                 model.addAttribute("formErrorMessage", e.getMessage());
+                System.out.println("Hola 2");
+                System.out.println(userDTO);
                 model.addAttribute("user", userDTO);
             }
         }
@@ -135,5 +140,4 @@ public class UserController {
         }
         return "user-form";
     }
-
 }
