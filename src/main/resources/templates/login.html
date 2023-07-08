@@ -27,7 +27,7 @@
             </div>
             <form class="col-12" th:object="${user}" th:action="@{/login}" method="post">
                 <div class="form-group" id="user-group">
-                    <input id="email" type="text" class="form-control" th:field="${user.email}" required autofocus="autofocus" placeholder="Email" name="email"/>
+                    <input id="email" type="email" class="form-control" th:field="${user.email}" required autofocus="autofocus" placeholder="Email" name="email"/>
                     <div class="alert-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</div>
                 </div>
                 <div class="form-group" id="password-group">
@@ -40,7 +40,10 @@
                 <p><a href="#">Forgot password?</a></p>
                 <p><a href="#" th:href="@{/signup}">New user - Sign up</a> </p>
             </div>
-            <div class="alert alert-danger" th:if="${formErrorMessage}" th:text="${formErrorMessage}">Error Message</div>
+            <div th:if="${param.logout}" class="alert alert-success" role="alert">
+                You have been logged out.
+            </div>
+            <div class="alert alert-danger" th:if="${param.error}" th:text="${formErrorMessage}">Error Message</div>
             <div class="alert alert-success" th:if="${successMessage}" th:text="${successMessage}">Success Message</div>
         </div>
     </div>
