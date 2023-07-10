@@ -57,4 +57,9 @@ public class ApplicationConfig {
 		return new BCryptPasswordEncoder(4);
 	}
 
+	@Bean
+	public ChangePasswordUseCase changePasswordUseCase (UsersPort usersPort, UserMapper userMapper) {
+		return new ChangePasswordUseCase(usersPort, userMapper);
+	}
+
 }
