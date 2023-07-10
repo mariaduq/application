@@ -58,7 +58,7 @@ public class UserAdapter implements UsersPort {
         UserEntity userFound = userRepositoryJpa.findById(updateUser.getId())
                 .orElseThrow(() -> new Exception("This user doesn't exists"));
 
-        if(updateUser.getPassword().equals(userFound.getPassword())) {
+        if(bCryptPasswordEncoder.matches(updateUser.getPassword(), userFound.getPassword())) {
             userFound.setName(updateUser.getName());
             userFound.setSurname(updateUser.getSurname());
             userFound.setNickname(updateUser.getNickname());
