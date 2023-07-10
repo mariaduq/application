@@ -169,6 +169,6 @@ public class UserController {
         } catch (Exception e) {
             model.addAttribute("formErrorMessage", e.getMessage());
         }
-        return "user-form";
+        return homepage();
     }
 }

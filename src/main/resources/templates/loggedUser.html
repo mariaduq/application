@@ -17,6 +17,17 @@
     <!-- Nuestro css-->
     <link rel="stylesheet" type="text/css" href="../static/css/login.css">
 
+    <script type="text/javascript">
+    function confirmDelete(id){
+        $('#deleteModal').modal('show');
+        $("#userIdHiddenInput").val(id);
+    }
+
+    function deleteUser(){
+        var id = $("#userIdHiddenInput").val();
+        window.location = "deleteUser/"+id;
+    }
+    </script>
 </head>
 <body>
 <header>
@@ -24,6 +35,8 @@
     <nav>
         <ul>
             <a href="#" th:object="${user}" th:href="@{'/editUser/' + ${user.id}}"><i class="fas fa-edit"></i></a>
+            <a href="#" th:onclick="'javascript:confirmDelete(\''+ ${user.id} +'\');'"><i class="fas fa-trash"></i></a>
+
             <li><a href="/products">See available products</a></li>
             <li><a href="/application/v1/prices">Get all prices</a></li>
             <li><a href="/application/v1/prices">Get product price</a></li>
@@ -53,6 +66,8 @@
 <footer>
     <p>&copy; 2023 Mi Sitio Web. Todos los derechos reservados.</p>
 </footer>
+<div th:insert="~{confirm-delete-dialog.html}" th:remove="tag"></div>
 </body>
 </html>
+
 
