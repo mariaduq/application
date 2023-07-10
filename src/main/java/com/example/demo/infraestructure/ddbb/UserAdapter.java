@@ -79,6 +79,20 @@ public class UserAdapter implements UsersPort {
         userRepositoryJpa.delete(userToDelete);
     }
 
+    @Override
+    public void updatePassword(String newPassword, String email) throws Exception {
+
+        UserEntity userToUpdatePassword = userRepositoryJpa.findByEmail(email)
+                .orElseThrow(() -> new Exception("This user doesn't exists"));
+
+        String encodedPassword = bCryptPasswordEncoder.encode(newPassword);
+
+        userToUpdatePassword.setPassword(encodedPassword);
+        userToUpdatePassword.setConfirmPassword(encodedPassword);
+
+        userMapper.toDomain(userRepositoryJpa.save(userToUpdatePassword));
+    }
+
     private boolean checkNicknameAndEmailAvailable(User user) throws Exception {
         Optional<UserEntity> userFound = userRepositoryJpa.findByNicknameOrEmail(user.getNickname(), user.getEmail());
         if(userFound.isPresent()) {

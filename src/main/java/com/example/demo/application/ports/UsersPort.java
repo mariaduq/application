@@ -17,4 +17,6 @@ public interface UsersPort {
     public User getUserByEmail(String email) throws Exception;
 
     public void deleteUser(Long id) throws Exception;
+
+    public void updatePassword(String newPassword, String email) throws Exception;
 }
