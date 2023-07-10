@@ -19,6 +19,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.SecureRandom;
+import java.util.Random;
+
 @Controller
 @RequiredArgsConstructor
 public class UserController {
@@ -41,7 +44,17 @@ public class UserController {
     @Autowired
     private final DeleteUserUseCase deleteUserUseCase;
 
+    @Autowired
+    private final SendEmailUseCase sendEmailUseCase;
+
+    @Autowired
+    private final ChangePasswordUseCase changePasswordUseCase;
+
     private final UserMapper userMapper;
+
+    private static final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    private static final int LENGTH = 10;
 
     @GetMapping({"/", "/homepage"})
     public String homepage() {
@@ -56,6 +69,8 @@ public class UserController {
 
             User loggedUser = getUserByEmailUseCase.execute(email);
             model.addAttribute("user", loggedUser);
+
+            //sendEmailUseCase.execute(email, "Prueba", "Esto es un correo de prueba");
             return "loggedUser";
         }
         return "No hay ningún usuario autenticado";
@@ -170,5 +185,46 @@ public class UserController {
             model.addAttribute("formErrorMessage", e.getMessage());
         }
         return homepage();
+    }
+
+    @GetMapping("/forgotPassword")
+    public String getForgotPasswordForm() {
+        return "forgot_password";
+    }
+
+    @PostMapping("/forgotPassword")
+    public String forgotPassword(ModelMap model, @Valid @ModelAttribute("email") String email) {
+        try{
+            model.addAttribute("email", email);
+
+            UserDTO userFound = userMapper.fromUserToUserDTO(getUserByEmailUseCase.execute(email));
+            String newGeneratedPassword = generateRandomPassword();
+
+            changePasswordUseCase.execute(newGeneratedPassword, email);
+
+            sendEmailUseCase.execute(email, "New password",
+                    "You have indicated that you have forgotten your password."
+                            + "In this email you can find a new temporary password to access your account."
+                            + "You will be able to change it in your profile, once you are logged in."
+                            + "New password: " + newGeneratedPassword
+                            + "Thank you for using our app.");
+
+            model.addAttribute("successMessage", "An e-mail with a new password has been sent to you.");
+
+        } catch (Exception e) {
+            model.addAttribute("formErrorMessage", e.getMessage());
+        }
+        return getForgotPasswordForm();
+    }
+
+    public String generateRandomPassword() {
+        Random random = new SecureRandom();
+        StringBuilder sb = new StringBuilder(LENGTH);
+        for (int i=0; i<LENGTH; i++) {
+            int randomIndex = random.nextInt(CHARACTERS.length());
+            char randomChar = CHARACTERS.charAt(randomIndex);
+            sb.append(randomChar);
+        }
+        return sb.toString();
     }
 }
