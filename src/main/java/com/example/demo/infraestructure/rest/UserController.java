@@ -1,9 +1,6 @@
 package com.example.demo.infraestructure.rest;
 
-import com.example.demo.application.GetUserByIdUseCase;
-import com.example.demo.application.LoginUserUseCase;
-import com.example.demo.application.SaveUserUseCase;
-import com.example.demo.application.UpdateUserUseCase;
+import com.example.demo.application.*;
 import com.example.demo.infraestructure.ddbb.PriceRepositoryJpa;
 import com.example.demo.infraestructure.ddbb.UserRepositoryJpa;
 import com.example.demo.infraestructure.rest.mappers.UserMapper;
@@ -14,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -36,6 +35,9 @@ public class UserController {
     @Autowired
     private UpdateUserUseCase updateUserUseCase;
 
+    @Autowired
+    private GetUserByEmailUseCase getUserByEmailUseCase;
+
     private final UserMapper userMapper;
 
     @GetMapping({"/", "/homepage"})
@@ -44,11 +46,16 @@ public class UserController {
     }
 
     @GetMapping({"/loggedUser"})
-    public String welcome(@Valid @ModelAttribute("user") UserDTO userDTO, BindingResult result, ModelMap model) {
-        System.out.println("WELCOME");
-        System.out.println(userDTO);
-        model.addAttribute("user", userDTO);
-        return "loggedUser";
+    public String welcome(Authentication auth, Model model) throws Exception {
+        if(auth != null) {
+            UserDetails userDetails = (UserDetails) auth.getPrincipal();
+            String email = userDetails.getUsername();
+
+            User loggedUser = getUserByEmailUseCase.execute(email);
+            model.addAttribute("user", loggedUser);
+            return "loggedUser";
+        }
+        return "No hay ningún usuario autenticado";
     }
 
     @GetMapping("/signup")
@@ -70,19 +77,20 @@ public class UserController {
             } catch (Exception e) {
                 model.addAttribute("formErrorMessage", e.getMessage());
                 model.addAttribute("user", userDTO);
+                return "user-form";
             }
 
         }
-        return getLoginForm(model, userDTO);
+        return /*getLoginForm(model, userDTO)*/ "login";
     }
 
     @GetMapping("/login")
-    public String getLoginForm(ModelMap model, UserDTO userDTO) {
-        model.addAttribute("user", userDTO);
+    public String getLoginForm(/*ModelMap model, UserDTO userDTO*/) {
+        //model.addAttribute("user", userDTO);
         return "login";
     }
 
-    @PostMapping("/login")
+    /*@PostMapping("/login")
     public String login(@Valid @ModelAttribute("user") UserDTO userDTO, BindingResult result, ModelMap model) {
         if(result.hasErrors()) {
             model.addAttribute("user", userDTO);
@@ -105,7 +113,7 @@ public class UserController {
             }
         }
         return "login";
-    }
+    }*/
 
     @GetMapping("/editUser/{id}")
     public String getEditUserForm(ModelMap model, @PathVariable(name="id")Long id) {
