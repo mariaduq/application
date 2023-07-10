@@ -71,7 +71,6 @@ public class UserController {
             User loggedUser = getUserByEmailUseCase.execute(email);
             model.addAttribute("user", loggedUser);
 
-            //sendEmailUseCase.execute(email, "Prueba", "Esto es un correo de prueba");
             return "loggedUser";
         }
         return "No hay ningún usuario autenticado";
@@ -100,39 +99,13 @@ public class UserController {
             }
 
         }
-        return /*getLoginForm(model, userDTO)*/ "login";
+        return "login";
     }
 
     @GetMapping("/login")
-    public String getLoginForm(/*ModelMap model, UserDTO userDTO*/) {
-        //model.addAttribute("user", userDTO);
+    public String getLoginForm() {
         return "login";
     }
-
-    /*@PostMapping("/login")
-    public String login(@Valid @ModelAttribute("user") UserDTO userDTO, BindingResult result, ModelMap model) {
-        if(result.hasErrors()) {
-            model.addAttribute("user", userDTO);
-            System.out.println("Hola1");
-            System.out.println(userDTO);
-            return "login";
-        }
-        else{
-            try{
-                User userFound = loginUserUseCase.execute(userMapper.toUserInput(userDTO));
-                model.addAttribute("user", userFound);
-                model.addAttribute("successMessage", "Successful login. You can now access the app");
-                System.out.println(userFound);
-                return welcome(userMapper.fromUserToUserDTO(userFound), result, model);
-            } catch (Exception e) {
-                model.addAttribute("formErrorMessage", e.getMessage());
-                System.out.println("Hola 2");
-                System.out.println(userDTO);
-                model.addAttribute("user", userDTO);
-            }
-        }
-        return "login";
-    }*/
 
     @GetMapping("/editUser/{id}")
     public String getEditUserForm(ModelMap model, @PathVariable(name="id")Long id) {
@@ -156,7 +129,6 @@ public class UserController {
                 model.addAttribute("user", userDTO);
                 model.addAttribute("successMessage", "Profile successfully edited!");
                 model.addAttribute("editMode", "true");
-                //return welcome(model);
             } catch (Exception e) {
                 model.addAttribute("formErrorMessage", e.getMessage());
                 model.addAttribute("user", userDTO);
@@ -213,18 +185,6 @@ public class UserController {
             model.addAttribute("formErrorMessage", e.getMessage());
         }
         return getForgotPasswordForm();
-    }
-
-    public String getEmailContent(String password) {
-        return "<html>" +
-                "<body>" +
-                "<h2>Reset Password</h2>" +
-                "<p>You have indicated that you have forgotten your password. In this email, you can find a new temporary password to access your account. " +
-                "You will be able to change it in your profile, once you are logged in.</p>" +
-                "<p><strong>New Password:</strong> " + password + "</p>" +
-                "<p>Thank you for using our app.</p>" +
-                "</body>" +
-                "</html>";
     }
 
     public String generateRandomPassword() {

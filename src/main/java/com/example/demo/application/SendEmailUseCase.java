@@ -28,8 +28,6 @@ public class SendEmailUseCase {
         MimeMessage message = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
 
-        //SimpleMailMessage email = new SimpleMailMessage();
-
         helper.setTo(to);
         helper.setSubject(subject);
 
