@@ -18,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.thymeleaf.context.Context;
 
 import java.security.SecureRandom;
 import java.util.Random;
@@ -202,7 +203,9 @@ public class UserController {
 
             changePasswordUseCase.execute(newGeneratedPassword, email);
 
-            sendEmailUseCase.execute(email, "New password", getEmailContent(newGeneratedPassword));
+            Context context = new Context();
+            context.setVariable("newPassword", newGeneratedPassword);
+            sendEmailUseCase.execute(email, "New password", "email-template", context);
 
             model.addAttribute("successMessage", "An e-mail with a new password has been sent to you.");
 
