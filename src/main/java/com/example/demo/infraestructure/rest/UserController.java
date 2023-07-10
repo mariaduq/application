@@ -202,12 +202,7 @@ public class UserController {
 
             changePasswordUseCase.execute(newGeneratedPassword, email);
 
-            sendEmailUseCase.execute(email, "New password",
-                    "You have indicated that you have forgotten your password."
-                            + "In this email you can find a new temporary password to access your account."
-                            + "You will be able to change it in your profile, once you are logged in."
-                            + "New password: " + newGeneratedPassword
-                            + "Thank you for using our app.");
+            sendEmailUseCase.execute(email, "New password", getEmailContent(newGeneratedPassword));
 
             model.addAttribute("successMessage", "An e-mail with a new password has been sent to you.");
 
@@ -215,6 +210,18 @@ public class UserController {
             model.addAttribute("formErrorMessage", e.getMessage());
         }
         return getForgotPasswordForm();
+    }
+
+    public String getEmailContent(String password) {
+        return "<html>" +
+                "<body>" +
+                "<h2>Reset Password</h2>" +
+                "<p>You have indicated that you have forgotten your password. In this email, you can find a new temporary password to access your account. " +
+                "You will be able to change it in your profile, once you are logged in.</p>" +
+                "<p><strong>New Password:</strong> " + password + "</p>" +
+                "<p>Thank you for using our app.</p>" +
+                "</body>" +
+                "</html>";
     }
 
     public String generateRandomPassword() {
