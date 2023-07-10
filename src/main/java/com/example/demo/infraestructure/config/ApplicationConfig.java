@@ -48,6 +48,11 @@ public class ApplicationConfig {
 	}
 
 	@Bean
+	public DeleteUserUseCase deleteUserUseCase (UsersPort usersPort) {
+		return new DeleteUserUseCase(usersPort);
+	}
+
+	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder(4);
 	}
