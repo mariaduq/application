@@ -38,6 +38,9 @@ public class UserController {
     @Autowired
     private GetUserByEmailUseCase getUserByEmailUseCase;
 
+    @Autowired
+    private final DeleteUserUseCase deleteUserUseCase;
+
     private final UserMapper userMapper;
 
     @GetMapping({"/", "/homepage"})
@@ -157,5 +160,15 @@ public class UserController {
     @GetMapping("/signup/cancel")
     public String cancelCreateUser(ModelMap model) {
         return "redirect:/homepage";
+    }
+
+    @GetMapping("/deleteUser/{id}")
+    public String deleteUser(ModelMap model, @PathVariable(name="id")Long id) {
+        try{
+            deleteUserUseCase.execute(id);
+        } catch (Exception e) {
+            model.addAttribute("formErrorMessage", e.getMessage());
+        }
+        return "user-form";
     }
 }
