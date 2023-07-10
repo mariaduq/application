@@ -4,7 +4,6 @@ import com.example.demo.application.mapper.UserMapper;
 import com.example.demo.application.ports.UsersPort;
 import com.example.demo.model.User;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 public class SaveUserUseCase {

@@ -1,16 +1,11 @@
 package com.example.demo.infraestructure.rest;
 
 import com.example.demo.application.*;
-import com.example.demo.infraestructure.ddbb.PriceRepositoryJpa;
-import com.example.demo.infraestructure.ddbb.UserRepositoryJpa;
 import com.example.demo.infraestructure.rest.mappers.UserMapper;
 import com.example.demo.model.User;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;

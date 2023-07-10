@@ -6,8 +6,6 @@ import com.example.demo.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-
 @RequiredArgsConstructor
 @Component("apiUserMapper")
 public class UserMapper {
