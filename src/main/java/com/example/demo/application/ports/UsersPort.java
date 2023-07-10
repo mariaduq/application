@@ -15,4 +15,6 @@ public interface UsersPort {
     public User update(User userToUpdate) throws Exception;
 
     public User getUserByEmail(String email) throws Exception;
+
+    public void deleteUser(Long id) throws Exception;
 }

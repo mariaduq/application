@@ -73,6 +73,12 @@ public class UserAdapter implements UsersPort {
         return userMapper.toDomain(userRepositoryJpa.findByEmail(email).orElseThrow(() -> new Exception("There is no user registered with this email.")));
     }
 
+    @Override
+    public void deleteUser(Long id) throws Exception {
+        UserEntity userToDelete = userRepositoryJpa.findById(id).orElseThrow(() -> new Exception("No user logged"));
+        userRepositoryJpa.delete(userToDelete);
+    }
+
     private boolean checkNicknameAndEmailAvailable(User user) throws Exception {
         Optional<UserEntity> userFound = userRepositoryJpa.findByNicknameOrEmail(user.getNickname(), user.getEmail());
         if(userFound.isPresent()) {
