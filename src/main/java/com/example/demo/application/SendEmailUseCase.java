@@ -32,9 +32,6 @@ public class SendEmailUseCase {
         helper.setSubject(subject);
 
         String htmlContent = templateEngine.process(content, context);
-        //System.out.println(context.getVariable("newPassword"));
-
-        //String replacedHtmlContent = htmlContent.replace("[[newPassword]]", context.getVariable("newPassword").toString());
         helper.setText(htmlContent, true);
 
         javaMailSender.send(message);
