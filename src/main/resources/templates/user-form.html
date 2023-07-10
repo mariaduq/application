@@ -39,7 +39,7 @@
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <h1>Sign up</h1>
-                <form class="form" autocomplete="off" th:object="${user}" th:action="${editMode} ?@{/editUser} :@{/signup}" method="post">
+                <form class="form" role="form" autocomplete="off" th:object="${user}" th:action="${editMode} ?@{/editUser} :@{/signup}" method="post">
                     <input class = "form-control" type="hidden" name="confirmPassword" value="confirmPassword" th:if="${editMode}">
                     <input class = "form-control" type="hidden" th:field="${user.id}" th:if="${editMode}">
                     <div class="form-group">
