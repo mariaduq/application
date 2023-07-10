@@ -148,4 +148,14 @@ public class UserController {
         }
         return "user-form";
     }
+
+    @GetMapping("/editUser/cancel")
+    public String cancelEditUser(ModelMap model) {
+        return "redirect:/loggedUser";
+    }
+
+    @GetMapping("/signup/cancel")
+    public String cancelCreateUser(ModelMap model) {
+        return "redirect:/homepage";
+    }
 }
