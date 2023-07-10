@@ -38,6 +38,11 @@ public class ApplicationConfig {
 	}
 
 	@Bean
+	public GetUserByEmailUseCase getUserByEmailUseCase (UsersPort usersPort) {
+		return new GetUserByEmailUseCase(usersPort);
+	}
+
+	@Bean
 	public UpdateUserUseCase updateUserUseCase (UsersPort usersPort, UserMapper userMapper) {
 		return new UpdateUserUseCase(usersPort, userMapper);
 	}
