@@ -16,11 +16,10 @@ public class GetPricesUseCase {
 		this.pricesPort=pricesPort;
 	}
 	
-	public Price getCorrectPrice(LocalDateTime date, long productId, long brandId){
+	public Price getCorrectPrice(LocalDateTime date, long productId){
 	
 		return pricesPort.getPrices().stream()
 				.filter(price -> price.getProductId() == productId)
-				.filter(price -> price.getBrandId() == brandId)
 				.filter(price -> price.getStartDate().isBefore(date))
 				.filter(price -> price.getEndDate().isAfter(date))
 				.sorted(Comparator.comparingInt(Price::getPriority).reversed())

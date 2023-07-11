@@ -40,7 +40,7 @@ class PriceServiceTests {
 		long productId = 35455;
 		long brandId = 1;
 
-		Price price = getPricesUseCase.getCorrectPrice(date, productId, brandId);
+		Price price = getPricesUseCase.getCorrectPrice(date, productId);
 		
 		assertEquals((float)35.5, price.getPrice());
 	}
@@ -55,9 +55,8 @@ class PriceServiceTests {
 		
 		LocalDateTime date = LocalDateTime.of(2020, 06, 14, 16, 00, 00);
 		long productId = 35455;
-		long brandId = 1;
-		
-		Price price = getPricesUseCase.getCorrectPrice(date, productId, brandId);
+
+		Price price = getPricesUseCase.getCorrectPrice(date, productId);
 		
 		assertEquals((float)25.45, price.getPrice());
 	}
@@ -73,7 +72,7 @@ class PriceServiceTests {
 		long productId = 35455;
 		long brandId = 1;
 		
-		Price price = getPricesUseCase.getCorrectPrice(date, productId, brandId);
+		Price price = getPricesUseCase.getCorrectPrice(date, productId);
 		
 		assertEquals((float)35.5, price.getPrice());
 	}
@@ -90,7 +89,7 @@ class PriceServiceTests {
 		long productId = 35455;
 		long brandId = 1;
 		
-		Price price = getPricesUseCase.getCorrectPrice(date, productId, brandId);
+		Price price = getPricesUseCase.getCorrectPrice(date, productId);
 		
 		assertEquals((float)30.5, price.getPrice());
 	}
@@ -106,7 +105,7 @@ class PriceServiceTests {
 		long productId = 35455;
 		long brandId = 1;
 		
-		Price price = getPricesUseCase.getCorrectPrice(date, productId, brandId);
+		Price price = getPricesUseCase.getCorrectPrice(date, productId);
 		
 		assertEquals((float)38.95, price.getPrice());
 	}
@@ -123,7 +122,7 @@ class PriceServiceTests {
 		long productId = 35457;
 		long brandId = 1;
 				
-		assertThrows(EntityNotFoundException.class, ()->getPricesUseCase.getCorrectPrice(date, productId, brandId));
+		assertThrows(EntityNotFoundException.class, ()->getPricesUseCase.getCorrectPrice(date, productId));
 	}
 	
 	
@@ -138,7 +137,7 @@ class PriceServiceTests {
 		long productId = 35455;
 		long brandId = 1;
 				
-		assertThrows(EntityNotFoundException.class, ()->getPricesUseCase.getCorrectPrice(date, productId, brandId));
+		assertThrows(EntityNotFoundException.class, ()->getPricesUseCase.getCorrectPrice(date, productId));
 	}
 	
 	
