@@ -17,14 +17,13 @@ import java.util.List;
 public @Data class ProductEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "PRODUCT_ID")
     private long productId;
 
     @Column(name = "PRODUCT_TYPE")
     private String productType;
 
-    @Column(name = "BRAND")
+    @Column(name = "BRAND_NAME")
     private String brand;
 
     @Column(name = "BRAND_ID")
