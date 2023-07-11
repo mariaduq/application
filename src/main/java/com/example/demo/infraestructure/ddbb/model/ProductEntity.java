@@ -24,7 +24,7 @@ public @Data class ProductEntity {
     private String productType;
 
     @Column(name = "BRAND_NAME")
-    private String brand;
+    private String brandName;
 
     @Column(name = "BRAND_ID")
     private long brandId;

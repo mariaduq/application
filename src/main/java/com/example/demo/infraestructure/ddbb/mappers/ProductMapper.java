@@ -19,7 +19,7 @@ public class ProductMapper {
         return Product.builder()
                 .productId(productEntity.getProductId())
                 .productType(productEntity.getProductType())
-                .brand(productEntity.getBrand())
+                .brand(productEntity.getBrandName())
                 .brandId(productEntity.getBrandId())
                 .description(productEntity.getDescription())
                 .stock(productEntity.getStock())
@@ -34,7 +34,7 @@ public class ProductMapper {
 
         return ProductEntity.builder()
                 .productType(product.getProductType())
-                .brand(product.getBrand())
+                .brandName(product.getBrand())
                 .brandId(product.getBrandId())
                 .description(product.getDescription())
                 .stock(product.getStock())
