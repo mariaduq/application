@@ -1,4 +1,4 @@
-package com.example.demo.application;
+package com.example.demo.application.usecases.price;
 
 import java.time.LocalDateTime;
 import java.util.Comparator;

@@ -1,9 +1,13 @@
 package com.example.demo.infraestructure.config;
 
-import com.example.demo.application.*;
 import com.example.demo.application.mapper.UserMapper;
 import com.example.demo.application.ports.ProductsPort;
 import com.example.demo.application.ports.UsersPort;
+import com.example.demo.application.usecases.price.GetAllPricesUseCase;
+import com.example.demo.application.usecases.price.GetPricesUseCase;
+import com.example.demo.application.usecases.price.GetProductPricesUseCase;
+import com.example.demo.application.usecases.product.GetAllProductsUseCase;
+import com.example.demo.application.usecases.user.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

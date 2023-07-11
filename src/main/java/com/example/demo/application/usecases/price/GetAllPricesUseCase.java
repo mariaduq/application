@@ -1,4 +1,4 @@
-package com.example.demo.application;
+package com.example.demo.application.usecases.price;
 
 import java.util.List;
 import java.util.stream.Collectors;

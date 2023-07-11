@@ -1,6 +1,6 @@
 package com.example.demo.infraestructure.rest;
 
-import com.example.demo.application.*;
+import com.example.demo.application.usecases.user.*;
 import com.example.demo.infraestructure.rest.mappers.UserMapper;
 import com.example.demo.model.User;
 import jakarta.validation.Valid;

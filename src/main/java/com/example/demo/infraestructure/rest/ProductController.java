@@ -1,6 +1,6 @@
 package com.example.demo.infraestructure.rest;
 
-import com.example.demo.application.GetAllProductsUseCase;
+import com.example.demo.application.usecases.product.GetAllProductsUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -1,4 +1,4 @@
-package com.example.demo.application;
+package com.example.demo.application.usecases.user;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;

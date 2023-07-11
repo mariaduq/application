@@ -4,19 +4,18 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-import com.example.demo.application.GetProductPricesUseCase;
+import com.example.demo.application.usecases.price.GetProductPricesUseCase;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.demo.application.GetAllPricesUseCase;
-import com.example.demo.application.GetPricesUseCase;
+import com.example.demo.application.usecases.price.GetAllPricesUseCase;
+import com.example.demo.application.usecases.price.GetPricesUseCase;
 import com.example.demo.infraestructure.ddbb.PriceRepositoryJpa;
 import com.example.demo.model.Price;
 

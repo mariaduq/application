@@ -1,4 +1,4 @@
-package com.example.demo.application;
+package com.example.demo.application.usecases.product;
 
 import com.example.demo.application.ports.ProductsPort;
 import com.example.demo.application.ports.UsersPort;

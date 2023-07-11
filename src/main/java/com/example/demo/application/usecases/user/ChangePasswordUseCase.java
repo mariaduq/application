@@ -1,4 +1,4 @@
-package com.example.demo.application;
+package com.example.demo.application.usecases.user;
 
 import com.example.demo.application.mapper.UserMapper;
 import com.example.demo.application.ports.UsersPort;

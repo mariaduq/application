@@ -1,4 +1,4 @@
-package com.example.demo.application;
+package com.example.demo.application.usecases.price;
 
 import com.example.demo.application.ports.PricesPort;
 import com.example.demo.model.Price;
