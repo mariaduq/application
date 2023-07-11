@@ -6,13 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.example.demo.application.GetProductPricesUseCase;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.application.GetAllPricesUseCase;
 import com.example.demo.application.GetPricesUseCase;
@@ -26,7 +27,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
-@RestController
+@Controller
+@RequiredArgsConstructor
 @RequestMapping("/application")
 public class PricesController {
 	
@@ -38,6 +40,9 @@ public class PricesController {
 	
 	@Autowired
 	GetAllPricesUseCase getAllPricesUseCase;
+
+	@Autowired
+	private final GetProductPricesUseCase getProductPricesUseCase;
 	
 	@Operation(summary = "Get price", description = "Get the correct price of a product", operationId = "getPrice")
 	@ApiResponses(value = {
@@ -85,6 +90,12 @@ public class PricesController {
 		else {
 			throw new BadRequestException();
 		}
+	}
+
+	@GetMapping("/productPrices/{productId}")
+	public String getProductPrices(@PathVariable(name="productId")Long id, Model model) {
+		model.addAttribute("productPricesList", getProductPricesUseCase.execute(id));
+		return "product-prices-list";
 	}
 	
 }

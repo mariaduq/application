@@ -38,7 +38,25 @@ public class PriceAdapter implements PricesPort{
 				.collect(Collectors.toList());
 	
 	}
-	
+
+	@Override
+	public List<Price> getProductPrices(Long productId) {
+
+		ModelMapper mapper = new ModelMapper();
+
+		TypeMap<Timestamp, LocalDateTime> typeMap = mapper.createTypeMap(Timestamp.class, LocalDateTime.class);
+		typeMap.setConverter(context -> {
+			Timestamp timestamp = context.getSource();
+			return timestamp == null ? null : timestamp.toLocalDateTime();
+		});
+
+		return priceRepositoryJpa
+				.findByProductId(productId)
+				.stream()
+				.map((priceEntity) -> mapper.map(priceEntity, Price.class))
+				.collect(Collectors.toList());
+	}
+
 }
 
 

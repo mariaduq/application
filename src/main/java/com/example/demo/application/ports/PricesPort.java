@@ -7,4 +7,6 @@ import com.example.demo.model.Price;
 public interface PricesPort {
 	
 	public List<Price> getPrices();
+
+	public List<Price> getProductPrices(Long productId);
 }
