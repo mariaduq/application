@@ -28,6 +28,9 @@ public @Data class PriceEntity {
 	
 	@Column(name = "BRAND_ID")
 	private long brandId;
+
+	@Column(name = "BRAND_NAME")
+	private String brandName;
 	
 	@Column(name = "PRODUCT_ID")
 	private long productId;
