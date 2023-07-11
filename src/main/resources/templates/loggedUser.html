@@ -37,7 +37,7 @@
             <a href="#" th:object="${user}" th:href="@{'/editUser/' + ${user.id}}"><i class="fas fa-edit"></i></a>
             <a href="#" th:onclick="'javascript:confirmDelete(\''+ ${user.id} +'\');'"><i class="fas fa-trash"></i></a>
 
-            <li><a href="/products">See available products</a></li>
+            <li><a href="#" th:href="@{/productsList}">Get all products</a></li>
             <li><a href="/application/v1/prices">Get all prices</a></li>
             <li><a href="/application/v1/prices">Get product price</a></li>
             <li class="nav-item">
