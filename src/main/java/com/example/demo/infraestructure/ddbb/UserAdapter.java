@@ -79,7 +79,7 @@ public class UserAdapter implements UsersPort {
     }
 
     @Override
-    public void updatePassword(String newPassword, String email) throws Exception {
+    public void updateForgotPassword(String newPassword, String email) throws Exception {
 
         UserEntity userToUpdatePassword = userRepositoryJpa.findByEmail(email)
                 .orElseThrow(() -> new Exception("This user doesn't exists"));
@@ -90,6 +90,21 @@ public class UserAdapter implements UsersPort {
         userToUpdatePassword.setConfirmPassword(encodedPassword);
 
         userMapper.toDomain(userRepositoryJpa.save(userToUpdatePassword));
+    }
+
+    @Override
+    public void changePassword(String email, String oldPassword, String newPassword, String confirmNewPassword) throws Exception {
+        UserEntity userToChangePassword = userRepositoryJpa.findByEmail(email)
+                .orElseThrow(() -> new Exception("This user doesn't exists"));
+
+        if(checkPassword(userMapper.toDomain(userToChangePassword), oldPassword)) {
+            if (newPassword.equals(confirmNewPassword)) {
+                String encodedPassword = bCryptPasswordEncoder.encode(newPassword);
+
+                userToChangePassword.setPassword(encodedPassword);
+                userToChangePassword.setConfirmPassword(encodedPassword);
+            } else throw new Exception("New passwords do not match");
+        } else throw new Exception("Incorrect old password");
     }
 
     private boolean checkNicknameAndEmailAvailable(User user) throws Exception {

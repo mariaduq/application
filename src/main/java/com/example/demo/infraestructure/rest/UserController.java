@@ -44,6 +44,9 @@ public class UserController {
     private final SendEmailUseCase sendEmailUseCase;
 
     @Autowired
+    private final UpdateForgotPasswordUseCase updateForgotPasswordUseCase;
+
+    @Autowired
     private final ChangePasswordUseCase changePasswordUseCase;
 
     private final UserMapper userMapper;
@@ -68,7 +71,7 @@ public class UserController {
 
             return "loggedUser";
         }
-        return "No hay ningún usuario autenticado";
+        return "No authenticated user";
     }
 
     @GetMapping("/signup")
@@ -168,7 +171,7 @@ public class UserController {
             UserDTO userFound = userMapper.fromUserToUserDTO(getUserByEmailUseCase.execute(email));
             String newGeneratedPassword = generateRandomPassword();
 
-            changePasswordUseCase.execute(newGeneratedPassword, email);
+            updateForgotPasswordUseCase.execute(newGeneratedPassword, email);
 
             Context context = new Context();
             context.setVariable("newPassword", newGeneratedPassword);
@@ -191,5 +194,46 @@ public class UserController {
             sb.append(randomChar);
         }
         return sb.toString();
+    }
+
+    @GetMapping("/editUser/changePassword")
+    public String getChangePasswordForm(Authentication auth, Model model) throws Exception {
+        if(auth != null) {
+            UserDetails userDetails = (UserDetails) auth.getPrincipal();
+            String email = userDetails.getUsername();
+
+            User loggedUser = getUserByEmailUseCase.execute(email);
+            model.addAttribute("user", loggedUser);
+
+            return "change_password";
+        }
+        return "No authenticated user";
+    }
+
+    @PostMapping("/editUser/changePassword")
+    public String changePassword(Authentication auth, ModelMap model, @Valid @ModelAttribute("oldPassword") String oldPassword,
+                                 @Valid @ModelAttribute("newPassword") String newPassword,
+                                 @Valid @ModelAttribute("confirmNewPassword") String confirmNewPassword) throws Exception {
+        if(auth != null) {
+            UserDetails userDetails = (UserDetails) auth.getPrincipal();
+            String email = userDetails.getUsername();
+
+            User loggedUser = getUserByEmailUseCase.execute(email);
+            model.addAttribute("user", loggedUser);
+
+            try{
+                model.addAttribute("oldPassword", oldPassword);
+                model.addAttribute("newPassword", newPassword);
+                model.addAttribute("confirmNewPassword", confirmNewPassword);
+
+                changePasswordUseCase.execute(email, oldPassword, newPassword, confirmNewPassword);
+
+                model.addAttribute("successMessage", "Password successfully updated");
+
+            } catch(Exception e) {
+                model.addAttribute("formErrorMessage", e.getMessage());
+            }
+            return "change-password";
+        } else return "No authenticated user";
     }
 }
