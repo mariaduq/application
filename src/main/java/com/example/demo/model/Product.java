@@ -18,7 +18,7 @@ public class Product {
 
     private String productType;
 
-    private String brand;
+    private String brandName;
 
     private long brandId;
 
