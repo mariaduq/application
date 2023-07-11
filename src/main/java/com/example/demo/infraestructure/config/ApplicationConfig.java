@@ -73,4 +73,9 @@ public class ApplicationConfig {
 		return new GetAllProductsUseCase(productsPort);
 	}
 
+	@Bean
+	public GetProductPricesUseCase getProductPricesUseCase(PricesPort pricesPort) {
+		return new GetProductPricesUseCase(pricesPort);
+	}
+
 }
