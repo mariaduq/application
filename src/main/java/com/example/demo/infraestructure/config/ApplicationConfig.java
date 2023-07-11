@@ -58,8 +58,13 @@ public class ApplicationConfig {
 	}
 
 	@Bean
-	public ChangePasswordUseCase changePasswordUseCase (UsersPort usersPort, UserMapper userMapper) {
-		return new ChangePasswordUseCase(usersPort, userMapper);
+	public UpdateForgotPasswordUseCase updateForgotPasswordUseCase(UsersPort usersPort, UserMapper userMapper) {
+		return new UpdateForgotPasswordUseCase(usersPort, userMapper);
+	}
+
+	@Bean
+	public ChangePasswordUseCase changePasswordUseCase(UsersPort usersPort) {
+		return new ChangePasswordUseCase(usersPort);
 	}
 
 }
