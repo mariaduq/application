@@ -1,10 +1,12 @@
-package com.example.demo.infraestructure.rest;
+package com.example.demo.infraestructure.rest.controller;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import com.example.demo.application.usecases.price.GetProductPricesUseCase;
+import com.example.demo.infraestructure.rest.BadRequestException;
+import com.example.demo.infraestructure.rest.PriceDTO;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;

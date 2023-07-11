@@ -1,4 +1,4 @@
-package com.example.demo.infraestructure.rest;
+package com.example.demo.infraestructure.rest.controller;
 
 import com.example.demo.application.usecases.product.GetAllProductsUseCase;
 import lombok.RequiredArgsConstructor;
