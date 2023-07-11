@@ -20,33 +20,24 @@
 </head>
 <body>
 <div class="table-responsive">
-  <table id="productsList" class="table table-bordered table-hover table-striped">
+  <table id="productPricesList" class="table table-bordered table-hover table-striped">
     <thead class="thead-light">
     <tr>
       <th scope="col">ID</th>
-      <th scope="col">Tipo</th>
-      <th scope="col">Marca</th>
-      <th scope="col">Descripcion</th>
-      <th scope="col">Stock</th>
-      <th></th>
+      <th scope="col">Desde</th>
+      <th scope="col">Hasta</th>
+      <th scope="col">Precio</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="product: ${productsList}">
-      <td th:text="${product.productId}"></td>
-      <td th:text="${product.productType}"></td>
-      <td th:text="${product.brandName}"></td>
-      <td th:text="${product.description}"></td>
-      <td th:text="${product.stock}"></td>
-      <td>
-					<span>
-						<a href="#" th:href="@{'/application/productPrices/'+ ${product.productId}}">Consultar precios</a>
-					</span>
-      </td>
+    <tr th:each="price: ${productPricesList}">
+      <td th:text="${price.priceList}"></td>
+      <td th:text="${price.startDate}"></td>
+      <td th:text="${price.endDate}"></td>
+      <td th:text="${price.price} + ' EUR'"></td>
     </tr>
     </tbody>
   </table>
-  <div class="alert alert-danger text-center" th:if="${listErrorMessage}" th:text="${listErrorMessage}">Error Message</div>
 </div>
 </body>
 </html>
