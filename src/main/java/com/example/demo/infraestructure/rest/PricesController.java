@@ -1,14 +1,8 @@
 package com.example.demo.infraestructure.rest;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.example.demo.application.GetProductPricesUseCase;
 import jakarta.validation.Valid;
@@ -49,7 +43,18 @@ public class PricesController {
 
 	@Autowired
 	private final GetProductPricesUseCase getProductPricesUseCase;
-	
+
+	@GetMapping("/productPrices/{productId}")
+	public String getProductPrices(@PathVariable(name="productId")Long id, Model model) {
+		model.addAttribute("productPricesList", getProductPricesUseCase.execute(id));
+		return "product-prices-list";
+	}
+
+	@GetMapping("/datePrice")
+	public String getPriceForm() {
+		return "product-date-price-form";
+	}
+
 	@Operation(summary = "Get price", description = "Get the correct price of a product", operationId = "getPrice")
 	@ApiResponses(value = {
 	       @ApiResponse(responseCode = "200", description = "Price",
@@ -70,12 +75,9 @@ public class PricesController {
 		
 		if (dateString != null && productId != null) {
 			DateTimeFormatter entryFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
-			DateTimeFormatter exitFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
 			try {
 				LocalDateTime date = LocalDateTime.parse(dateString, entryFormat);
-				String formatDate= date.format(exitFormat);
-
 				Price price = getPricesUseCase.getCorrectPrice(date, productId);
 				PriceDTO priceDTO = mapper.map(price, PriceDTO.class);
 
@@ -86,25 +88,10 @@ public class PricesController {
 			} catch (Exception e) {
 				System.out.println("Error al parsear la fecha: " + e.getMessage());
 			}
-
-			//DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-			//LocalDateTime dateTime = LocalDateTime.parse(dateString, formatter);
-
 		}
 		else {
 			throw new BadRequestException();
 		}
-		return "product-date-price-form";
-	}
-
-	@GetMapping("/productPrices/{productId}")
-	public String getProductPrices(@PathVariable(name="productId")Long id, Model model) {
-		model.addAttribute("productPricesList", getProductPricesUseCase.execute(id));
-		return "product-prices-list";
-	}
-
-	@GetMapping("/datePrice")
-	public String getPriceForm() {
 		return "product-date-price-form";
 	}
 
