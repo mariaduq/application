@@ -89,6 +89,12 @@ public class UserController {
             try{
                 saveUserUseCase.execute(userMapper.toUserInput(userDTO));
                 model.addAttribute("user", new UserDTO());
+
+                Context context = new Context();
+                context.setVariable("name", userDTO.getName());
+                context.setVariable("surname", userDTO.getSurname());
+                sendEmailUseCase.execute(userDTO.getEmail(), "Bienvenido a Electroshop!", "email-sign-up-template", context);
+
                 model.addAttribute("successMessage", "Successful registration. You can now access the app");
             } catch (Exception e) {
                 model.addAttribute("formErrorMessage", e.getMessage());
@@ -175,7 +181,7 @@ public class UserController {
 
             Context context = new Context();
             context.setVariable("newPassword", newGeneratedPassword);
-            sendEmailUseCase.execute(email, "New password", "email-template", context);
+            sendEmailUseCase.execute(email, "Contraseña olvidada", "email-template", context);
 
             model.addAttribute("successMessage", "An e-mail with a new password has been sent to you.");
 
