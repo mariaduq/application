@@ -97,12 +97,12 @@ public class UserAdapter implements UsersPort {
         UserEntity userToChangePassword = userRepositoryJpa.findByEmail(email)
                 .orElseThrow(() -> new Exception("This user doesn't exists"));
 
-        if(checkPassword(userMapper.toDomain(userToChangePassword), oldPassword)) {
+        if(bCryptPasswordEncoder.matches(oldPassword, userToChangePassword.getPassword())) {
             if (newPassword.equals(confirmNewPassword)) {
                 String encodedPassword = bCryptPasswordEncoder.encode(newPassword);
-
                 userToChangePassword.setPassword(encodedPassword);
                 userToChangePassword.setConfirmPassword(encodedPassword);
+                userRepositoryJpa.save(userToChangePassword);
             } else throw new Exception("New passwords do not match");
         } else throw new Exception("Incorrect old password");
     }

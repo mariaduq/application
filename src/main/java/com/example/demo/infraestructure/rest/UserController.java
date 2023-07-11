@@ -205,7 +205,7 @@ public class UserController {
             User loggedUser = getUserByEmailUseCase.execute(email);
             model.addAttribute("user", loggedUser);
 
-            return "change_password";
+            return "change-password";
         }
         return "No authenticated user";
     }
