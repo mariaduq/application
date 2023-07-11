@@ -51,8 +51,9 @@ public class PriceAdapter implements PricesPort{
 		});
 
 		return priceRepositoryJpa
-				.findByProductId(productId)
+				.findAll()
 				.stream()
+				.filter(priceEntity -> priceEntity.getProductId() == productId)
 				.map((priceEntity) -> mapper.map(priceEntity, Price.class))
 				.collect(Collectors.toList());
 	}
