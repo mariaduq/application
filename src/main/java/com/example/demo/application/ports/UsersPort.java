@@ -1,8 +1,6 @@
 package com.example.demo.application.ports;
 
-import com.example.demo.application.UserInput;
 import com.example.demo.model.User;
-import jakarta.persistence.EntityNotFoundException;
 
 public interface UsersPort {
 
@@ -18,5 +16,7 @@ public interface UsersPort {
 
     public void deleteUser(Long id) throws Exception;
 
-    public void updatePassword(String newPassword, String email) throws Exception;
+    public void updateForgotPassword(String newPassword, String email) throws Exception;
+
+    public void changePassword(String email, String oldPassword, String newPassword, String confirmNewPassword) throws Exception;
 }
