@@ -1,6 +1,6 @@
 package com.example.demo.domain.port;
 
-import com.example.demo.domain.User;
+import com.example.demo.domain.model.User;
 
 public interface UsersPort {
 

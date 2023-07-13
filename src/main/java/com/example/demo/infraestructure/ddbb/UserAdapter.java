@@ -3,7 +3,7 @@ package com.example.demo.infraestructure.ddbb;
 import com.example.demo.domain.port.UsersPort;
 import com.example.demo.infraestructure.ddbb.mappers.UserMapper;
 import com.example.demo.infraestructure.ddbb.model.UserEntity;
-import com.example.demo.domain.User;
+import com.example.demo.domain.model.User;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

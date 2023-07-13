@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import com.example.demo.application.usecases.price.GetPricesUseCase;
-import com.example.demo.domain.Price;
+import com.example.demo.domain.model.Price;
 
 import jakarta.persistence.EntityNotFoundException;
 

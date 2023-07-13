@@ -10,7 +10,7 @@ import org.modelmapper.TypeMap;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.domain.port.PricesPort;
-import com.example.demo.domain.Price;
+import com.example.demo.domain.model.Price;
 
 @Service
 public class PriceAdapter implements PricesPort{

@@ -2,7 +2,7 @@ package com.example.demo.infraestructure.ddbb;
 
 import com.example.demo.domain.port.ProductsPort;
 import com.example.demo.infraestructure.ddbb.mappers.ProductMapper;
-import com.example.demo.domain.Product;
+import com.example.demo.domain.model.Product;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

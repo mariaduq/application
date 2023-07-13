@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Comparator;
 
 import com.example.demo.domain.port.PricesPort;
-import com.example.demo.domain.Price;
+import com.example.demo.domain.model.Price;
 
 import jakarta.persistence.EntityNotFoundException;
 
