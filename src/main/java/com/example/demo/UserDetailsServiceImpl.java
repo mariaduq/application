@@ -1,6 +1,6 @@
 package com.example.demo;
 
-import com.example.demo.infraestructure.persistence.UserRepositoryJpa;
+import com.example.demo.infraestructure.persistence.jpa.UserRepositoryJpa;
 import com.example.demo.infraestructure.persistence.model.UserEntity;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;

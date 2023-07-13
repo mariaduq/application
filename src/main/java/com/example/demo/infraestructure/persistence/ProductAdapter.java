@@ -1,6 +1,7 @@
 package com.example.demo.infraestructure.persistence;
 
 import com.example.demo.domain.port.ProductsPort;
+import com.example.demo.infraestructure.persistence.jpa.ProductRepositoryJpa;
 import com.example.demo.infraestructure.persistence.mappers.ProductMapper;
 import com.example.demo.domain.model.Product;
 import lombok.AllArgsConstructor;

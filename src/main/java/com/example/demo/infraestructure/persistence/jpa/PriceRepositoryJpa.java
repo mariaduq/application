@@ -1,4 +1,4 @@
-package com.example.demo.infraestructure.persistence;
+package com.example.demo.infraestructure.persistence.jpa;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -1,6 +1,7 @@
 package com.example.demo.infraestructure.persistence;
 
 import com.example.demo.domain.port.UsersPort;
+import com.example.demo.infraestructure.persistence.jpa.UserRepositoryJpa;
 import com.example.demo.infraestructure.persistence.mappers.UserMapper;
 import com.example.demo.infraestructure.persistence.model.UserEntity;
 import com.example.demo.domain.model.User;
