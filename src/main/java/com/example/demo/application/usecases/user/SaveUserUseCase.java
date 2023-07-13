@@ -1,6 +1,6 @@
 package com.example.demo.application.usecases.user;
 
-import com.example.demo.application.UserInput;
+import com.example.demo.application.input.UserInput;
 import com.example.demo.application.mapper.UserMapper;
 import com.example.demo.application.ports.UsersPort;
 import com.example.demo.model.User;

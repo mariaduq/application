@@ -1,4 +1,4 @@
-package com.example.demo.application;
+package com.example.demo.application.input;
 
 import lombok.Builder;
 import lombok.Data;
