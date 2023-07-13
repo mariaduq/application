@@ -1,4 +1,4 @@
-package com.example.demo.infraestructure.rest;
+package com.example.demo.infraestructure.rest.dto;
 
 import com.example.demo.infraestructure.persistence.entities.PriceEntity;
 import lombok.AllArgsConstructor;

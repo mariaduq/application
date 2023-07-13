@@ -5,8 +5,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import com.example.demo.application.usecases.price.GetProductPricesUseCase;
-import com.example.demo.infraestructure.rest.BadRequestException;
-import com.example.demo.infraestructure.rest.PriceDTO;
+import com.example.demo.infraestructure.rest.exception.BadRequestException;
+import com.example.demo.infraestructure.rest.dto.PriceDTO;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;

@@ -1,4 +1,4 @@
-package com.example.demo.infraestructure.rest;
+package com.example.demo.infraestructure.rest.exception;
 
 import java.time.format.DateTimeParseException;
 

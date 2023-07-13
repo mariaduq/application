@@ -1,7 +1,7 @@
 package com.example.demo.infraestructure.rest.controller;
 
 import com.example.demo.application.usecases.user.*;
-import com.example.demo.infraestructure.rest.UserDTO;
+import com.example.demo.infraestructure.rest.dto.UserDTO;
 import com.example.demo.infraestructure.rest.mappers.UserMapper;
 import com.example.demo.domain.model.User;
 import jakarta.validation.Valid;

@@ -1,4 +1,4 @@
-package com.example.demo.infraestructure.rest;
+package com.example.demo.infraestructure.rest.dto;
 
 import lombok.Data;
 
