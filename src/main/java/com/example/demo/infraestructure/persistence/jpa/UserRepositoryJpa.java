@@ -2,7 +2,7 @@ package com.example.demo.infraestructure.persistence.jpa;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.example.demo.infraestructure.persistence.model.UserEntity;
+import com.example.demo.infraestructure.persistence.entities.UserEntity;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;

@@ -1,6 +1,6 @@
 package com.example.demo.infraestructure.persistence.mappers;
 
-import com.example.demo.infraestructure.persistence.model.ProductEntity;
+import com.example.demo.infraestructure.persistence.entities.ProductEntity;
 import com.example.demo.domain.model.Product;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;

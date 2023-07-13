@@ -1,6 +1,6 @@
 package com.example.demo.infraestructure.rest;
 
-import com.example.demo.infraestructure.persistence.model.PriceEntity;
+import com.example.demo.infraestructure.persistence.entities.PriceEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

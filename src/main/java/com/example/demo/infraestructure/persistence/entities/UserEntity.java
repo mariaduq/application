@@ -1,4 +1,4 @@
-package com.example.demo.infraestructure.persistence.model;
+package com.example.demo.infraestructure.persistence.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;

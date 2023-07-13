@@ -1,4 +1,4 @@
-package com.example.demo.infraestructure.persistence.model;
+package com.example.demo.infraestructure.persistence.entities;
 
 import java.sql.Timestamp;
 
