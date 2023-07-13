@@ -2,7 +2,7 @@ package com.example.demo.infraestructure.rest.mappers;
 
 import com.example.demo.application.input.UserInput;
 import com.example.demo.infraestructure.rest.UserDTO;
-import com.example.demo.model.User;
+import com.example.demo.domain.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

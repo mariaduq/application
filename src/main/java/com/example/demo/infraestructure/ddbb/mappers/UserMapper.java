@@ -1,7 +1,7 @@
 package com.example.demo.infraestructure.ddbb.mappers;
 
 import com.example.demo.infraestructure.ddbb.model.UserEntity;
-import com.example.demo.model.User;
+import com.example.demo.domain.User;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 

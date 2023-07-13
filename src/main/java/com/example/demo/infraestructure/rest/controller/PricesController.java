@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import com.example.demo.application.usecases.price.GetAllPricesUseCase;
 import com.example.demo.application.usecases.price.GetPricesUseCase;
 import com.example.demo.infraestructure.ddbb.PriceRepositoryJpa;
-import com.example.demo.model.Price;
+import com.example.demo.domain.Price;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

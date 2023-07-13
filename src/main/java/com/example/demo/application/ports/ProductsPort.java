@@ -1,6 +1,6 @@
 package com.example.demo.application.ports;
 
-import com.example.demo.model.Product;
+import com.example.demo.domain.Product;
 
 import java.util.List;
 

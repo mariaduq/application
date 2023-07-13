@@ -1,8 +1,7 @@
 package com.example.demo.application.usecases.product;
 
 import com.example.demo.application.ports.ProductsPort;
-import com.example.demo.application.ports.UsersPort;
-import com.example.demo.model.Product;
+import com.example.demo.domain.Product;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;

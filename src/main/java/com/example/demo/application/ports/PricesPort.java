@@ -2,7 +2,7 @@ package com.example.demo.application.ports;
 
 import java.util.List;
 
-import com.example.demo.model.Price;
+import com.example.demo.domain.Price;
 
 public interface PricesPort {
 	
