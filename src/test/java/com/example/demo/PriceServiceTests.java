@@ -14,7 +14,7 @@ import com.example.demo.domain.model.Price;
 
 import jakarta.persistence.EntityNotFoundException;
 
-import com.example.demo.infraestructure.persistence.PriceAdapter;
+import com.example.demo.infraestructure.persistence.adapter.PriceAdapter;
 import com.example.demo.infraestructure.persistence.jpa.PriceRepositoryJpa;
 import com.example.demo.infraestructure.persistence.entities.PriceEntity;
 

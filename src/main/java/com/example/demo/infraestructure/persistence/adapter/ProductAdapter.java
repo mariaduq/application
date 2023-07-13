@@ -1,4 +1,4 @@
-package com.example.demo.infraestructure.persistence;
+package com.example.demo.infraestructure.persistence.adapter;
 
 import com.example.demo.domain.port.ProductsPort;
 import com.example.demo.infraestructure.persistence.jpa.ProductRepositoryJpa;

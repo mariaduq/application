@@ -1,4 +1,4 @@
-package com.example.demo.infraestructure.persistence;
+package com.example.demo.infraestructure.persistence.adapter;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
