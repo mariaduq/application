@@ -9,7 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.application.ports.PricesPort;
+import com.example.demo.domain.port.PricesPort;
 import com.example.demo.domain.Price;
 
 @Service

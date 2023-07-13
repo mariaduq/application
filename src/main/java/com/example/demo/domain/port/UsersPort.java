@@ -1,4 +1,4 @@
-package com.example.demo.application.ports;
+package com.example.demo.domain.port;
 
 import com.example.demo.domain.User;
 

@@ -1,8 +1,8 @@
 package com.example.demo.infraestructure.config;
 
 import com.example.demo.application.mapper.UserMapper;
-import com.example.demo.application.ports.ProductsPort;
-import com.example.demo.application.ports.UsersPort;
+import com.example.demo.domain.port.ProductsPort;
+import com.example.demo.domain.port.UsersPort;
 import com.example.demo.application.usecases.price.GetAllPricesUseCase;
 import com.example.demo.application.usecases.price.GetPricesUseCase;
 import com.example.demo.application.usecases.price.GetProductPricesUseCase;
@@ -11,7 +11,7 @@ import com.example.demo.application.usecases.user.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.example.demo.application.ports.PricesPort;
+import com.example.demo.domain.port.PricesPort;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration

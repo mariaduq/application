@@ -3,7 +3,7 @@ package com.example.demo.application.usecases.price;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.example.demo.application.ports.PricesPort;
+import com.example.demo.domain.port.PricesPort;
 import com.example.demo.domain.Price;
 
 public class GetAllPricesUseCase {

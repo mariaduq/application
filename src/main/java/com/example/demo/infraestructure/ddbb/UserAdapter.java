@@ -1,6 +1,6 @@
 package com.example.demo.infraestructure.ddbb;
 
-import com.example.demo.application.ports.UsersPort;
+import com.example.demo.domain.port.UsersPort;
 import com.example.demo.infraestructure.ddbb.mappers.UserMapper;
 import com.example.demo.infraestructure.ddbb.model.UserEntity;
 import com.example.demo.domain.User;

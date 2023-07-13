@@ -3,7 +3,7 @@ package com.example.demo.application.usecases.price;
 import java.time.LocalDateTime;
 import java.util.Comparator;
 
-import com.example.demo.application.ports.PricesPort;
+import com.example.demo.domain.port.PricesPort;
 import com.example.demo.domain.Price;
 
 import jakarta.persistence.EntityNotFoundException;

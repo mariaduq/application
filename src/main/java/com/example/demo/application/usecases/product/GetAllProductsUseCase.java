@@ -1,6 +1,6 @@
 package com.example.demo.application.usecases.product;
 
-import com.example.demo.application.ports.ProductsPort;
+import com.example.demo.domain.port.ProductsPort;
 import com.example.demo.domain.Product;
 import lombok.RequiredArgsConstructor;
 
