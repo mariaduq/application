@@ -1,4 +1,4 @@
-package com.example.demo.infraestructure.config;
+package com.example.demo.infraestructure.config.beans;
 
 import com.example.demo.application.mapper.UserMapper;
 import com.example.demo.domain.port.ProductsPort;

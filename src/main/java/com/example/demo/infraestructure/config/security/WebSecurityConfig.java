@@ -1,4 +1,4 @@
-package com.example.demo.infraestructure.config;
+package com.example.demo.infraestructure.config.security;
 
 import com.example.demo.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;

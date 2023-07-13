@@ -1,4 +1,4 @@
-package com.example.demo.infraestructure.ddbb;
+package com.example.demo.infraestructure.persistence;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;

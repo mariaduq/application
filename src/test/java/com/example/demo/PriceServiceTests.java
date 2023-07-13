@@ -14,9 +14,9 @@ import com.example.demo.domain.model.Price;
 
 import jakarta.persistence.EntityNotFoundException;
 
-import com.example.demo.infraestructure.ddbb.PriceAdapter;
-import com.example.demo.infraestructure.ddbb.PriceRepositoryJpa;
-import com.example.demo.infraestructure.ddbb.model.PriceEntity;
+import com.example.demo.infraestructure.persistence.PriceAdapter;
+import com.example.demo.infraestructure.persistence.PriceRepositoryJpa;
+import com.example.demo.infraestructure.persistence.model.PriceEntity;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;

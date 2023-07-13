@@ -1,6 +1,6 @@
-package com.example.demo.infraestructure.ddbb.mappers;
+package com.example.demo.infraestructure.persistence.mappers;
 
-import com.example.demo.infraestructure.ddbb.model.UserEntity;
+import com.example.demo.infraestructure.persistence.model.UserEntity;
 import com.example.demo.domain.model.User;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;

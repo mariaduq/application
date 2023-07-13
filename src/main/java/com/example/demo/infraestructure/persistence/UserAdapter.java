@@ -1,8 +1,8 @@
-package com.example.demo.infraestructure.ddbb;
+package com.example.demo.infraestructure.persistence;
 
 import com.example.demo.domain.port.UsersPort;
-import com.example.demo.infraestructure.ddbb.mappers.UserMapper;
-import com.example.demo.infraestructure.ddbb.model.UserEntity;
+import com.example.demo.infraestructure.persistence.mappers.UserMapper;
+import com.example.demo.infraestructure.persistence.model.UserEntity;
 import com.example.demo.domain.model.User;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
