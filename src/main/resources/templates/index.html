@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Homepage</title>
+    <title>ElectroShop</title>
 
     <!--JQUERY-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -15,38 +15,44 @@
     <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
 
     <!-- Nuestro css-->
-    <link rel="stylesheet" type="text/css" href="static/css/login.css" th:href="@{/css/login.css}">
+    <link rel="shortcut icon" id="favicon" href="../static/img/logo.png" th:href="@{/img/logo.png}" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="static/css/index.css" th:href="@{/css/index.css}">
 
+    <!-- Fuente-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
-        <h1>Electroshop</h1>
         <nav>
-            <ul>
-                <li><a href="/login">Sign-in</a></li>
-                <li><a href="/signup">Sign-up</a></li>
-            </ul>
+            <a href="/login">Sign-in</a>
+            <a href="/signup">Sign-up</a>
+            <a href="#">Acerca de</a>
         </nav>
-    </header>
-
-    <main>
-        <section>
-            <h2>Presentación</h2>
-            <p>Bienvenido a mi sitio web. Aquí encontrarás información sobre nuestros productos y servicios.</p>
+        <section class="textos-header">
+            <h1>Descubre los precios que deseas en cualquier momento del año</h1>
+            <h2>Disponible con ElectroShop</h2>
         </section>
-
-        <section>
-            <h2>Últimas novedades</h2>
-            <ul>
-                <li>Noticia 1</li>
-                <li>Noticia 2</li>
-                <li>Noticia 3</li>
-            </ul>
+        <div class="wave" style="height: 150px; overflow: hidden;" ><svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;"><path d="M0.00,49.98 C149.99,150.00 349.20,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z" style="stroke: none; fill: #08f;"></path></svg></div>
+    </header>
+    <main>
+        <section class="contenedor-sobre-nosotros">
+            <h2 class="titulo">Sobre nosotros</h2>
+            <div class="contenedor-sobre-nosotros">
+                <img src="../static/img/img1.svg" th:src="@{/img/img1.svg}" alt="" class="image-about-us"/>
+                <div class="contenido-textos">
+                    <h3><span>1</span>Los mejores electrodomésticos</h3>
+                    <p>Hola que tallllllll</p>
+                    <h3><span>2</span>Al mejor precio</h3>
+                    <p>Hola que tallllllll</p>
+                </div>
+            </div>
         </section>
     </main>
-
     <footer>
-        <p>&copy; 2023 Mi Sitio Web. Todos los derechos reservados.</p>
+        <p>&copy; 2023 ElectroShop. Todos los derechos reservados.</p>
+        <h2 class="titulo-final">&copy; María Duque</h2>
     </footer>
 </body>
 </html>
