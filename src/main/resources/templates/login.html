@@ -15,36 +15,49 @@
     <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
 
     <!-- Nuestro css-->
+    <link rel="shortcut icon" id="favicon" href="../static/img/logo.png" th:href="@{/img/logo.png}" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="static/css/login.css" th:href="@{/css/login.css}">
+
+    <!-- Fuente-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
 
 </head>
 <body>
-<div class="modal-dialog text-center">
-    <div class="col-sm-8 main-section">
-        <div class="modal-content">
-            <div class="col-12 user-img">
-                <img src="../static/img/user.png" th:src="@{/img/user.png}"/>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#" th:href="@{/}">ElectroShop</a>
             </div>
-            <form class="col-12" th:action="@{/login}" method="post">
-                <div class="form-group" id="user-group">
-                    <input type="email" class="form-control" required autofocus="autofocus" placeholder="Email" name="email"/>
+        </div>
+    </nav>
+    <div class="modal-dialog text-center">
+        <div class="col-sm-8 main-section">
+            <div class="modal-content">
+                <div class="col-12 user-img">
+                    <img src="../static/img/userlogo.png" th:src="@{/img/userlogo.png}"/>
                 </div>
-                <div class="form-group" id="password-group">
-                    <input type="password" class="form-control" required autofocus="autofocus" placeholder="Password" name="password"/>
+                <form class="col-12" th:action="@{/login}" method="post">
+                    <div class="form-group" id="user-group">
+                        <input type="email" class="form-control" required autofocus="autofocus" placeholder="Email" name="email"/>
+                    </div>
+                    <div class="form-group" id="password-group">
+                        <input type="password" class="form-control" required autofocus="autofocus" placeholder="Contraseña" name="password"/>
+                    </div>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i>  Sign in</button>
+                </form>
+                <div class="col-12 forgot">
+                    <p><a href="#" th:href="@{/forgotPassword}">¿Olvidaste la contraseña?</a></p>
+                    <p><a href="#" th:href="@{/signup}">Nuevo usuario - Regístrate</a> </p>
                 </div>
-                <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i>  Sign in</button>
-            </form>
-            <div class="col-12 forgot">
-                <p><a href="#" th:href="@{/forgotPassword}">Forgot password?</a></p>
-                <p><a href="#" th:href="@{/signup}">New user - Sign up</a> </p>
+                <div th:if="${param.logout}" class="alert alert-success" role="alert">
+                    Sesión cerrada correctamente.
+                </div>
+                <div class="alert alert-danger" th:if="${param.error}">Invalid username or password</div>
+                <div class="alert alert-success" th:if="${successMessage}" th:text="${successMessage}">Success Message</div>
             </div>
-            <div th:if="${param.logout}" class="alert alert-success" role="alert">
-                You have been logged out.
-            </div>
-            <div class="alert alert-danger" th:if="${param.error}">Invalid username or password</div>
-            <div class="alert alert-success" th:if="${successMessage}" th:text="${successMessage}">Success Message</div>
         </div>
     </div>
-</div>
 </body>
 </html>
