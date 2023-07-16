@@ -105,6 +105,7 @@ header .textos-header{
     padding: 2px;
     box-shadow: 0 0 6px 0 rgb(120, 89, 243) 0%;
     margin-right: 5px;
+    font-size: x-large;
 }
 
 .contenido-textos p{
