@@ -91,7 +91,7 @@
                     <div class="form-group" th:if="${editMode}">
                         <a class="btn btn-primary" th:href="@{/editUser/changePassword}">Cambiar contraseña</a>
                     </div>
-                    <div class="form-group text-center" style="margin-top: 30px; margin-bottom: 30px;">
+                    <div class="form-group text-center" style="margin-top: 30px; margin-bottom: 15px;">
                         <div class="btn-group" role="group" aria-label="Botones">
                             <a class="btn btn-danger rounded mr-2" th:href="${editMode} ?@{/editUser/cancel} :@{/signup/cancel}">Cancelar</a>
                             <input type="submit" class="btn btn-success rounded ml-2" value="Save Changes" th:value="${editMode}?'Guardar':'Crear usuario'">
