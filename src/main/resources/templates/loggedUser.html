@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Welcome</title>
+    <title>Bienvenid@</title>
 
     <!--JQUERY-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -15,7 +15,13 @@
     <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
 
     <!-- Nuestro css-->
-    <link rel="stylesheet" type="text/css" href="static/css/login.css" th:href="@{/css/login.css}">
+    <link rel="shortcut icon" id="favicon" href="../static/img/logo.png" th:href="@{/img/logo.png}" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="static/css/logged-user.css" th:href="@{/css/logged-user.css}">
+
+    <!-- Fuente-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
 
     <script type="text/javascript">
     function confirmDelete(id){
@@ -30,43 +36,89 @@
     </script>
 </head>
 <body>
-<header>
-    <h1>Welcome to Electroshop</h1>
-    <nav>
-        <ul>
-            <a href="#" th:object="${user}" th:href="@{'/editUser/' + ${user.id}}"><i class="fas fa-edit"></i></a>
-            <a href="#" th:onclick="'javascript:confirmDelete(\''+ ${user.id} +'\');'"><i class="fas fa-trash"></i></a>
-
-            <li><a href="#" th:href="@{/productsList}">Get all products</a></li>
-            <li><a href="/application/v1/prices">Get all prices</a></li>
-            <li><a href="/application/datePrice">Get product price</a></li>
-            <li class="nav-item">
-                <a class="nav-link" href="#" th:href="@{/login?logout}"><span>logout  </span><span class="float-right"><i class="fas fa-sign-out-alt"></i></span></a>
-            </li>
-        </ul>
+    <nav class="navbar navbar-inverse navbar-fixed-top" style="height: 55px;">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#" th:href="@{/loggedUser}">Bienvenid@, <span th:text="${user.name}"></span></a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <img src="../static/img/userlogo.png" alt="Usuario" th:src="@{/img/userlogo.png}" class="img-responsive user-logo" style="height: 40px; width: 40px;"/>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                        <li>
+                            <a href="#" th:object="${user}" th:href="@{'/editUser/' + ${user.id}}">
+                            <i class="fas fa-edit"></i>
+                            <span class="action-label"> Editar perfil </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" th:onclick="'javascript:confirmDelete(\''+ ${user.id} +'\');'">
+                            <i class="fas fa-trash"></i>
+                            <span class="action-label"> Eliminar cuenta </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" th:href="@{/login?logout}">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span class="action-label"> Cerrar sesión </span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
     </nav>
-</header>
+    <main>
+        <section class="container welcome">
+            <h2 class="title">Nos alegramos de verte, <span th:text="${user.name}"></span></h2>
+            <div class="container-welcome">
+                <div class="text-content">
+                    <h3><span>1</span>Échale un vistazo a nuestros productos</h3>
+                    <p>Visita nuestro catálogo y descubre la gran variedad de productos de la que disponemos. Contamos con electrodomésticos
+                        de las mejores marcas, y a un precio inmejorable.
+                    </p>
+                    <div class="action">
+                        <a href="#" th:href="@{/productsList}">
+                            <i class="fas fa-list"></i>
+                            <span class="action-label"> Ver todos los productos </span>
+                        </a>
+                    </div>
+                    <h3><span>2</span>Planifica tus compras</h3>
+                    <p>Consulta el precio de cualquiera de nuestros productos en cualquier fecha del año y decide cuál es el mejor momento para
+                        adquirirlo.
+                    </p>
+                    <div class="action">
+                        <a href="/application/datePrice">
+                            <i class="fas fa-dollar-sign"></i>
+                            <span class="action-label"> Consultar precio de un producto </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <div class="wave" style="height: 150px; overflow: hidden;">
+        <svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
+            <defs>
+                <linearGradient id="waveGradient" gradientTransform="rotate(90)">
+                    <stop offset="0%" stop-color="rgb(252, 70, 106)" />
+                    <stop offset="100%" stop-color="rgb(213, 63, 251)" />
+                </linearGradient>
+            </defs>
+        <path d="M0.00,49.98 C149.99,150.00 349.20,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z"
+        style="stroke: none; fill: url(#waveGradient);"></path>
+        </svg>
+    </div>
+    <div th:insert="~{confirm-delete-dialog.html}" th:remove="tag"></div>
 
-<main>
-    <section>
-        <h2>Presentación</h2>
-        <p>Bienvenido a mi sitio web. Aquí encontrarás información sobre nuestros productos y servicios.</p>
-    </section>
-
-    <section>
-        <h2>Últimas novedades</h2>
-        <ul>
-            <li>Noticia 1</li>
-            <li>Noticia 2</li>
-            <li>Noticia 3</li>
-        </ul>
-    </section>
-</main>
-
-<footer>
-    <p>&copy; 2023 Mi Sitio Web. Todos los derechos reservados.</p>
-</footer>
-<div th:insert="~{confirm-delete-dialog.html}" th:remove="tag"></div>
+    <footer>
+        <div class="footer-content">
+            <h1 class="titulo-final">&copy; 2023 María Duque</h1><h2>Todos los derechos reservados.</h2>
+        </div>
+        <img src="../static/img/logo.png" th:src="@{/img/logo.png}" class="logo"/>
+    </footer>
 </body>
 </html>
 
