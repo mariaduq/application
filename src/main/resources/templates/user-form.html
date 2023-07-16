@@ -39,7 +39,7 @@
                     <a class="navbar-brand" href="#" th:href="@{/}">ElectroShop</a>
                 </div>
                 <div th:if="${editMode}">
-                    <a class="navbar-brand" href="#" th:href="@{/loggedUser}">Bienvenid@ <span th:text="${user.name}"></span></a>
+                    <a class="navbar-brand" href="#" th:href="@{/loggedUser}">Bienvenid@, <span th:text="${user.name}"></span></a>
                 </div>
             </div>
         </div>
@@ -114,5 +114,11 @@
             src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
+    <footer>
+        <div class="footer-content">
+            <h1 class="titulo-final">&copy; 2023 María Duque</h1><h2>Todos los derechos reservados.</h2>
+        </div>
+        <img src="../static/img/logo.png" th:src="@{/img/logo.png}" class="logo"/>
+    </footer>
 </body>
 </html>

@@ -56,8 +56,8 @@ a{
 
 .btn-primary {
     color: #fff;
-    background-color: rgb(169, 33, 92);;
-    border-color: rgb(169, 33, 92);;
+    background-color: rgb(169, 33, 92);
+    border-color: rgb(169, 33, 92);
 }
 
 .form-group input{
@@ -95,4 +95,40 @@ button{
 
 .forgot a{
     color: white;
+}
+
+footer{
+    background: rgb(213,63,251);
+    background: radial-gradient(circle, rgba(213, 63, 251, 0.826) 0%, rgba(252, 70, 106, 0.818) 100%);
+    padding: 40px 0 30px 0;
+    margin: auto;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+    padding: 10px;
+}
+
+.footer-content {
+    flex-grow: 1;
+}
+
+.logo {
+    width: 110px;
+    height: auto;
+}
+
+.titulo-final{
+    font-weight: 300;
+    text-align: left;
+    font-size: small;
+    margin-left: 20px;
+}
+
+footer h2{
+    font-weight: 300;
+    text-align: left;
+    font-size: small;
+    margin-left: 20px;
 }
