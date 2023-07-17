@@ -28,10 +28,11 @@ a{
 
 .table-responsive{
     background-color: #fff;
+    margin-bottom: -16px;
 }
 
 table{
-    font-size: small;
+    background: radial-gradient(circle, rgba(213, 63, 251, 0.826) 0%, rgba(252, 70, 106, 0.818) 100%);
 }
 
 thead{
@@ -40,14 +41,19 @@ thead{
 
 tr{
     font-size: small;
+    font-weight: bolder;
+    color: #fff;
+    text-align: center;
 }
 
 th{
-    font-size: small;
+    font-size: initial;
+    text-align: center;
 }
 
 tbody{
     font-size: small;
+    font-weight: bolder;
 }
 
 footer{

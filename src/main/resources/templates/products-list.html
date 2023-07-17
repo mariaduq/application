@@ -53,7 +53,7 @@
         <td th:text="${product.stock}"></td>
         <td>
           <span>
-              <a href="#" th:href="@{'/application/productPrices/'+ ${product.productId}}">Consultar precios</a>
+              <a href="#" th:href="@{'/application/productPrices/'+ ${product.productId}}"><i class="fas fa-dollar-sign"></i> Consultar precios</a>
           </span>
         </td>
       </tr>
@@ -61,9 +61,6 @@
     </table>
     <div class="alert alert-danger text-center" th:if="${listErrorMessage}" th:text="${listErrorMessage}">Error Message</div>
   </div>
-</br>
-</br>
-</br>
   <footer>
     <div class="footer-content">
         <h1 class="titulo-final">&copy; 2023 María Duque</h1><h2>Todos los derechos reservados.</h2>
