@@ -45,8 +45,8 @@
       <tbody>
       <tr th:each="price: ${productPricesList}">
         <td th:text="${price.priority}"></td>
-        <td th:text="${price.startDate}"></td>
-        <td th:text="${price.endDate}"></td>
+        <td th:text="${#temporals.format(price.startDate, 'dd-MM-yyyy HH:mm:ss')}"></td>
+        <td th:text="${#temporals.format(price.endDate, 'dd-MM-yyyy HH:mm:ss')}"></td>
         <td th:text="${price.price} + ' €'"></td>
       </tr>
       </tbody>
