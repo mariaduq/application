@@ -19,6 +19,11 @@ nav{
     background: radial-gradient(circle, rgba(213, 63, 251, 0.826) 0%, rgba(252, 70, 106, 0.818) 100%);
 }
 
+nav > a:hover{
+    text-decoration: none;
+    color: #fff;
+}
+
 span{
     text-align: center;
 }
@@ -40,7 +45,15 @@ h1{
     margin-left: -90px;
 }
 
+.navbar-header a:hover{
+    color: #A9215C;
+}
+
 a{
+    color: #fff;
+}
+
+a:hover{
     color: #fff;
 }
 
@@ -106,13 +119,21 @@ button{
 }
 
 .btn-danger{
-    background-color: rgb(169, 33, 92);
-    border-color: rgb(169, 33, 92);
     font-size: 18px;
     height: 42px;
     padding-left: 15px;
     padding-right: 15px;
     border: 0;
+}
+
+.btn-custom{
+    color: #fff;
+    background-color: rgb(169, 33, 92);
+    border-color: rgb(169, 33, 92);
+}
+
+.btn-custom:focus, .btn-custom:active, .btn-custom:hover {
+    background-color: #8e1449;
 }
 
 .btn-group>.btn:first-child {

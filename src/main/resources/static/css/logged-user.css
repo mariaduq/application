@@ -10,6 +10,10 @@ a{
     color: rgb(169, 33, 92);
 }
 
+a:hover{
+    color: #A9215C;
+}
+
 p{
     text-align: justify;
 }
@@ -43,7 +47,12 @@ nav{
 }
 
 .navbar-header a{
+    text-decoration: none;
     color: #fff;
+}
+
+.navbar-header a:hover{
+    color: #A9215C;
 }
 
 .dropdown, .dropup {

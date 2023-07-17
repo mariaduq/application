@@ -27,6 +27,10 @@ header{
     margin-left: -90px;
 }
 
+.navbar-header a:hover{
+    color: #A9215C;
+}
+
 a{
     color: #fff;
 }
@@ -54,10 +58,14 @@ a{
     height: 110px;
 }
 
-.btn-primary {
+.btn-custom {
     color: #fff;
     background-color: rgb(169, 33, 92);
     border-color: rgb(169, 33, 92);
+}
+
+.btn-custom:focus, .btn-custom:active, .btn-custom:hover {
+    background-color: #8e1449;
 }
 
 .form-group input{
@@ -85,7 +93,7 @@ a{
 }
 
 button{
-    width: 100px;
+    width: 150px;
     margin: 5px 0 25px;
 }
 
