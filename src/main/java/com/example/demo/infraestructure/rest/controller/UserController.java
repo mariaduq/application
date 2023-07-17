@@ -184,7 +184,7 @@ public class UserController {
             context.setVariable("name", userFound.getName());
             context.setVariable("surname", userFound.getSurname());
             context.setVariable("newPassword", newGeneratedPassword);
-            sendEmailUseCase.execute(email, "Contraseña olvidada", "email-template", context);
+            sendEmailUseCase.execute(email, "Contraseña olvidada", "email-forgot-password-template", context);
 
             model.addAttribute("successMessage", "An e-mail with a new password has been sent to you.");
 
