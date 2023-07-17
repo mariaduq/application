@@ -35,6 +35,15 @@ table{
     background: radial-gradient(circle, rgba(213, 63, 251, 0.826) 0%, rgba(252, 70, 106, 0.818) 100%);
 }
 
+.custom-thead {
+    background-color: #A9215C;
+    color: #ffffff;
+}
+
+.prices-table{
+    margin-top: 33px;
+}
+
 thead{
     font-size: small;
 }
@@ -54,6 +63,17 @@ th{
 tbody{
     font-size: small;
     font-weight: bolder;
+}
+
+.form-group{
+    text-align: center;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: rgb(169, 33, 92);
+    border-color: rgb(169, 33, 92);
+    margin-top: 25px;
 }
 
 footer{
