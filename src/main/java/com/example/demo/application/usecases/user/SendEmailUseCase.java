@@ -28,7 +28,7 @@ public class SendEmailUseCase {
         MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
 
         helper.setTo(to);
-        helper.setFrom("Electroshop <tfguco2023@gmail.com>");
+        helper.setFrom("ElectroShop <tfguco2023@gmail.com>");
         helper.setSubject(subject);
 
         String htmlContent = templateEngine.process(content, context);

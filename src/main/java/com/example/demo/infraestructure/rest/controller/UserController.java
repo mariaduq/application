@@ -94,7 +94,7 @@ public class UserController {
                 Context context = new Context();
                 context.setVariable("name", userDTO.getName());
                 context.setVariable("surname", userDTO.getSurname());
-                sendEmailUseCase.execute(userDTO.getEmail(), "Bienvenido a Electroshop!", "email-sign-up-template", context);
+                sendEmailUseCase.execute(userDTO.getEmail(), "Bienvenid@ a ElectroShop", "email-sign-up-template", context);
 
                 model.addAttribute("successMessage", "Successful registration. You can now access the app");
             } catch (Exception e) {
@@ -181,6 +181,8 @@ public class UserController {
             updateForgotPasswordUseCase.execute(newGeneratedPassword, email);
 
             Context context = new Context();
+            context.setVariable("name", userFound.getName());
+            context.setVariable("surname", userFound.getSurname());
             context.setVariable("newPassword", newGeneratedPassword);
             sendEmailUseCase.execute(email, "Contraseña olvidada", "email-template", context);
 
