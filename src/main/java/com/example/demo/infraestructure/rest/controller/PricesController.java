@@ -5,12 +5,16 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import com.example.demo.application.usecases.price.GetProductPricesUseCase;
+import com.example.demo.application.usecases.user.GetUserByEmailUseCase;
+import com.example.demo.domain.model.User;
 import com.example.demo.infraestructure.rest.exception.BadRequestException;
 import com.example.demo.infraestructure.rest.dto.PriceDTO;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -45,10 +49,26 @@ public class PricesController {
 	@Autowired
 	private final GetProductPricesUseCase getProductPricesUseCase;
 
+	@Autowired
+	private GetUserByEmailUseCase getUserByEmailUseCase;
+
 	@GetMapping("/productPrices/{productId}")
-	public String getProductPrices(@PathVariable(name="productId")Long id, Model model) {
-		model.addAttribute("productPricesList", getProductPricesUseCase.execute(id));
-		return "product-prices-list";
+	public String getProductPrices(@PathVariable(name="productId")Long id, Authentication auth, Model model) throws Exception {
+		if(auth != null) {
+			UserDetails userDetails = (UserDetails) auth.getPrincipal();
+			String email = userDetails.getUsername();
+
+			User loggedUser = getUserByEmailUseCase.execute(email);
+			model.addAttribute("user", loggedUser);
+
+			try{
+				model.addAttribute("productPricesList", getProductPricesUseCase.execute(id));
+			} catch (Exception e) {
+				model.addAttribute("formErrorMessage", e.getMessage());
+			}
+			return "product-prices-list";
+		}
+		return "No authenticated user";
 	}
 
 	@GetMapping("/datePrice")
