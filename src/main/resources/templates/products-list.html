@@ -15,38 +15,60 @@
   <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
 
   <!-- Nuestro css-->
-  <link rel="stylesheet" type="text/css" href="static/css/login.css" th:href="@{/css/login.css}">
+  <link rel="shortcut icon" id="favicon" href="../static/img/logo.png" th:href="@{/img/logo.png}" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="static/css/table.css" th:href="@{/css/table.css}">
+
+   <!-- Fuente-->
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
 
 </head>
 <body>
-<div class="table-responsive">
-  <table id="productsList" class="table table-bordered table-hover table-striped">
-    <thead class="thead-light">
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Tipo</th>
-      <th scope="col">Marca</th>
-      <th scope="col">Descripcion</th>
-      <th scope="col">Stock</th>
-      <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="product: ${productsList}">
-      <td th:text="${product.productId}"></td>
-      <td th:text="${product.productType}"></td>
-      <td th:text="${product.brandName}"></td>
-      <td th:text="${product.description}"></td>
-      <td th:text="${product.stock}"></td>
-      <td>
-					<span>
-						<a href="#" th:href="@{'/application/productPrices/'+ ${product.productId}}">Consultar precios</a>
-					</span>
-      </td>
-    </tr>
-    </tbody>
-  </table>
-  <div class="alert alert-danger text-center" th:if="${listErrorMessage}" th:text="${listErrorMessage}">Error Message</div>
-</div>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#" th:href="@{/loggedUser}">Bienvenid@, <span th:text="${user.name}"></span></a>
+        </div>
+    </div>
+  </nav>
+  <div class="table-responsive">
+    <table id="productsList" class="table table-bordered table-hover table-striped">
+      <thead class="thead-light">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Tipo</th>
+        <th scope="col">Marca</th>
+        <th scope="col">Descripcion</th>
+        <th scope="col">Stock</th>
+        <th scope="col">Precios</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="product: ${productsList}">
+        <td th:text="${product.productId}"></td>
+        <td th:text="${product.productType}"></td>
+        <td th:text="${product.brandName}"></td>
+        <td th:text="${product.description}"></td>
+        <td th:text="${product.stock}"></td>
+        <td>
+          <span>
+              <a href="#" th:href="@{'/application/productPrices/'+ ${product.productId}}">Consultar precios</a>
+          </span>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="alert alert-danger text-center" th:if="${listErrorMessage}" th:text="${listErrorMessage}">Error Message</div>
+  </div>
+</br>
+</br>
+</br>
+  <footer>
+    <div class="footer-content">
+        <h1 class="titulo-final">&copy; 2023 María Duque</h1><h2>Todos los derechos reservados.</h2>
+    </div>
+    <img src="../static/img/logo.png" th:src="@{/img/logo.png}" class="logo"/>
+  </footer>
 </body>
 </html>
