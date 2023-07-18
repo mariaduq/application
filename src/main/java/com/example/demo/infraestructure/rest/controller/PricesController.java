@@ -100,30 +100,39 @@ public class PricesController {
 			ModelMap model,
 			@Parameter(description = "The date for which we want to know the product price",
 			schema = @Schema(type = "string", format = "YYYY-MM-DD HH:mm:ss")) @Valid @ModelAttribute("date")String dateString,
-			@Parameter(description = "The product for which we want to know the price") @Valid @ModelAttribute("productId")Long productId){
-		
-		ModelMapper mapper = new ModelMapper();
-		
-		if (dateString != null && productId != null) {
-			DateTimeFormatter entryFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+			@Parameter(description = "The product for which we want to know the price") @Valid @ModelAttribute("productId")Long productId) throws Exception {
 
-			try {
-				LocalDateTime date = LocalDateTime.parse(dateString, entryFormat);
-				Price price = getPricesUseCase.getCorrectPrice(date, productId);
-				PriceDTO priceDTO = mapper.map(price, PriceDTO.class);
+		if(auth != null) {
+			UserDetails userDetails = (UserDetails) auth.getPrincipal();
+			String email = userDetails.getUsername();
 
-				model.addAttribute("productPrice", priceDTO.getPrice());
+			User loggedUser = getUserByEmailUseCase.execute(email);
+			model.addAttribute("user", loggedUser);
 
-				return getPrice(auth, model);
+			ModelMapper mapper = new ModelMapper();
 
-			} catch (Exception e) {
-				System.out.println("Error al parsear la fecha: " + e.getMessage());
+			if (dateString != null && productId != null) {
+				DateTimeFormatter entryFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+
+				try {
+					LocalDateTime date = LocalDateTime.parse(dateString, entryFormat);
+					Price price = getPricesUseCase.getCorrectPrice(date, productId);
+					PriceDTO priceDTO = mapper.map(price, PriceDTO.class);
+
+					model.addAttribute("productPrice", priceDTO.getPrice());
+
+					return getPrice(auth, model);
+
+				} catch (Exception e) {
+					model.addAttribute("formErrorMessage", e.getMessage());
+				}
 			}
+			else {
+				throw new BadRequestException();
+			}
+			return "product-date-price-form";
 		}
-		else {
-			throw new BadRequestException();
-		}
-		return "product-date-price-form";
+		return "No authenticated user";
 	}
 
 	@GetMapping("/price")
