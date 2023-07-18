@@ -43,8 +43,8 @@ public class UserAdapter implements UsersPort {
         if(userFound.isPresent()){
             if(checkPassword(userMapper.toDomain(userFound.get()), userLogin.getPassword())) {
                 return userMapper.toDomain(userFound.get());
-            } else throw new Exception("Incorrect password. Try again.");
-        } else throw new EntityNotFoundException("There is no user registered with this email. Try again.");
+            } else throw new Exception("Contraseña incorrecta.");
+        } else throw new EntityNotFoundException("No existe ningún usuario registrado con ese email.");
     }
 
     @Override
@@ -56,26 +56,26 @@ public class UserAdapter implements UsersPort {
     public User update(User updateUser) throws Exception {
         System.out.println(updateUser);
         UserEntity userFound = userRepositoryJpa.findById(updateUser.getId())
-                .orElseThrow(() -> new Exception("This user doesn't exists"));
+                .orElseThrow(() -> new Exception("Este usuario no existe."));
 
         if(bCryptPasswordEncoder.matches(updateUser.getPassword(), userFound.getPassword())) {
             userFound.setName(updateUser.getName());
             userFound.setSurname(updateUser.getSurname());
             userFound.setNickname(updateUser.getNickname());
             userFound.setEmail(updateUser.getEmail());
-        } else throw new Exception("Incorrect password");
+        } else throw new Exception("Contraseña incorrecta.");
 
         return userMapper.toDomain(userRepositoryJpa.save(userFound));
     }
 
     @Override
     public User getUserByEmail(String email) throws Exception {
-        return userMapper.toDomain(userRepositoryJpa.findByEmail(email).orElseThrow(() -> new Exception("There is no user registered with this email.")));
+        return userMapper.toDomain(userRepositoryJpa.findByEmail(email).orElseThrow(() -> new Exception("No existe ningún usuario registrado con ese email.")));
     }
 
     @Override
     public void deleteUser(Long id) throws Exception {
-        UserEntity userToDelete = userRepositoryJpa.findById(id).orElseThrow(() -> new Exception("No user logged"));
+        UserEntity userToDelete = userRepositoryJpa.findById(id).orElseThrow(() -> new Exception("No hay ningún usuario logueado."));
         userRepositoryJpa.delete(userToDelete);
     }
 
@@ -83,7 +83,7 @@ public class UserAdapter implements UsersPort {
     public void updateForgotPassword(String newPassword, String email) throws Exception {
 
         UserEntity userToUpdatePassword = userRepositoryJpa.findByEmail(email)
-                .orElseThrow(() -> new Exception("This user doesn't exists"));
+                .orElseThrow(() -> new Exception("Este usuario no existe."));
 
         String encodedPassword = bCryptPasswordEncoder.encode(newPassword);
 
@@ -96,7 +96,7 @@ public class UserAdapter implements UsersPort {
     @Override
     public void changePassword(String email, String oldPassword, String newPassword, String confirmNewPassword) throws Exception {
         UserEntity userToChangePassword = userRepositoryJpa.findByEmail(email)
-                .orElseThrow(() -> new Exception("This user doesn't exists"));
+                .orElseThrow(() -> new Exception("Este usuario no existe."));
 
         if(bCryptPasswordEncoder.matches(oldPassword, userToChangePassword.getPassword())) {
             if (newPassword.equals(confirmNewPassword)) {
@@ -104,21 +104,21 @@ public class UserAdapter implements UsersPort {
                 userToChangePassword.setPassword(encodedPassword);
                 userToChangePassword.setConfirmPassword(encodedPassword);
                 userRepositoryJpa.save(userToChangePassword);
-            } else throw new Exception("New passwords do not match");
-        } else throw new Exception("Incorrect old password");
+            } else throw new Exception("La nueva contraseña no coincide con su confirmación.");
+        } else throw new Exception("Contraseña actual incorrecta.");
     }
 
     private boolean checkNicknameAndEmailAvailable(User user) throws Exception {
         Optional<UserEntity> userFound = userRepositoryJpa.findByNicknameOrEmail(user.getNickname(), user.getEmail());
         if(userFound.isPresent()) {
-            throw new Exception("Username or email already exists");
+            throw new Exception("El username o el email ya existen.");
         }
         return true;
     }
 
     private boolean checkPasswordMatch(User user) throws Exception {
         if(!user.getPassword().equals(user.getConfirmPassword())) {
-            throw new Exception("Passwords don't match");
+            throw new Exception("Las contraseñas no coinciden.");
         }
         return true;
     }

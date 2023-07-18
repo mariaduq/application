@@ -96,7 +96,7 @@ public class UserController {
                 context.setVariable("surname", userDTO.getSurname());
                 sendEmailUseCase.execute(userDTO.getEmail(), "Bienvenid@ a ElectroShop", "email-sign-up-template", context);
 
-                model.addAttribute("successMessage", "Successful registration. You can now access the app");
+                model.addAttribute("successMessage", "Registro exitoso. Ya puedes acceder a la aplicación.");
             } catch (Exception e) {
                 model.addAttribute("formErrorMessage", e.getMessage());
                 model.addAttribute("user", userDTO);
@@ -132,7 +132,7 @@ public class UserController {
             try{
                 updateUserUseCase.execute(userMapper.toUserInput(userDTO));
                 model.addAttribute("user", userDTO);
-                model.addAttribute("successMessage", "Profile successfully edited!");
+                model.addAttribute("successMessage", "¡Perfil editado con éxito!");
                 model.addAttribute("editMode", "true");
             } catch (Exception e) {
                 model.addAttribute("formErrorMessage", e.getMessage());
@@ -186,7 +186,7 @@ public class UserController {
             context.setVariable("newPassword", newGeneratedPassword);
             sendEmailUseCase.execute(email, "Contraseña olvidada", "email-forgot-password-template", context);
 
-            model.addAttribute("successMessage", "An e-mail with a new password has been sent to you.");
+            model.addAttribute("successMessage", "Te hemos enviado un mail para que puedas restablecer tu contraseña.");
 
         } catch (Exception e) {
             model.addAttribute("formErrorMessage", e.getMessage());
@@ -237,7 +237,7 @@ public class UserController {
 
                 changePasswordUseCase.execute(email, oldPassword, newPassword, confirmNewPassword);
 
-                model.addAttribute("successMessage", "Password successfully updated");
+                model.addAttribute("successMessage", "Contraseña editada con éxito.");
 
             } catch(Exception e) {
                 model.addAttribute("formErrorMessage", e.getMessage());
