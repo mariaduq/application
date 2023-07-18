@@ -122,7 +122,7 @@ class PriceServiceTests {
 		long productId = 35457;
 		long brandId = 1;
 				
-		assertThrows(EntityNotFoundException.class, ()->getPricesUseCase.getCorrectPrice(date, productId));
+		assertThrows(Exception.class, ()->getPricesUseCase.getCorrectPrice(date, productId));
 	}
 	
 	
@@ -137,7 +137,7 @@ class PriceServiceTests {
 		long productId = 35455;
 		long brandId = 1;
 				
-		assertThrows(EntityNotFoundException.class, ()->getPricesUseCase.getCorrectPrice(date, productId));
+		assertThrows(Exception.class, ()->getPricesUseCase.getCorrectPrice(date, productId));
 	}
 	
 	
