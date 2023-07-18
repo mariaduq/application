@@ -96,6 +96,7 @@ public class PricesController {
 	       })
 	@PostMapping("/v1/prices")
 	public String getPrice(
+			Authentication auth,
 			ModelMap model,
 			@Parameter(description = "The date for which we want to know the product price",
 			schema = @Schema(type = "string", format = "YYYY-MM-DD HH:mm:ss")) @Valid @ModelAttribute("date")String dateString,
@@ -111,9 +112,9 @@ public class PricesController {
 				Price price = getPricesUseCase.getCorrectPrice(date, productId);
 				PriceDTO priceDTO = mapper.map(price, PriceDTO.class);
 
-				model.addAttribute("productPrice", priceDTO.getPrice()+" EUR");
+				model.addAttribute("productPrice", priceDTO.getPrice());
 
-				return getPrice(model);
+				return getPrice(auth, model);
 
 			} catch (Exception e) {
 				System.out.println("Error al parsear la fecha: " + e.getMessage());
@@ -126,8 +127,17 @@ public class PricesController {
 	}
 
 	@GetMapping("/price")
-	public String getPrice(ModelMap model) {
-		return "product-date-price";
+	public String getPrice(Authentication auth, ModelMap model) throws Exception {
+		if(auth != null) {
+			UserDetails userDetails = (UserDetails) auth.getPrincipal();
+			String email = userDetails.getUsername();
+
+			User loggedUser = getUserByEmailUseCase.execute(email);
+			model.addAttribute("user", loggedUser);
+
+			return "product-date-price";
+		}
+		return "No authenticated user";
 	}
 	
 }
