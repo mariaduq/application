@@ -16,7 +16,7 @@ public class GetPricesUseCase {
 		this.pricesPort=pricesPort;
 	}
 	
-	public Price getCorrectPrice(LocalDateTime date, long productId){
+	public Price getCorrectPrice(LocalDateTime date, long productId) throws Exception {
 	
 		return pricesPort.getPrices().stream()
 				.filter(price -> price.getProductId() == productId)
@@ -24,6 +24,6 @@ public class GetPricesUseCase {
 				.filter(price -> price.getEndDate().isAfter(date))
 				.sorted(Comparator.comparingInt(Price::getPriority).reversed())
 				.findFirst()
-				.orElseThrow(() -> new EntityNotFoundException());
+				.orElseThrow(() -> new Exception("No tenemos ningún precio para los datos introducidos. Compruébalos."));
 	}
 }
