@@ -17,6 +17,6 @@ public @Data class PriceDTO {
 	private String price;
 
 	public void setPrice(float price) {
-		this.price = price + " EUR";
+		this.price = price + " €";
 	}
 }
