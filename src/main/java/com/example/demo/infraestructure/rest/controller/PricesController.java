@@ -72,8 +72,17 @@ public class PricesController {
 	}
 
 	@GetMapping("/datePrice")
-	public String getPriceForm() {
-		return "product-date-price-form";
+	public String getPriceForm(Authentication auth, Model model) throws Exception {
+		if(auth != null) {
+			UserDetails userDetails = (UserDetails) auth.getPrincipal();
+			String email = userDetails.getUsername();
+
+			User loggedUser = getUserByEmailUseCase.execute(email);
+			model.addAttribute("user", loggedUser);
+
+			return "product-date-price-form";
+		}
+		return "No authenticated user";
 	}
 
 	@Operation(summary = "Get price", description = "Get the correct price of a product", operationId = "getPrice")
