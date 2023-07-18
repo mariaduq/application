@@ -36,11 +36,14 @@
         <div class="col-sm-8 main-section">
             <div class="modal-content">
             <div>
-                <h1>Este es el precio que buscabas: </h1>
+                <h1>Este es el precio que buscabas. </h1>
             </div>
             </br>
             <div style="color:#fff;">
-                <h1 th:text="${productPrice}"></h1>
+                <h2 th:text="'El ' + ${date} + ', el producto con ID: ' + ${productId} + ', tiene un precio de:'"></h2>            
+            </div>
+            <div style="color:#fff;">
+                <h1 class="price" th:text="${productPrice}"></h1>
             </div>
             </br>
             <div class="col-12 logged">
@@ -51,7 +54,6 @@
             </div>
         </div>
     </div>
-</br>
 </br>
 </br>
 </br>

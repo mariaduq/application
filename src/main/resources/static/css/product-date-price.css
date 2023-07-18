@@ -13,6 +13,10 @@ body{
     position: relative;
 }
 
+h2{
+    font-size: 1rem;
+}
+
 nav{
     background: rgb(213,63,251);
     background: radial-gradient(circle, rgba(213, 63, 251, 0.826) 0%, rgba(252, 70, 106, 0.818) 100%);
@@ -52,7 +56,6 @@ a{
     padding: 0 20px;
     box-shadow: 0px 0px 30px rgba(213, 63, 251, 0.826) 0%;
     top: -18px;
-    margin-top: -10px;
     margin-bottom: -10px;
 }
 
@@ -128,7 +131,11 @@ h1{
     line-height: 2;
     margin-top: 15px;
     text-align: center;
-    font-size: 24px;
-    font-weight: bold;
+    font-size: 20px;
+    font-weight: bolder;
     color: #fff;
+}
+
+.price{
+    font-size: 35px;
 }
