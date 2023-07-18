@@ -24,6 +24,6 @@ public class GetPricesUseCase {
 				.filter(price -> price.getEndDate().isAfter(date))
 				.sorted(Comparator.comparingInt(Price::getPriority).reversed())
 				.findFirst()
-				.orElseThrow(() -> new Exception("No tenemos ningún precio para los datos introducidos. Compruébalos."));
+				.orElseThrow(() -> new Exception("No tenemos ningún precio para los datos introducidos. Compruébalos de nuevo."));
 	}
 }
