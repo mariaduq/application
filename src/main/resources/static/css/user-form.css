@@ -145,6 +145,10 @@ button{
     margin: 1.5rem auto;
 }
 
+.alert-danger {
+    text-align: center;
+}
+
 footer{
     background: rgb(213,63,251);
     background: radial-gradient(circle, rgba(213, 63, 251, 0.826) 0%, rgba(252, 70, 106, 0.818) 100%);

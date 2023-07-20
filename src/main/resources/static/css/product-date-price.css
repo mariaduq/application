@@ -76,6 +76,10 @@ a{
     border-radius: 5px;
 }
 
+.alert-danger {
+    text-align: center;
+}
+
 button{
     width: 200px;
     margin: 5px 0 35px;

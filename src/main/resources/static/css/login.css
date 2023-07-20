@@ -68,6 +68,10 @@ a{
     background-color: #8e1449;
 }
 
+.alert-danger {
+    text-align: center;
+}
+
 .form-group input{
     height: 42px;
     font-size: 15px;
