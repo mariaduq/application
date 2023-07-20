@@ -111,7 +111,15 @@ public class UserAdapter implements UsersPort {
     private boolean checkNicknameAndEmailAvailable(User user) throws Exception {
         Optional<UserEntity> userFound = userRepositoryJpa.findByNicknameOrEmail(user.getNickname(), user.getEmail());
         if(userFound.isPresent()) {
-            throw new Exception("El username o el email ya existen.");
+            if(userFound.get().getNickname().equals(user.getNickname()) && userFound.get().getEmail().equals(user.getEmail())) {
+                throw new Exception("Nick y email no disponibles.");
+            }
+            else if(userFound.get().getNickname().equals(user.getNickname())) {
+                throw new Exception("Nick no disponible.");
+            }
+            else if(userFound.get().getEmail().equals(user.getEmail())) {
+                throw new Exception("Ya existe una cuenta asociada a este email.");
+            }
         }
         return true;
     }
