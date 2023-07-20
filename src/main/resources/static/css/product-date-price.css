@@ -80,6 +80,10 @@ a{
     text-align: center;
 }
 
+.alert-success {
+    text-align: center;
+}
+
 button{
     width: 200px;
     margin: 5px 0 35px;

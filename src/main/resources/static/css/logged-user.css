@@ -79,6 +79,10 @@ header{
     text-align: center;
 }
 
+.alert-success {
+    text-align: center;
+}
+
 footer{
     background: linear-gradient(rgb(213, 63, 251) 0%, rgb(252, 70, 106) 100%);
     padding: 40px 0 30px 0;
