@@ -47,7 +47,7 @@
             </div>
             </br>
             <div class="col-12 logged">
-                <p><a href="#" th:href="@{/application/datePrice}">Volver a buscar precio</a> </p>
+                <p><a href="#" th:href="@{/application/v1/prices/form}">Volver a buscar precio</a> </p>
             </div>
             <div class="alert alert-danger" th:if="${formErrorMessage}" th:text="${formErrorMessage}">Error Message</div>
             <div class="alert alert-success" th:if="${successMessage}" th:text="${successMessage}">Success Message</div>

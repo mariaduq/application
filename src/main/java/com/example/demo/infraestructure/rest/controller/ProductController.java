@@ -10,9 +10,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequiredArgsConstructor
+@RequestMapping("/application/v1/products")
 public class ProductController {
 
     @Autowired
@@ -21,7 +23,7 @@ public class ProductController {
     @Autowired
     private GetUserByEmailUseCase getUserByEmailUseCase;
 
-    @GetMapping("/productsList")
+    @GetMapping("/list")
     public String getProductsList(Authentication auth, Model model) throws Exception {
         if(auth != null) {
             UserDetails userDetails = (UserDetails) auth.getPrincipal();

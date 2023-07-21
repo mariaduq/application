@@ -34,7 +34,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/application")
+@RequestMapping("/application/v1/prices")
 public class PricesController {
 	
 	@Autowired
@@ -71,7 +71,7 @@ public class PricesController {
 		return "No authenticated user";
 	}
 
-	@GetMapping("/datePrice")
+	@GetMapping("/form")
 	public String getPriceForm(Authentication auth, Model model) throws Exception {
 		if(auth != null) {
 			UserDetails userDetails = (UserDetails) auth.getPrincipal();
@@ -94,7 +94,7 @@ public class PricesController {
 	       @ApiResponse(responseCode = "404", description = "Not Found",
 	       		   content = { @Content(mediaType = "application/json", schema = @Schema(implementation = String.class))})
 	       })
-	@PostMapping("/v1/prices")
+	@PostMapping("/price")
 	public String getPrice(
 			Authentication auth,
 			ModelMap model,

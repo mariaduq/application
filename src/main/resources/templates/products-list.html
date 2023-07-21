@@ -53,7 +53,7 @@
         <td th:text="${product.stock}"></td>
         <td>
           <span>
-              <a href="#" th:href="@{'/application/productPrices/'+ ${product.productId}}"><i class="fas fa-dollar-sign"></i> Consultar precios</a>
+              <a href="#" th:href="@{'/application/v1/prices/productPrices/'+ ${product.productId}}"><i class="fas fa-dollar-sign"></i> Consultar precios</a>
           </span>
         </td>
       </tr>
