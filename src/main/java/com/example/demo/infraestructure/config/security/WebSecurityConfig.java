@@ -26,17 +26,17 @@ public class WebSecurityConfig {
                 .permitAll()
                 .and()
                 .formLogin()
-                    .loginPage("/login")
+                    .loginPage("/application/v1/login")
                     .permitAll()
-                    .defaultSuccessUrl("/loggedUser")
-                    .failureUrl("/login?error=true")
+                    .defaultSuccessUrl("/application/v1/loggedUser")
+                    .failureUrl("/application/v1/login?error=true")
                     .usernameParameter("email")
                     .passwordParameter("password")
                     .and()
                 .logout()
                 .deleteCookies("JSESSIONID")
-                    .logoutUrl("/login?logout")
-                    .logoutSuccessUrl("/login?logout");
+                    .logoutUrl("/application/v1/login?logout")
+                    .logoutSuccessUrl("/application/v1/login?logout");
 
         return http.build();
     }

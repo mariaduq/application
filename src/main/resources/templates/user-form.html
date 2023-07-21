@@ -39,7 +39,7 @@
                     <a class="navbar-brand" href="#" th:href="@{/}">ElectroShop</a>
                 </div>
                 <div th:if="${editMode}">
-                    <a class="navbar-brand" href="#" th:href="@{/loggedUser}">Bienvenid@, <span th:text="${user.name}"></span></a>
+                    <a class="navbar-brand" href="#" th:href="@{/application/v1/loggedUser}">Bienvenid@, <span th:text="${user.name}"></span></a>
                 </div>
             </div>
         </div>
@@ -55,7 +55,7 @@
                 <div th:if="${editMode}">
                     <h1>Editar perfil</h1>
                 </div>
-                <form class="form" role="form" autocomplete="off" th:object="${user}" th:action="${editMode} ?@{/editUser} :@{/signup}" method="post">
+                <form class="form" role="form" autocomplete="off" th:object="${user}" th:action="${editMode} ?@{/application/v1/me/account/edit} :@{/application/v1/signup}" method="post">
                     <input class = "form-control" type="hidden" name="confirmPassword" value="confirmPassword" th:if="${editMode}">
                     <input class = "form-control" type="hidden" th:field="${user.id}" th:if="${editMode}">
                     <div class="form-group">
@@ -89,15 +89,15 @@
                         <div class="alert-danger" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}">Password Error</div>
                     </div>
                     <div class="form-group" th:if="${editMode}">
-                        <a class="btn btn-custom" th:href="@{/editUser/changePassword}">Cambiar contraseña</a>
+                        <a class="btn btn-custom" th:href="@{/application/v1/me/account/edit/changePassword}">Cambiar contraseña</a>
                     </div>
                     <div class="form-group text-center" style="margin-top: 30px; margin-bottom: 15px;">
                         <div class="btn-group" role="group" aria-label="Botones">
-                            <a class="btn btn-danger rounded mr-2" th:href="${editMode} ?@{/editUser/cancel} :@{/signup/cancel}">Cancelar</a>
+                            <a class="btn btn-danger rounded mr-2" th:href="${editMode} ?@{/application/v1/me/account/edit/cancel} :@{/application/v1/signup/cancel}">Cancelar</a>
                             <input type="submit" class="btn btn-success rounded ml-2" value="Save Changes" th:value="${editMode}?'Guardar':'Crear usuario'">
                         </div>
                     </br>
-                        <span th:if="${editMode==null or editMode==false}">Si ya tienes una cuenta, <a th:href="@{/login}">inicia sesión aquí</a></span>
+                        <span th:if="${editMode==null or editMode==false}">Si ya tienes una cuenta, <a th:href="@{/application/v1/login}">inicia sesión aquí</a></span>
                     </div>
                     <div class="alert alert-danger" th:if="${formErrorMessage}" th:text="${formErrorMessage}">Error Message</div>
                     <div class="alert alert-success" th:if="${successMessage}" th:text="${successMessage}">Success Message</div>

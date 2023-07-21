@@ -31,7 +31,7 @@
 
     function deleteUser(){
         var id = $("#userIdHiddenInput").val();
-        window.location = "deleteUser/"+id;
+        window.location = "/application/v1/me/account/delete/"+id;
     }
     </script>
 </head>
@@ -39,7 +39,7 @@
     <nav class="navbar navbar-inverse navbar-fixed-top" style="height: 55px;">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#" th:href="@{/loggedUser}">Bienvenid@, <span th:text="${user.name}"></span></a>
+                <a class="navbar-brand" href="#" th:href="@{/application/v1/loggedUser}">Bienvenid@, <span th:text="${user.name}"></span></a>
             </div>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
@@ -48,7 +48,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
                         <li>
-                            <a href="#" th:object="${user}" th:href="@{'/editUser/' + ${user.id}}">
+                            <a href="#" th:object="${user}" th:href="@{'/application/v1/me/account/edit/' + ${user.id}}">
                             <i class="fas fa-edit"></i>
                             <span class="action-label"> Editar perfil </span>
                             </a>
@@ -60,7 +60,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#" th:href="@{/login?logout}">
+                            <a href="#" th:href="@{/application/v1/login?logout}">
                             <i class="fas fa-sign-out-alt"></i>
                             <span class="action-label"> Cerrar sesión </span>
                             </a>

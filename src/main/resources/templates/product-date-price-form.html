@@ -28,7 +28,7 @@
   <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#" th:href="@{/loggedUser}">Bienvenid@, <span th:text="${user.name}"></span></a>
+          <a class="navbar-brand" href="#" th:href="@{/application/v1/loggedUser}">Bienvenid@, <span th:text="${user.name}"></span></a>
         </div>
     </div>
   </nav>
@@ -53,7 +53,7 @@
           <button type="submit" class="btn btn-custom">Ver precio</button>
         </form>
         <div class="col-12 logged">
-          <p><a href="#" th:href="@{/loggedUser}">Regresar</a> </p>
+          <p><a href="#" th:href="@{/application/v1/loggedUser}">Regresar</a> </p>
         </div>
         <div class="alert alert-danger" th:if="${formErrorMessage}" th:text="${formErrorMessage}">Error Message</div>
         <div class="alert alert-success" th:if="${successMessage}" th:text="${successMessage}">Success Message</div>

@@ -38,7 +38,7 @@
                 <div class="col-12 user-img">
                     <img src="../static/img/userlogo.png" th:src="@{/img/userlogo.png}"/>
                 </div>
-                <form class="col-12" th:action="@{/login}" method="post">
+                <form class="col-12" th:action="@{/application/v1/login}" method="post">
                     <div class="form-group" id="user-group">
                         <input type="email" class="form-control" required autofocus="autofocus" placeholder="Email" name="email"/>
                     </div>
@@ -48,8 +48,8 @@
                     <button type="submit" class="btn btn-custom"><i class="fas fa-sign-in-alt"></i>  Iniciar sesión</button>
                 </form>
                 <div class="col-12 forgot">
-                    <p><a href="#" th:href="@{/forgotPassword}">¿Olvidaste la contraseña?</a></p>
-                    <p><a href="#" th:href="@{/signup}">Nuevo usuario - Regístrate</a> </p>
+                    <p><a href="#" th:href="@{/application/v1/login/forgotPassword}">¿Olvidaste la contraseña?</a></p>
+                    <p><a href="#" th:href="@{/application/v1/signup}">Nuevo usuario - Regístrate</a> </p>
                 </div>
                 <div th:if="${param.logout}" class="alert alert-success" role="alert">
                     Sesión cerrada correctamente.

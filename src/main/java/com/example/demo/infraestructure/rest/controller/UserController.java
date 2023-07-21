@@ -21,6 +21,7 @@ import java.util.Random;
 
 @Controller
 @RequiredArgsConstructor
+@RequestMapping("/application/v1")
 public class UserController {
 
     @Autowired
@@ -112,7 +113,7 @@ public class UserController {
         return "login";
     }
 
-    @GetMapping("/editUser/{id}")
+    @GetMapping("/me/account/edit/{id}")
     public String getEditUserForm(ModelMap model, @PathVariable(name="id")Long id) {
         User userToEdit = getUserByIdUseCase.execute(id);
         model.addAttribute("user", userToEdit);
@@ -120,7 +121,7 @@ public class UserController {
         return "user-form";
     }
 
-    @PostMapping("/editUser")
+    @PostMapping("/me/account/edit")
     public String editUser(@Valid @ModelAttribute("user") UserDTO userDTO, BindingResult result, ModelMap model) {
 
         System.out.println(userDTO);
@@ -145,17 +146,17 @@ public class UserController {
         return "user-form";
     }
 
-    @GetMapping("/editUser/cancel")
+    @GetMapping("/me/account/edit/cancel")
     public String cancelEditUser(ModelMap model) {
-        return "redirect:/loggedUser";
+        return "redirect:/application/v1/loggedUser";
     }
 
     @GetMapping("/signup/cancel")
     public String cancelCreateUser(ModelMap model) {
-        return "redirect:/homepage";
+        return "redirect:/application/v1/homepage";
     }
 
-    @GetMapping("/deleteUser/{id}")
+    @GetMapping("/me/account/delete/{id}")
     public String deleteUser(ModelMap model, @PathVariable(name="id")Long id) {
         try{
             deleteUserUseCase.execute(id);
@@ -165,12 +166,12 @@ public class UserController {
         return homepage();
     }
 
-    @GetMapping("/forgotPassword")
+    @GetMapping("/login/forgotPassword")
     public String getForgotPasswordForm() {
         return "forgot_password";
     }
 
-    @PostMapping("/forgotPassword")
+    @PostMapping("/login/forgotPassword")
     public String forgotPassword(ModelMap model, @Valid @ModelAttribute("email") String email) {
         try{
             model.addAttribute("email", email);
@@ -205,7 +206,7 @@ public class UserController {
         return sb.toString();
     }
 
-    @GetMapping("/editUser/changePassword")
+    @GetMapping("/me/account/edit/changePassword")
     public String getChangePasswordForm(Authentication auth, Model model) throws Exception {
         if(auth != null) {
             UserDetails userDetails = (UserDetails) auth.getPrincipal();
@@ -219,7 +220,7 @@ public class UserController {
         return "No authenticated user";
     }
 
-    @PostMapping("/editUser/changePassword")
+    @PostMapping("/me/account/edit/changePassword")
     public String changePassword(Authentication auth, ModelMap model, @Valid @ModelAttribute("oldPassword") String oldPassword,
                                  @Valid @ModelAttribute("newPassword") String newPassword,
                                  @Valid @ModelAttribute("confirmNewPassword") String confirmNewPassword) throws Exception {
