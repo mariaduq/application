@@ -1,5 +1,7 @@
 package com.example.demo.infraestructure.config.beans;
 
+import com.example.demo.application.mapper.PriceMapper;
+import com.example.demo.application.mapper.ProductMapper;
 import com.example.demo.application.mapper.UserMapper;
 import com.example.demo.domain.port.ProductsPort;
 import com.example.demo.domain.port.UsersPort;
@@ -18,13 +20,18 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class ApplicationConfig {
 	
 	@Bean
-	public GetPricesUseCase getPricesUseCase (PricesPort pricesPort) {
-		return new GetPricesUseCase(pricesPort);
+	public GetPricesUseCase getPricesUseCase (PricesPort pricesPort, PriceMapper priceMapper) {
+		return new GetPricesUseCase(pricesPort, priceMapper);
 	}
 	
 	@Bean
-	public GetAllPricesUseCase getAllPricesUseCase (PricesPort pricesPort) {
-		return new GetAllPricesUseCase(pricesPort);
+	public GetAllPricesUseCase getAllPricesUseCase (PricesPort pricesPort, PriceMapper priceMapper) {
+		return new GetAllPricesUseCase(pricesPort, priceMapper);
+	}
+
+	@Bean
+	public GetProductPricesUseCase getProductPricesUseCase(PricesPort pricesPort, PriceMapper priceMapper) {
+		return new GetProductPricesUseCase(pricesPort, priceMapper);
 	}
 
 	@Bean
@@ -38,13 +45,13 @@ public class ApplicationConfig {
 	}
 
 	@Bean
-	public GetUserByIdUseCase getUserByIdUseCase (UsersPort usersPort) {
-		return new GetUserByIdUseCase(usersPort);
+	public GetUserByIdUseCase getUserByIdUseCase (UsersPort usersPort, UserMapper userMapper) {
+		return new GetUserByIdUseCase(usersPort, userMapper);
 	}
 
 	@Bean
-	public GetUserByEmailUseCase getUserByEmailUseCase (UsersPort usersPort) {
-		return new GetUserByEmailUseCase(usersPort);
+	public GetUserByEmailUseCase getUserByEmailUseCase (UsersPort usersPort, UserMapper userMapper) {
+		return new GetUserByEmailUseCase(usersPort, userMapper);
 	}
 
 	@Bean
@@ -73,13 +80,7 @@ public class ApplicationConfig {
 	}
 
 	@Bean
-	public GetAllProductsUseCase getAllProductsUseCase(ProductsPort productsPort) {
-		return new GetAllProductsUseCase(productsPort);
+	public GetAllProductsUseCase getAllProductsUseCase(ProductsPort productsPort, ProductMapper productMapper) {
+		return new GetAllProductsUseCase(productsPort, productMapper);
 	}
-
-	@Bean
-	public GetProductPricesUseCase getProductPricesUseCase(PricesPort pricesPort) {
-		return new GetProductPricesUseCase(pricesPort);
-	}
-
 }
