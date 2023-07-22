@@ -1,6 +1,7 @@
 package com.example.demo.infraestructure.rest.mappers;
 
 import com.example.demo.application.input.UserInput;
+import com.example.demo.application.output.UserOutput;
 import com.example.demo.infraestructure.rest.dto.UserDTO;
 import com.example.demo.domain.model.User;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +31,18 @@ public class UserMapper {
                 .email(user.getEmail())
                 .password(user.getPassword())
                 .confirmPassword(user.getConfirmPassword())
+                .build();
+    }
+
+    public UserDTO fromUserOutputToUserDTO(UserOutput userOutput) {
+        return UserDTO.builder()
+                .id(userOutput.getId())
+                .name(userOutput.getName())
+                .surname(userOutput.getSurname())
+                .nickname(userOutput.getNickname())
+                .email(userOutput.getEmail())
+                .password(userOutput.getPassword())
+                .confirmPassword(userOutput.getConfirmPassword())
                 .build();
     }
 }
