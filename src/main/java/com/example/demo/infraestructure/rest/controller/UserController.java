@@ -1,5 +1,6 @@
 package com.example.demo.infraestructure.rest.controller;
 
+import com.example.demo.application.output.UserOutput;
 import com.example.demo.application.usecases.user.*;
 import com.example.demo.infraestructure.rest.dto.UserDTO;
 import com.example.demo.infraestructure.rest.mappers.UserMapper;
@@ -68,7 +69,7 @@ public class UserController {
             UserDetails userDetails = (UserDetails) auth.getPrincipal();
             String email = userDetails.getUsername();
 
-            User loggedUser = getUserByEmailUseCase.execute(email);
+            UserOutput loggedUser = getUserByEmailUseCase.execute(email);
             model.addAttribute("user", loggedUser);
 
             return "loggedUser";
@@ -115,8 +116,8 @@ public class UserController {
 
     @GetMapping("/me/account/edit/{id}")
     public String getEditUserForm(ModelMap model, @PathVariable(name="id")Long id) {
-        User userToEdit = getUserByIdUseCase.execute(id);
-        model.addAttribute("user", userToEdit);
+        UserOutput userToEdit = getUserByIdUseCase.execute(id);
+        model.addAttribute("user", userMapper.fromUserOutputToUserDTO(userToEdit));
         model.addAttribute("editMode", "true");
         return "user-form";
     }
@@ -176,14 +177,16 @@ public class UserController {
         try{
             model.addAttribute("email", email);
 
-            UserDTO userFound = userMapper.fromUserToUserDTO(getUserByEmailUseCase.execute(email));
+            UserOutput userFound = getUserByEmailUseCase.execute(email);
+            UserDTO userFoundDto = userMapper.fromUserOutputToUserDTO(userFound);
+
             String newGeneratedPassword = generateRandomPassword();
 
             updateForgotPasswordUseCase.execute(newGeneratedPassword, email);
 
             Context context = new Context();
-            context.setVariable("name", userFound.getName());
-            context.setVariable("surname", userFound.getSurname());
+            context.setVariable("name", userFoundDto.getName());
+            context.setVariable("surname", userFoundDto.getSurname());
             context.setVariable("newPassword", newGeneratedPassword);
             sendEmailUseCase.execute(email, "Contraseña olvidada", "email-forgot-password-template", context);
 
@@ -212,8 +215,8 @@ public class UserController {
             UserDetails userDetails = (UserDetails) auth.getPrincipal();
             String email = userDetails.getUsername();
 
-            User loggedUser = getUserByEmailUseCase.execute(email);
-            model.addAttribute("user", loggedUser);
+            UserOutput loggedUser = getUserByEmailUseCase.execute(email);
+            model.addAttribute("user", userMapper.fromUserOutputToUserDTO(loggedUser));
 
             return "change-password";
         }
@@ -228,8 +231,8 @@ public class UserController {
             UserDetails userDetails = (UserDetails) auth.getPrincipal();
             String email = userDetails.getUsername();
 
-            User loggedUser = getUserByEmailUseCase.execute(email);
-            model.addAttribute("user", loggedUser);
+            UserOutput loggedUser = getUserByEmailUseCase.execute(email);
+            model.addAttribute("user", userMapper.fromUserOutputToUserDTO(loggedUser));
 
             try{
                 model.addAttribute("oldPassword", oldPassword);
