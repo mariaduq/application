@@ -3,12 +3,16 @@ package com.example.demo.infraestructure.rest.controller;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import com.example.demo.application.output.PriceOutput;
+import com.example.demo.application.output.UserOutput;
 import com.example.demo.application.usecases.price.GetProductPricesUseCase;
 import com.example.demo.application.usecases.user.GetUserByEmailUseCase;
 import com.example.demo.domain.model.User;
 import com.example.demo.infraestructure.rest.exception.BadRequestException;
 import com.example.demo.infraestructure.rest.dto.PriceDTO;
+import com.example.demo.infraestructure.rest.mappers.UserMapper;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -52,14 +56,18 @@ public class PricesController {
 	@Autowired
 	private GetUserByEmailUseCase getUserByEmailUseCase;
 
+	private final UserMapper userMapper;
+
 	@GetMapping("/productPrices/{productId}")
 	public String getProductPrices(@PathVariable(name="productId")Long id, Authentication auth, Model model) throws Exception {
 		if(auth != null) {
 			UserDetails userDetails = (UserDetails) auth.getPrincipal();
 			String email = userDetails.getUsername();
 
-			User loggedUser = getUserByEmailUseCase.execute(email);
-			model.addAttribute("user", loggedUser);
+			UserOutput loggedUser = getUserByEmailUseCase.execute(email);
+			model.addAttribute("user", userMapper.fromUserOutputToUserDTO(loggedUser));
+
+			ModelMapper mapper = new ModelMapper();
 
 			try{
 				model.addAttribute("productPricesList", getProductPricesUseCase.execute(id));
@@ -77,8 +85,8 @@ public class PricesController {
 			UserDetails userDetails = (UserDetails) auth.getPrincipal();
 			String email = userDetails.getUsername();
 
-			User loggedUser = getUserByEmailUseCase.execute(email);
-			model.addAttribute("user", loggedUser);
+			UserOutput loggedUser = getUserByEmailUseCase.execute(email);
+			model.addAttribute("user", userMapper.fromUserOutputToUserDTO(loggedUser));
 
 			return "product-date-price-form";
 		}
@@ -106,20 +114,24 @@ public class PricesController {
 			UserDetails userDetails = (UserDetails) auth.getPrincipal();
 			String email = userDetails.getUsername();
 
-			User loggedUser = getUserByEmailUseCase.execute(email);
-			model.addAttribute("user", loggedUser);
+			UserOutput loggedUser = getUserByEmailUseCase.execute(email);
+			model.addAttribute("user", userMapper.fromUserOutputToUserDTO(loggedUser));
 
 			ModelMapper mapper = new ModelMapper();
 
 			if (dateString != null && productId != null) {
 				DateTimeFormatter entryFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+				DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
 				try {
 					LocalDateTime date = LocalDateTime.parse(dateString, entryFormat);
-					Price price = getPricesUseCase.getCorrectPrice(date, productId);
+					PriceOutput price = getPricesUseCase.getCorrectPrice(date, productId);
 					PriceDTO priceDTO = mapper.map(price, PriceDTO.class);
 
+					String formattedDate = date.format(outputFormat);
+
 					model.addAttribute("productPrice", priceDTO.getPrice());
+					model.addAttribute("date", formattedDate);
 
 					return getPrice(auth, model);
 
@@ -141,8 +153,8 @@ public class PricesController {
 			UserDetails userDetails = (UserDetails) auth.getPrincipal();
 			String email = userDetails.getUsername();
 
-			User loggedUser = getUserByEmailUseCase.execute(email);
-			model.addAttribute("user", loggedUser);
+			UserOutput loggedUser = getUserByEmailUseCase.execute(email);
+			model.addAttribute("user", userMapper.fromUserOutputToUserDTO(loggedUser));
 
 			return "product-date-price";
 		}
