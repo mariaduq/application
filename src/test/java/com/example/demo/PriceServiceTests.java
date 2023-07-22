@@ -6,6 +6,8 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.example.demo.application.mapper.PriceMapper;
+import com.example.demo.application.output.PriceOutput;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -27,7 +29,7 @@ class PriceServiceTests {
 	
 	PriceAdapter priceAdapter = new PriceAdapter(priceRepositoryJpa);
 	
-	GetPricesUseCase getPricesUseCase = new GetPricesUseCase(priceAdapter);
+	GetPricesUseCase getPricesUseCase = new GetPricesUseCase(priceAdapter, new PriceMapper());
 	
 	
 	@Test
@@ -40,7 +42,7 @@ class PriceServiceTests {
 		long productId = 35455;
 		long brandId = 1;
 
-		Price price = getPricesUseCase.getCorrectPrice(date, productId);
+		PriceOutput price = getPricesUseCase.getCorrectPrice(date, productId);
 		
 		assertEquals((float)35.5, price.getPrice());
 	}
@@ -56,7 +58,7 @@ class PriceServiceTests {
 		LocalDateTime date = LocalDateTime.of(2020, 06, 14, 16, 00, 00);
 		long productId = 35455;
 
-		Price price = getPricesUseCase.getCorrectPrice(date, productId);
+		PriceOutput price = getPricesUseCase.getCorrectPrice(date, productId);
 		
 		assertEquals((float)25.45, price.getPrice());
 	}
@@ -72,7 +74,7 @@ class PriceServiceTests {
 		long productId = 35455;
 		long brandId = 1;
 		
-		Price price = getPricesUseCase.getCorrectPrice(date, productId);
+		PriceOutput price = getPricesUseCase.getCorrectPrice(date, productId);
 		
 		assertEquals((float)35.5, price.getPrice());
 	}
@@ -89,7 +91,7 @@ class PriceServiceTests {
 		long productId = 35455;
 		long brandId = 1;
 		
-		Price price = getPricesUseCase.getCorrectPrice(date, productId);
+		PriceOutput price = getPricesUseCase.getCorrectPrice(date, productId);
 		
 		assertEquals((float)30.5, price.getPrice());
 	}
@@ -105,7 +107,7 @@ class PriceServiceTests {
 		long productId = 35455;
 		long brandId = 1;
 		
-		Price price = getPricesUseCase.getCorrectPrice(date, productId);
+		PriceOutput price = getPricesUseCase.getCorrectPrice(date, productId);
 		
 		assertEquals((float)38.95, price.getPrice());
 	}
