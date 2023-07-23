@@ -3,6 +3,7 @@ package com.example.demo.infrastructure.config.beans;
 import com.example.demo.application.mapper.PriceMapper;
 import com.example.demo.application.mapper.ProductMapper;
 import com.example.demo.application.mapper.UserMapper;
+import com.example.demo.application.usecases.product.GetProductsByBrandUseCase;
 import com.example.demo.domain.port.ProductsPort;
 import com.example.demo.domain.port.UsersPort;
 import com.example.demo.application.usecases.price.GetAllPricesUseCase;
@@ -82,5 +83,10 @@ public class ApplicationConfig {
 	@Bean
 	public GetAllProductsUseCase getAllProductsUseCase(ProductsPort productsPort, ProductMapper productMapper) {
 		return new GetAllProductsUseCase(productsPort, productMapper);
+	}
+
+	@Bean
+	public GetProductsByBrandUseCase getProductsByBrandUseCase(ProductsPort productsPort, ProductMapper productMapper) {
+		return new GetProductsByBrandUseCase(productsPort, productMapper);
 	}
 }
