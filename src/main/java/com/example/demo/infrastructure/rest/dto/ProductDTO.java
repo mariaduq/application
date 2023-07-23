@@ -1,14 +1,18 @@
-package com.example.demo.application.output;
+package com.example.demo.infrastructure.rest.dto;
 
 import com.example.demo.infrastructure.persistence.entities.PriceEntity;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Data
 @Builder
-public class ProductOutput {
+@AllArgsConstructor
+@NoArgsConstructor
+public class ProductDTO {
 
     private long productId;
 

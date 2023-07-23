@@ -12,13 +12,10 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import com.example.demo.application.usecases.price.GetPricesUseCase;
-import com.example.demo.domain.model.Price;
 
-import jakarta.persistence.EntityNotFoundException;
-
-import com.example.demo.infraestructure.persistence.adapter.PriceAdapter;
-import com.example.demo.infraestructure.persistence.jpa.PriceRepositoryJpa;
-import com.example.demo.infraestructure.persistence.entities.PriceEntity;
+import com.example.demo.infrastructure.persistence.adapter.PriceAdapter;
+import com.example.demo.infrastructure.persistence.jpa.PriceRepositoryJpa;
+import com.example.demo.infrastructure.persistence.entities.PriceEntity;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
