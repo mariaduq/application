@@ -9,7 +9,6 @@ import com.example.demo.application.output.PriceOutput;
 import com.example.demo.application.output.UserOutput;
 import com.example.demo.application.usecases.price.GetProductPricesUseCase;
 import com.example.demo.application.usecases.user.GetUserByEmailUseCase;
-import com.example.demo.domain.model.User;
 import com.example.demo.infraestructure.rest.exception.BadRequestException;
 import com.example.demo.infraestructure.rest.dto.PriceDTO;
 import com.example.demo.infraestructure.rest.mappers.UserMapper;
@@ -27,7 +26,6 @@ import org.springframework.web.bind.annotation.*;
 import com.example.demo.application.usecases.price.GetAllPricesUseCase;
 import com.example.demo.application.usecases.price.GetPricesUseCase;
 import com.example.demo.infraestructure.persistence.jpa.PriceRepositoryJpa;
-import com.example.demo.domain.model.Price;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

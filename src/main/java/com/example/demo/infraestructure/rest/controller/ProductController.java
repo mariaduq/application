@@ -3,7 +3,6 @@ package com.example.demo.infraestructure.rest.controller;
 import com.example.demo.application.output.UserOutput;
 import com.example.demo.application.usecases.product.GetAllProductsUseCase;
 import com.example.demo.application.usecases.user.GetUserByEmailUseCase;
-import com.example.demo.domain.model.User;
 import com.example.demo.infraestructure.rest.mappers.ProductMapper;
 import com.example.demo.infraestructure.rest.mappers.UserMapper;
 import lombok.RequiredArgsConstructor;

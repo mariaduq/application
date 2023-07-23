@@ -4,7 +4,6 @@ import com.example.demo.application.output.UserOutput;
 import com.example.demo.application.usecases.user.*;
 import com.example.demo.infraestructure.rest.dto.UserDTO;
 import com.example.demo.infraestructure.rest.mappers.UserMapper;
-import com.example.demo.domain.model.User;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
