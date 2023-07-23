@@ -18,7 +18,7 @@ public class GetProductsByBrandUseCase {
     public List<ProductOutput> execute(String brandName) throws Exception {
         List<ProductOutput> list = productsPort.getAllProducts()
                 .stream()
-                .filter(product -> product.getBrandName().equals(brandName))
+                .filter(product -> product.getBrandName().equalsIgnoreCase(brandName))
                 .map(productMapper::toOutput)
                 .toList();
 
