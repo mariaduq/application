@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Buscar productos por marca</title>
+
+    <!--JQUERY-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- FRAMEWORK BOOTSTRAP para el estilo de la pagina-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <!-- Los iconos tipo Solid de Fontawesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+    <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+    <!-- Nuestro css-->
+    <link rel="shortcut icon" id="favicon" href="../static/img/logo.png" th:href="@{/img/logo.png}" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="static/css/product-date-price.css" th:href="@{/css/product-date-price.css}">
+
+    <!-- Fuente-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#" th:href="@{/application/v1/loggedUser}">Bienvenid@, <span th:text="${user.name}"></span></a>
+        </div>
+    </div>
+</nav>
+<div class="modal-dialog text-center">
+    <div class="col-sm-8 main-section">
+        <div class="modal-content">
+            <div>
+                <h1>Buscar productos por marca</h1>
+            </div>
+            </br>
+            <div style="color:#fff;">
+                Introduce la marca deseada:
+            </div>
+            </br>
+            <form class="col-12" th:action="@{/application/v1/products/brandProducts}" method="post">
+                <div class="form-group" id="product-group">
+                    <input type="text" class="form-control" required autofocus="autofocus" placeholder="Marca" name="brandName"/>
+                </div>
+                <button type="submit" class="btn btn-custom">Buscar productos</button>
+            </form>
+            <div class="col-12 logged">
+                <p><a href="#" th:href="@{/application/v1/loggedUser}">Regresar</a> </p>
+            </div>
+            <div class="alert alert-danger" th:if="${formErrorMessage}" th:text="${formErrorMessage}">Error Message</div>
+            <div class="alert alert-success" th:if="${successMessage}" th:text="${successMessage}">Success Message</div>
+        </div>
+    </div>
+</div>
+</br>
+</br>
+</br>
+<footer>
+    <div class="footer-content">
+        <h1 class="titulo-final">&copy; 2023 María Duque</h1><h2>Todos los derechos reservados.</h2>
+    </div>
+    <img src="../static/img/logo.png" th:src="@{/img/logo.png}" class="logo"/>
+</footer>
+</body>
+</html>
