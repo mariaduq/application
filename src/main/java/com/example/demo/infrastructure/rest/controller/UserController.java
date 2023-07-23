@@ -71,7 +71,7 @@ public class UserController {
             UserOutput loggedUser = getUserByEmailUseCase.execute(email);
             model.addAttribute("user", loggedUser);
 
-            return "loggedUser";
+            return "logged-user";
         }
         return "No authenticated user";
     }
