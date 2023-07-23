@@ -3,6 +3,7 @@ package com.example.demo.infrastructure.rest.controller;
 import com.example.demo.application.output.UserOutput;
 import com.example.demo.application.usecases.product.GetAllProductsUseCase;
 import com.example.demo.application.usecases.product.GetProductsByBrandUseCase;
+import com.example.demo.application.usecases.product.GetProductsByTypeUseCase;
 import com.example.demo.application.usecases.user.GetUserByEmailUseCase;
 import com.example.demo.infrastructure.rest.mappers.ProductMapper;
 import com.example.demo.infrastructure.rest.mappers.UserMapper;
@@ -31,6 +32,9 @@ public class ProductController {
 
     @Autowired
     private final GetProductsByBrandUseCase getProductsByBrandUseCase;
+
+    @Autowired
+    private final GetProductsByTypeUseCase getProductsByTypeUseCase;
 
     @Autowired
     private GetUserByEmailUseCase getUserByEmailUseCase;
@@ -110,6 +114,59 @@ public class ProductController {
             model.addAttribute("user", userMapper.fromUserOutputToUserDTO(loggedUser));
 
             return "products-by-brand-list";
+        }
+        return "No authenticated user";
+    }
+
+    @GetMapping("/productTypeForm")
+    public String getProductsByTypeForm(Authentication auth, Model model) throws Exception {
+        if(auth != null) {
+            UserDetails userDetails = (UserDetails) auth.getPrincipal();
+            String email = userDetails.getUsername();
+
+            UserOutput loggedUser = getUserByEmailUseCase.execute(email);
+            model.addAttribute("user", userMapper.fromUserOutputToUserDTO(loggedUser));
+
+            return "type-product-form";
+        }
+        return "No authenticated user";
+    }
+
+    @PostMapping("/typeProducts")
+    public String getProductsByType(Authentication auth, ModelMap model, @Valid @ModelAttribute("productType")String productType) throws Exception {
+        if(auth != null) {
+            UserDetails userDetails = (UserDetails) auth.getPrincipal();
+            String email = userDetails.getUsername();
+
+            UserOutput loggedUser = getUserByEmailUseCase.execute(email);
+            model.addAttribute("user", userMapper.fromUserOutputToUserDTO(loggedUser));
+
+            try{
+                model.addAttribute("productsTypeList", getProductsByTypeUseCase.execute(productType)
+                        .stream()
+                        .map(productMapper::fromProductOutputToProductDTO)
+                        .collect(Collectors.toList()));
+
+                return getProductsByType(auth, model);
+
+            } catch (Exception e) {
+                model.addAttribute("formErrorMessage", e.getMessage());
+            }
+            return "type-product-form";
+        }
+        return "No authenticated user";
+    }
+
+    @GetMapping("/typeProducts")
+    public String getProductsByType(Authentication auth, ModelMap model) throws Exception {
+        if(auth != null) {
+            UserDetails userDetails = (UserDetails) auth.getPrincipal();
+            String email = userDetails.getUsername();
+
+            UserOutput loggedUser = getUserByEmailUseCase.execute(email);
+            model.addAttribute("user", userMapper.fromUserOutputToUserDTO(loggedUser));
+
+            return "products-by-type-list";
         }
         return "No authenticated user";
     }
