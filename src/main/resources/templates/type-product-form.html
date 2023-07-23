@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Productos por marca</title>
+    <title>Buscar productos por tipo</title>
 
     <!--JQUERY-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -16,7 +16,7 @@
 
     <!-- Nuestro css-->
     <link rel="shortcut icon" id="favicon" href="../static/img/logo.png" th:href="@{/img/logo.png}" type="image/x-icon">
-    <link rel="stylesheet" type="text/css" href="static/css/table.css" th:href="@{/css/table.css}">
+    <link rel="stylesheet" type="text/css" href="static/css/product-date-price.css" th:href="@{/css/product-date-price.css}">
 
     <!-- Fuente-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,40 +32,34 @@
             </div>
         </div>
     </nav>
-<div class="table-responsive">
-    <table id="productsBrandList" class="table table-bordered table-hover table-striped prices-table">
-        <thead class="custom-thead">
-        <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Tipo</th>
-            <th scope="col">Marca</th>
-            <th scope="col">Descripcion</th>
-            <th scope="col">Stock</th>
-            <th scope="col">Precios</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="product: ${productsBrandList}">
-            <td th:text="${product.productId}"></td>
-            <td th:text="${product.productType}"></td>
-            <td th:text="${product.brandName}"></td>
-            <td th:text="${product.description}"></td>
-            <td th:text="${product.stock}"></td>
-            <td>
-              <span>
-                  <a href="#" th:href="@{'/application/v1/prices/productPrices/'+ ${product.productId}}"><i class="fas fa-dollar-sign"></i> Consultar precios</a>
-              </span>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <div class="form-group">
-        <a class="btn btn-primary" th:href="@{/application/v1/products/brandForm}">Volver al formulario</a>
+<div class="modal-dialog text-center">
+    <div class="col-sm-8 main-section">
+        <div class="modal-content">
+            <div>
+                <h1>Buscar productos por tipo</h1>
+            </div>
+            </br>
+            <div style="color:#fff;">
+                Introduce el tipo de producto que buscas:
+            </div>
+            </br>
+            <form class="col-12" th:action="@{/application/v1/products/typeProducts}" method="post">
+                <div class="form-group" id="product-group">
+                    <input type="text" class="form-control" required autofocus="autofocus" placeholder="Marca" name="productType"/>
+                </div>
+                <button type="submit" class="btn btn-custom">Buscar productos</button>
+            </form>
+            <div class="col-12 logged">
+                <p><a href="#" th:href="@{/application/v1/loggedUser}">Regresar</a> </p>
+            </div>
+            <div class="alert alert-danger" th:if="${formErrorMessage}" th:text="${formErrorMessage}">Error Message</div>
+            <div class="alert alert-success" th:if="${successMessage}" th:text="${successMessage}">Success Message</div>
+        </div>
     </div>
-
-    <div class="alert alert-danger text-center" th:if="${listErrorMessage}" th:text="${listErrorMessage}">Error Message</div>
 </div>
-</br></br></br></br></br></br></br></br></br>
+</br>
+</br>
+</br>
 <footer>
     <div class="footer-content">
         <h1 class="titulo-final">&copy; 2023 María Duque</h1><h2>Todos los derechos reservados.</h2>

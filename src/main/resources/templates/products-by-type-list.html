@@ -33,7 +33,7 @@
         </div>
     </nav>
 <div class="table-responsive">
-    <table id="productsBrandList" class="table table-bordered table-hover table-striped prices-table">
+    <table id="productsTypeList" class="table table-bordered table-hover table-striped prices-table">
         <thead class="custom-thead">
         <tr>
             <th scope="col">ID</th>
@@ -45,7 +45,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="product: ${productsBrandList}">
+        <tr th:each="product: ${productsTypeList}">
             <td th:text="${product.productId}"></td>
             <td th:text="${product.productType}"></td>
             <td th:text="${product.brandName}"></td>
@@ -60,7 +60,7 @@
         </tbody>
     </table>
     <div class="form-group">
-        <a class="btn btn-primary" th:href="@{/application/v1/products/brandForm}">Volver al formulario</a>
+        <a class="btn btn-primary" th:href="@{/application/v1/products/productTypeForm}">Volver al formulario</a>
     </div>
 
     <div class="alert alert-danger text-center" th:if="${listErrorMessage}" th:text="${listErrorMessage}">Error Message</div>
