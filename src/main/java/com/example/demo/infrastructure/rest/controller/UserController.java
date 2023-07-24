@@ -73,7 +73,12 @@ public class UserController {
 
             return "logged-user";
         }
-        return "No authenticated user";
+        else{
+            model.addAttribute("errorMessage", "Error: usuario sin autentificar.");
+            model.addAttribute("errorDescription", "Para poder acceder a esta página es necesario que el " +
+                    "usuario se haya identificado previamente en la aplicación");
+            return "error";
+        }
     }
 
     @GetMapping("/signup")

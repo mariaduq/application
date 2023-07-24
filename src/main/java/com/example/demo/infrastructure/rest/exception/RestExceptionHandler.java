@@ -19,7 +19,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 		
 		return ResponseEntity
 				.status(HttpStatus.BAD_REQUEST)
-				.body("There are no results for your request. Try again.");
+				.body("No hay resultados para tu consulta.");
 				
 	}
 	
@@ -28,7 +28,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 		
 		return ResponseEntity
 				.status(HttpStatus.BAD_REQUEST)
-				.body("Date must be in JDBC format [yyyy-MM-dd HH:mm:ss.fffffffff]. Try again.");
+				.body("La fecha debe estar en formato JDBC [yyyy-MM-dd HH:mm:ss.fffffffff].");
 				
 	}
 	
@@ -37,7 +37,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 		
 		return ResponseEntity
 				.status(HttpStatus.BAD_REQUEST)
-				.body("Date must be in format [yyyy-MM-dd HH:mm:ss]. Try again.");
+				.body("La fecha debe estar en formato [yyyy-MM-dd HH:mm:ss].");
 				
 	}
 	
@@ -46,6 +46,12 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         
 		return ResponseEntity
 				.status(HttpStatus.BAD_REQUEST)
-				.body("Invalid number of parameters. Try again.");
+				.body("Número inválido de parámetros. Prueba otra vez.");
     }
+
+	@ExceptionHandler(Exception.class)
+	public ResponseEntity<String> handleException(Exception e) {
+		String errorMessage = "Se ha producido un error: " + e.getMessage();
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorMessage);
+	}
 }
