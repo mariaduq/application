@@ -55,8 +55,18 @@ public class PricesController {
 
 	private final UserMapper userMapper;
 
+	@Operation(summary = "Get product prices", description = "Get all the possible prices for a given product according to date", operationId = "getProductPrices")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Success",
+					content = { @Content(mediaType = "text/html") }),
+			@ApiResponse(responseCode = "401", description = "Unauthorized",
+					content = { @Content(mediaType = "text/html", schema = @Schema(implementation = String.class))}),
+			@ApiResponse(responseCode = "404", description = "Not Found",
+					content = { @Content(mediaType = "text/html", schema = @Schema(implementation = String.class))})
+	})
 	@GetMapping("/productPrices/{productId}")
-	public String getProductPrices(@PathVariable(name="productId")Long id, Authentication auth, Model model) throws Exception {
+	public String getProductPrices(@Parameter(description = "The ID of the product I want to know the prices for", schema = @Schema(type = "integer", format = "int64"), example = "9136275")
+									   @PathVariable(name="productId")Long id, Authentication auth, Model model) throws Exception {
 		if(auth != null) {
 			UserDetails userDetails = (UserDetails) auth.getPrincipal();
 			String email = userDetails.getUsername();
@@ -81,6 +91,13 @@ public class PricesController {
 		}
 	}
 
+	@Operation(summary = "Get price form", description = "Get the form to find the price of a product on a given date for the authenticated user", operationId = "getPriceForm")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Success",
+					content = { @Content(mediaType = "text/html") }),
+			@ApiResponse(responseCode = "401", description = "Unauthorized",
+					content = { @Content(mediaType = "text/html", schema = @Schema(implementation = String.class))})
+	})
 	@GetMapping("/form")
 	public String getPriceForm(Authentication auth, Model model) throws Exception {
 		if(auth != null) {
@@ -100,22 +117,26 @@ public class PricesController {
 		}
 	}
 
-	@Operation(summary = "Get price", description = "Get the correct price of a product", operationId = "getPrice")
+	@Operation(summary = "Get price", description = "Get the correct price of a product for the authenticated user", operationId = "getPrice")
 	@ApiResponses(value = {
-	       @ApiResponse(responseCode = "200", description = "Price",
-	    		   content = { @Content(mediaType = "application/json", schema = @Schema(implementation = List.class))}),
+	       @ApiResponse(responseCode = "200", description = "Success",
+	    		   content = { @Content(mediaType = "text/html")}),
 	       @ApiResponse(responseCode = "400", description = "Bad Request",
-	       		   content = { @Content(mediaType = "application/json", schema = @Schema(implementation = String.class))}),
+	       		   content = { @Content(mediaType = "text/html", schema = @Schema(implementation = String.class))}),
+		   @ApiResponse(responseCode = "401", description = "Unauthorized",
+				   content = { @Content(mediaType = "text/html", schema = @Schema(implementation = String.class))}),
 	       @ApiResponse(responseCode = "404", description = "Not Found",
-	       		   content = { @Content(mediaType = "application/json", schema = @Schema(implementation = String.class))})
+	       		   content = { @Content(mediaType = "text/html", schema = @Schema(implementation = String.class))})
 	       })
 	@PostMapping("/price")
 	public String getPrice(
 			Authentication auth,
 			ModelMap model,
 			@Parameter(description = "The date for which we want to know the product price",
-			schema = @Schema(type = "string", format = "YYYY-MM-DD HH:mm:ss")) @Valid @ModelAttribute("date")String dateString,
-			@Parameter(description = "The product for which we want to know the price") @Valid @ModelAttribute("productId")Long productId) throws Exception {
+				schema = @Schema(type = "string", format = "yyyy-MM-dd'T'HH:mm"), example = "2024-12-09'T'19:54")
+			@Valid @RequestParam("date")String dateString,
+			@Parameter(description = "The id of the product for which we want to know the price", schema = @Schema(type = "integer", format = "int64"), example = "9136275")
+			@Valid @RequestParam("productId")Long productId) throws Exception {
 
 		if(auth != null) {
 			UserDetails userDetails = (UserDetails) auth.getPrincipal();
@@ -139,6 +160,7 @@ public class PricesController {
 
 					model.addAttribute("productPrice", priceDTO.getPrice());
 					model.addAttribute("date", formattedDate);
+					model.addAttribute("productId", productId);
 
 					return getPrice(auth, model);
 
@@ -159,6 +181,15 @@ public class PricesController {
 		}
 	}
 
+	@Operation(summary = "Get price", description = "Get the correct price of a product for the authenticated user", operationId = "getPrice")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Success",
+					content = { @Content(mediaType = "text/html")}),
+			@ApiResponse(responseCode = "401", description = "Unauthorized",
+					content = { @Content(mediaType = "text/html", schema = @Schema(implementation = String.class))}),
+			@ApiResponse(responseCode = "404", description = "Not Found",
+					content = { @Content(mediaType = "text/html", schema = @Schema(implementation = String.class))})
+	})
 	@GetMapping("/price")
 	public String getPrice(Authentication auth, ModelMap model) throws Exception {
 		if(auth != null) {
