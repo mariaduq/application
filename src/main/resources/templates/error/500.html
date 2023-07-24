@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>ElectroShop</title>
+
+  <!--JQUERY-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <!-- FRAMEWORK BOOTSTRAP para el estilo de la pagina-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+  <!-- Los iconos tipo Solid de Fontawesome-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+  <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+  <!-- Nuestro css-->
+  <link rel="shortcut icon" id="favicon" href="../static/img/logo.png" th:href="@{/img/logo.png}" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="static/css/login.css" th:href="@{/css/login.css}">
+
+  <!-- Fuente-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#" th:href="@{/}">ElectroShop</a>
+    </div>
+  </div>
+</nav>
+<div class="container text-center">
+  <div class="mx-auto col-10 card" style="margin-top: 20px; margin-bottom: 20px;">
+    <div class="card-header" style="margin-left: -15px; margin-right: -15px;">
+      <h4 ><span th:text="${error}"></span> - <span th:text="${status}"></span></h4>
+    </div>
+    <div class="card-body">
+      <a href="/application/v1/"><img src="static/img/error500.jpg" th:src="@{/img/error500.jpg}" style="width: 300px; height: auto;"/></a>
+    </div>
+    <div class="card-footer" style="margin-left: -15px; margin-right: -15px;">
+      <span th:text="${message}">Message</span><br/>
+      <span th:text="${exception}">Trace </span><br/>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="footer-content">
+    <h1 class="titulo-final">&copy; 2023 María Duque</h1><h2>Todos los derechos reservados.</h2>
+  </div>
+  <img src="../static/img/logo.png" th:src="@{/img/logo.png}" class="logo"/>
+</footer>
+</body>
+</html>
+
