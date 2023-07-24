@@ -50,7 +50,10 @@
         <td th:text="${product.productType}"></td>
         <td th:text="${product.brandName}"></td>
         <td th:text="${product.description}"></td>
-        <td th:text="${product.stock}"></td>
+        <td th:class="${product.stock lt 5 ? 'low-stock' : ''}">
+          <span th:if="${product.stock eq 0}" style="color: black;">Próximamente...</span>
+          <span th:if="${product.stock gt 0}" th:text="${product.stock}"></span>
+        </td>
         <td>
           <span>
               <a href="#" th:href="@{'/application/v1/prices/productPrices/'+ ${product.productId}}"><i class="fas fa-dollar-sign"></i> Consultar precios</a>

@@ -128,3 +128,8 @@ footer h2{
     font-size: small;
     margin-left: 20px;
 }
+
+.low-stock{
+    color: red;
+    font-weight: bold;
+}
