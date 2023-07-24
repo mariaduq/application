@@ -54,7 +54,6 @@ public class UserAdapter implements UsersPort {
 
     @Override
     public User update(User updateUser) throws Exception {
-        System.out.println(updateUser);
         UserEntity userFound = userRepositoryJpa.findById(updateUser.getId())
                 .orElseThrow(() -> new Exception("Este usuario no existe."));
 
