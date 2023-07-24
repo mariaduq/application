@@ -22,10 +22,8 @@ public class WebSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests()
-                .requestMatchers(resources).permitAll()
-                .requestMatchers("/application/v1/", "/application/v1/homepage", "/application/v1/signup",
-                        "/application/v1/login/forgotPassword").permitAll()
-                .anyRequest().authenticated()
+                .anyRequest()
+                .permitAll()
                 .and()
                 .formLogin()
                     .loginPage("/application/v1/login")
