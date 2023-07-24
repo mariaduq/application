@@ -62,7 +62,12 @@ public class ProductController {
             }
             return "products-list";
         }
-        return "No authenticated user";
+        else{
+            model.addAttribute("errorMessage", "Error: usuario sin autentificar.");
+            model.addAttribute("errorDescription", "Para poder acceder a esta página es necesario que el " +
+                    "usuario se haya identificado previamente en la aplicación");
+            return "error";
+        }
     }
 
     @GetMapping("/brandForm")
@@ -76,7 +81,12 @@ public class ProductController {
 
             return "brand-product-form";
         }
-        return "No authenticated user";
+        else{
+            model.addAttribute("errorMessage", "Error: usuario sin autentificar.");
+            model.addAttribute("errorDescription", "Para poder acceder a esta página es necesario que el " +
+                    "usuario se haya identificado previamente en la aplicación");
+            return "error";
+        }
     }
 
     @PostMapping("/brandProducts")
@@ -101,7 +111,12 @@ public class ProductController {
             }
             return "brand-product-form";
         }
-        return "No authenticated user";
+        else{
+            model.addAttribute("errorMessage", "Error: usuario sin autentificar.");
+            model.addAttribute("errorDescription", "Para poder acceder a esta página es necesario que el " +
+                    "usuario se haya identificado previamente en la aplicación");
+            return "error";
+        }
     }
 
     @GetMapping("/brandProducts")
@@ -115,7 +130,12 @@ public class ProductController {
 
             return "products-by-brand-list";
         }
-        return "No authenticated user";
+        else{
+            model.addAttribute("errorMessage", "Error: usuario sin autentificar.");
+            model.addAttribute("errorDescription", "Para poder acceder a esta página es necesario que el " +
+                    "usuario se haya identificado previamente en la aplicación");
+            return "error";
+        }
     }
 
     @GetMapping("/productTypeForm")
@@ -129,7 +149,12 @@ public class ProductController {
 
             return "type-product-form";
         }
-        return "No authenticated user";
+        else{
+            model.addAttribute("errorMessage", "Error: usuario sin autentificar.");
+            model.addAttribute("errorDescription", "Para poder acceder a esta página es necesario que el " +
+                    "usuario se haya identificado previamente en la aplicación");
+            return "error";
+        }
     }
 
     @PostMapping("/typeProducts")
@@ -154,7 +179,12 @@ public class ProductController {
             }
             return "type-product-form";
         }
-        return "No authenticated user";
+        else{
+            model.addAttribute("errorMessage", "Error: usuario sin autentificar.");
+            model.addAttribute("errorDescription", "Para poder acceder a esta página es necesario que el " +
+                    "usuario se haya identificado previamente en la aplicación");
+            return "error";
+        }
     }
 
     @GetMapping("/typeProducts")
@@ -168,6 +198,11 @@ public class ProductController {
 
             return "products-by-type-list";
         }
-        return "No authenticated user";
+        else{
+            model.addAttribute("errorMessage", "Error: usuario sin autentificar.");
+            model.addAttribute("errorDescription", "Para poder acceder a esta página es necesario que el " +
+                    "usuario se haya identificado previamente en la aplicación");
+            return "error";
+        }
     }
 }

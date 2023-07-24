@@ -119,36 +119,50 @@ public class UserController {
     }
 
     @GetMapping("/me/account/edit/{id}")
-    public String getEditUserForm(ModelMap model, @PathVariable(name="id")Long id) {
-        UserOutput userToEdit = getUserByIdUseCase.execute(id);
-        model.addAttribute("user", userMapper.fromUserOutputToUserDTO(userToEdit));
-        model.addAttribute("editMode", "true");
-        return "user-form";
+    public String getEditUserForm(Authentication auth, ModelMap model, @PathVariable(name="id")Long id) {
+        if(auth != null) {
+            UserOutput userToEdit = getUserByIdUseCase.execute(id);
+            model.addAttribute("user", userMapper.fromUserOutputToUserDTO(userToEdit));
+            model.addAttribute("editMode", "true");
+            return "user-form";
+        }
+        else{
+            model.addAttribute("errorMessage", "Error: usuario sin autentificar.");
+            model.addAttribute("errorDescription", "Para poder acceder a esta página es necesario que el " +
+                    "usuario se haya identificado previamente en la aplicación");
+            return "error";
+        }
     }
 
     @PostMapping("/me/account/edit")
-    public String editUser(@Valid @ModelAttribute("user") UserDTO userDTO, BindingResult result, ModelMap model) {
+    public String editUser(Authentication auth, @Valid @ModelAttribute("user") UserDTO userDTO, BindingResult result, ModelMap model) {
+        if(auth != null) {
+            if(result.hasErrors()) {
+                model.addAttribute("user", userDTO);
+                model.addAttribute("editMode", "true");
+            }
+            else{
+                try{
+                    updateUserUseCase.execute(userMapper.toUserInput(userDTO));
+                    model.addAttribute("user", userDTO);
+                    model.addAttribute("successMessage", "¡Perfil editado con éxito!");
+                    model.addAttribute("editMode", "true");
+                } catch (Exception e) {
+                    model.addAttribute("formErrorMessage", e.getMessage());
+                    model.addAttribute("user", userDTO);
+                    model.addAttribute("editMode", "true");
 
-        System.out.println(userDTO);
-        if(result.hasErrors()) {
-            model.addAttribute("user", userDTO);
-            model.addAttribute("editMode", "true");
-        }
-        else{
-            try{
-                updateUserUseCase.execute(userMapper.toUserInput(userDTO));
-                model.addAttribute("user", userDTO);
-                model.addAttribute("successMessage", "¡Perfil editado con éxito!");
-                model.addAttribute("editMode", "true");
-            } catch (Exception e) {
-                model.addAttribute("formErrorMessage", e.getMessage());
-                model.addAttribute("user", userDTO);
-                model.addAttribute("editMode", "true");
+                }
 
             }
-
+            return "user-form";
         }
-        return "user-form";
+        else{
+            model.addAttribute("errorMessage", "Error: usuario sin autentificar.");
+            model.addAttribute("errorDescription", "Para poder acceder a esta página es necesario que el " +
+                    "usuario se haya identificado previamente en la aplicación");
+            return "error";
+        }
     }
 
     @GetMapping("/me/account/edit/cancel")
@@ -162,17 +176,25 @@ public class UserController {
     }
 
     @GetMapping("/me/account/delete/{id}")
-    public String deleteUser(ModelMap model, @PathVariable(name="id")Long id) {
-        try{
-            UserDTO userDTO = userMapper.fromUserOutputToUserDTO(getUserByIdUseCase.execute(id));
-            Context context = new Context();
-            context.setVariable("name", userDTO.getName());
-            sendEmailUseCase.execute(userDTO.getEmail(), "Cuenta eliminada", "email-delete-account-template", context);
-            deleteUserUseCase.execute(id);
-        } catch (Exception e) {
-            model.addAttribute("formErrorMessage", e.getMessage());
+    public String deleteUser(Authentication auth, ModelMap model, @PathVariable(name="id")Long id) {
+        if(auth != null) {
+            try{
+                UserDTO userDTO = userMapper.fromUserOutputToUserDTO(getUserByIdUseCase.execute(id));
+                Context context = new Context();
+                context.setVariable("name", userDTO.getName());
+                sendEmailUseCase.execute(userDTO.getEmail(), "Cuenta eliminada", "email-delete-account-template", context);
+                deleteUserUseCase.execute(id);
+            } catch (Exception e) {
+                model.addAttribute("formErrorMessage", e.getMessage());
+            }
+            return homepage();
         }
-        return homepage();
+        else{
+            model.addAttribute("errorMessage", "Error: usuario sin autentificar.");
+            model.addAttribute("errorDescription", "Para poder acceder a esta página es necesario que el " +
+                    "usuario se haya identificado previamente en la aplicación");
+            return "error";
+        }
     }
 
     @GetMapping("/login/forgotPassword")
@@ -228,7 +250,12 @@ public class UserController {
 
             return "change-password";
         }
-        return "No authenticated user";
+        else{
+            model.addAttribute("errorMessage", "Error: usuario sin autentificar.");
+            model.addAttribute("errorDescription", "Para poder acceder a esta página es necesario que el " +
+                    "usuario se haya identificado previamente en la aplicación");
+            return "error";
+        }
     }
 
     @PostMapping("/me/account/edit/changePassword")
@@ -255,6 +282,12 @@ public class UserController {
                 model.addAttribute("formErrorMessage", e.getMessage());
             }
             return "change-password";
-        } else return "No authenticated user";
+        }
+        else{
+            model.addAttribute("errorMessage", "Error: usuario sin autentificar.");
+            model.addAttribute("errorDescription", "Para poder acceder a esta página es necesario que el " +
+                    "usuario se haya identificado previamente en la aplicación");
+            return "error";
+        }
     }
 }
