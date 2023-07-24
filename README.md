@@ -57,6 +57,11 @@ http://localhost:8080/swagger-ui/index.html
 * [PostgreSQL](https://www.postgresql.org) - Database
 * [Lombok](https://projectlombok.org) - Java Library
 * [OpenAPI](https://swagger.io/specification/) - Application documentation
+* [HTML](https://lenguajehtml.com) - Markup language
+* [CSS](https://lenguajecss.com) - Style language
+* [JavaScript](https://lenguajejs.com/javascript/) - Interpreted front-end programming language
+* [Docker](https://www.docker.com) - Deployment
+* [Docker Compose](https://docs.docker.com/compose/) - Deployment
 ## Authors 👩🏼‍💻
 
 * **María Duque Román** - [mariaduq](https://github.com/mariaduq)
