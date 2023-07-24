@@ -159,6 +159,10 @@ public class UserController {
     @GetMapping("/me/account/delete/{id}")
     public String deleteUser(ModelMap model, @PathVariable(name="id")Long id) {
         try{
+            UserDTO userDTO = userMapper.fromUserOutputToUserDTO(getUserByIdUseCase.execute(id));
+            Context context = new Context();
+            context.setVariable("name", userDTO.getName());
+            sendEmailUseCase.execute(userDTO.getEmail(), "Cuenta eliminada", "email-delete-account-template", context);
             deleteUserUseCase.execute(id);
         } catch (Exception e) {
             model.addAttribute("formErrorMessage", e.getMessage());
