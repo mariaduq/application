@@ -1,6 +1,6 @@
 # application
 
-Project
+Project that provides the price of a product at any time of the year.
 
 ## Getting Started 🚀
 
@@ -53,7 +53,10 @@ http://localhost:8080/swagger-ui/index.html
 * [Maven](https://maven.apache.org/) - Dependency Management
 * [JUnit](https://junit.org/junit5/) - Testing
 * [OpenJDK](https://openjdk.org) - Java
-
+* [Thymeleaf](https://www.thymeleaf.org) - Template engine
+* [PostgreSQL](https://www.postgresql.org) - Database
+* [Lombok](https://projectlombok.org) - Java Library
+* [OpenAPI](https://swagger.io/specification/) - Application documentation
 ## Authors 👩🏼‍💻
 
 * **María Duque Román** - [mariaduq](https://github.com/mariaduq)
