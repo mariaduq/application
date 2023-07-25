@@ -15,7 +15,6 @@ public class UpdateUserUseCase {
     private final UserMapper userMapper;
 
     public UserOutput execute(UserInput userInput) throws Exception {
-        System.out.println(userInput);
         return userMapper.toOutput(usersPort.update(userMapper.fromInput(userInput)));
     }
 }
