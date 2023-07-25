@@ -11,6 +11,7 @@ import org.mockito.Mockito;
 import java.sql.Timestamp;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
@@ -51,6 +52,19 @@ public class GetAllPricesUseCaseTest {
         assertEquals(allPrices.get(3).getProductId(), 3837464);
         assertEquals(allPrices.get(4).getProductId(), 9136275);
 
+    }
+
+    @Test
+    void should_return_empty_list() {
+        //GIVEN
+        when(priceRepositoryJpa.findAll())
+                .thenReturn(List.of());
+
+        //WHEN
+        List<PriceOutput> allPrices = getAllPricesUseCase.execute();
+
+        //THEN
+        assertThat(allPrices.isEmpty());
     }
 
     private PriceEntity buildPrice(float amount, Timestamp startDate, Timestamp endDate, int priority, long productId) {
