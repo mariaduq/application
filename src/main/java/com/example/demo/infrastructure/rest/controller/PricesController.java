@@ -2,7 +2,6 @@ package com.example.demo.infrastructure.rest.controller;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 
 import com.example.demo.application.output.PriceOutput;
 import com.example.demo.application.output.UserOutput;
@@ -153,7 +152,7 @@ public class PricesController {
 
 				try {
 					LocalDateTime date = LocalDateTime.parse(dateString, entryFormat);
-					PriceOutput price = getPricesUseCase.getCorrectPrice(date, productId);
+					PriceOutput price = getPricesUseCase.execute(date, productId);
 					PriceDTO priceDTO = mapper.map(price, PriceDTO.class);
 
 					String formattedDate = date.format(outputFormat);

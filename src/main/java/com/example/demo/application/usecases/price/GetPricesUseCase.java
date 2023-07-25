@@ -8,7 +8,6 @@ import com.example.demo.application.output.PriceOutput;
 import com.example.demo.domain.port.PricesPort;
 import com.example.demo.domain.model.Price;
 
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -18,7 +17,7 @@ public class GetPricesUseCase {
 
 	private final PriceMapper priceMapper;
 	
-	public PriceOutput getCorrectPrice(LocalDateTime date, long productId) throws Exception {
+	public PriceOutput execute(LocalDateTime date, long productId) throws Exception {
 	
 		return pricesPort.getPrices().stream()
 				.filter(price -> price.getProductId() == productId)

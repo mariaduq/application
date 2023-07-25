@@ -36,7 +36,7 @@ class GetPricesUseCaseTest {
 		LocalDateTime date = LocalDateTime.of(2024, 06, 14, 10, 00, 00);
 		long productId = 9136275;
 
-		PriceOutput price = getPricesUseCase.getCorrectPrice(date, productId);
+		PriceOutput price = getPricesUseCase.execute(date, productId);
 		
 		assertEquals((float)912.50, price.getPrice());
 	}
@@ -52,7 +52,7 @@ class GetPricesUseCaseTest {
 		LocalDateTime date = LocalDateTime.of(2024, 01, 8, 16, 00, 00);
 		long productId = 9136275;
 
-		PriceOutput price = getPricesUseCase.getCorrectPrice(date, productId);
+		PriceOutput price = getPricesUseCase.execute(date, productId);
 		
 		assertEquals((float)850.50, price.getPrice());
 	}
@@ -67,7 +67,7 @@ class GetPricesUseCaseTest {
 		LocalDateTime date = LocalDateTime.of(2024, 01, 01, 10, 00, 00);
 		long productId = 9136275;
 
-		PriceOutput price = getPricesUseCase.getCorrectPrice(date, productId);
+		PriceOutput price = getPricesUseCase.execute(date, productId);
 		
 		assertEquals((float)912.50, price.getPrice());
 	}
@@ -83,7 +83,7 @@ class GetPricesUseCaseTest {
 		LocalDateTime date = LocalDateTime.of(2024, 9, 28, 23, 58, 00);
 		long productId = 9136275;
 
-		PriceOutput price = getPricesUseCase.getCorrectPrice(date, productId);
+		PriceOutput price = getPricesUseCase.execute(date, productId);
 		
 		assertEquals((float)840.50, price.getPrice());
 	}
@@ -99,7 +99,7 @@ class GetPricesUseCaseTest {
 		LocalDateTime date = LocalDateTime.of(2024, 9, 28, 23, 58, 00);
 		long productId = 6216547;
 
-		PriceOutput price = getPricesUseCase.getCorrectPrice(date, productId);
+		PriceOutput price = getPricesUseCase.execute(date, productId);
 		
 		assertEquals((float)1000.50, price.getPrice());
 	}
@@ -115,7 +115,7 @@ class GetPricesUseCaseTest {
 		LocalDateTime date = LocalDateTime.of(2024, 06, 16, 21, 00, 00);
 		long productId = 621654;
 
-		assertThrows(Exception.class, ()->getPricesUseCase.getCorrectPrice(date, productId));
+		assertThrows(Exception.class, ()->getPricesUseCase.execute(date, productId));
 	}
 	
 	
@@ -129,7 +129,7 @@ class GetPricesUseCaseTest {
 		LocalDateTime date = LocalDateTime.of(2025, 06, 16, 21, 00, 00);
 		long productId = 6216547;
 
-		assertThrows(Exception.class, ()->getPricesUseCase.getCorrectPrice(date, productId));
+		assertThrows(Exception.class, ()->getPricesUseCase.execute(date, productId));
 	}
 	
 	
