@@ -121,7 +121,7 @@ class GetPricesUseCaseTest {
 	
 	
 	@Test
-	void priceForInvalidProduct() {
+	void price_for_invalid_product() {
 		//GIVEN
 		when(priceRepositoryJpa.findAll())
 				.thenReturn(List.of(
@@ -137,7 +137,7 @@ class GetPricesUseCaseTest {
 	
 	
 	@Test
-	void priceForInvalidDate() {
+	void price_for_invalid_date() {
 		//GIVEN
 		when(priceRepositoryJpa.findAll())
 				.thenReturn(List.of(
