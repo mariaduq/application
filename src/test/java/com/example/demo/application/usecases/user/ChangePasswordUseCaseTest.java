@@ -10,6 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -42,6 +43,39 @@ public class ChangePasswordUseCaseTest {
         //THEN
         verify(userRepositoryJpa, times(1)).findByEmail(any());
         verify(userRepositoryJpa, times(1)).save(any());
+    }
+
+    @Test
+    void oldPassword_without_encode_not_equals_user_password() throws Exception {
+        //GIVEN
+        String oldPassword = "123";
+        String newPassword = "1234";
+        String email = "i92durom@uco.es";
+
+        when(userRepositoryJpa.findByEmail(any()))
+                .thenReturn(Optional.of(buildUser(oldPassword)));
+        when(userRepositoryJpa.save(any()))
+                .thenReturn(buildUser(newPassword));
+
+        //WHEN; THEN
+        assertThrows(Exception.class, ()->changePasswordUseCase.execute(email, oldPassword, newPassword, newPassword));
+    }
+
+    @Test
+    void newPassword_and_confirmNewPassword_not_match() throws Exception {
+        //GIVEN
+        String oldPassword = "123";
+        String newPassword = "1234";
+        String confirmNewPassword = "12345";
+        String email = "i92durom@uco.es";
+
+        when(userRepositoryJpa.findByEmail(any()))
+                .thenReturn(Optional.of(buildUser(oldPassword)));
+        when(userRepositoryJpa.save(any()))
+                .thenReturn(buildUser(newPassword));
+
+        //WHEN; THEN
+        assertThrows(Exception.class, ()->changePasswordUseCase.execute(email, oldPassword, newPassword, confirmNewPassword));
     }
 
     private UserEntity buildUser(String password) {
