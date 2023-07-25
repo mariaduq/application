@@ -26,7 +26,7 @@ public class GetUserByEmailUseCaseTest {
     GetUserByEmailUseCase getUserByEmailUseCase = new GetUserByEmailUseCase(userAdapter, new com.example.demo.application.mapper.UserMapper());
 
     @Test
-    void should_return_user() throws Exception {
+    void should_return_user_by_email() throws Exception {
         //GIVEN
         UserEntity user = buildUser();
         String email = user.getEmail();
