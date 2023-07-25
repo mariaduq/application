@@ -29,6 +29,7 @@ class GetPricesUseCaseTest {
 	
 	@Test
 	void price_when_date_is_2024_06_14_10_00_and_productId_is_9136275() throws Exception {
+		//GIVEN
 		when(priceRepositoryJpa.findAll())
 				.thenReturn(List.of(
 				buildPrice((float)912.50, Timestamp.valueOf("2024-01-01 00:00:00"), Timestamp.valueOf("2024-12-31 23:59:59"), 0, 9136275)));
@@ -36,14 +37,17 @@ class GetPricesUseCaseTest {
 		LocalDateTime date = LocalDateTime.of(2024, 06, 14, 10, 00, 00);
 		long productId = 9136275;
 
+		//WHEN
 		PriceOutput price = getPricesUseCase.execute(date, productId);
-		
+
+		//THEN
 		assertEquals((float)912.50, price.getPrice());
 	}
 	
 	
 	@Test
 	void price_when_date_is_2024_01_8_16_00_and_productId_is_9136275() throws Exception {
+		//GIVEN
 		when(priceRepositoryJpa.findAll())
 				.thenReturn(List.of(
 				buildPrice((float)912.50, Timestamp.valueOf("2024-01-01 00:00:00"), Timestamp.valueOf("2024-12-31 23:59:59"), 0, 9136275),
@@ -52,14 +56,17 @@ class GetPricesUseCaseTest {
 		LocalDateTime date = LocalDateTime.of(2024, 01, 8, 16, 00, 00);
 		long productId = 9136275;
 
+		//WHEN
 		PriceOutput price = getPricesUseCase.execute(date, productId);
-		
+
+		//THEN
 		assertEquals((float)850.50, price.getPrice());
 	}
 	
 	
 	@Test
 	void price_when_date_is_2024_01_01_10_00_and_productId_is_9136275() throws Exception {
+		//GIVEN
 		when(priceRepositoryJpa.findAll())
 				.thenReturn(List.of(
 				buildPrice((float)912.50, Timestamp.valueOf("2024-01-01 00:00:00"), Timestamp.valueOf("2024-12-31 23:59:59"), 0, 9136275)));
@@ -67,14 +74,17 @@ class GetPricesUseCaseTest {
 		LocalDateTime date = LocalDateTime.of(2024, 01, 01, 10, 00, 00);
 		long productId = 9136275;
 
+		//WHEN
 		PriceOutput price = getPricesUseCase.execute(date, productId);
-		
+
+		//THEN
 		assertEquals((float)912.50, price.getPrice());
 	}
 	
 	
 	@Test
 	void price_when_date_is_2024_09_28_23_58_and_productId_is_9136275() throws Exception {
+		//GIVEN
 		when(priceRepositoryJpa.findAll())
 				.thenReturn(List.of(
 				buildPrice((float)912.50, Timestamp.valueOf("2024-01-01 00:00:00"), Timestamp.valueOf("2024-12-31 23:59:59"), 0, 9136275),
@@ -83,13 +93,16 @@ class GetPricesUseCaseTest {
 		LocalDateTime date = LocalDateTime.of(2024, 9, 28, 23, 58, 00);
 		long productId = 9136275;
 
+		//WHEN
 		PriceOutput price = getPricesUseCase.execute(date, productId);
-		
+
+		//THEN
 		assertEquals((float)840.50, price.getPrice());
 	}
 	
 	@Test
 	void price_when_date_is_2024_09_28_23_58_and_productId_is_6216547() throws Exception {
+		//GIVEN
 		when(priceRepositoryJpa.findAll())
 				.thenReturn(List.of(
 				buildPrice((float)1245.50, Timestamp.valueOf("2024-01-01 00:00:00"), Timestamp.valueOf("2024-12-31 23:59:59"), 0, 6216547),
@@ -99,14 +112,17 @@ class GetPricesUseCaseTest {
 		LocalDateTime date = LocalDateTime.of(2024, 9, 28, 23, 58, 00);
 		long productId = 6216547;
 
+		//WHEN
 		PriceOutput price = getPricesUseCase.execute(date, productId);
-		
+
+		//THEN
 		assertEquals((float)1000.50, price.getPrice());
 	}
 	
 	
 	@Test
 	void priceForInvalidProduct() {
+		//GIVEN
 		when(priceRepositoryJpa.findAll())
 				.thenReturn(List.of(
 				buildPrice((float)1245.50, Timestamp.valueOf("2024-01-01 00:00:00"), Timestamp.valueOf("2024-12-31 23:59:59"), 0, 6216547),
@@ -115,12 +131,14 @@ class GetPricesUseCaseTest {
 		LocalDateTime date = LocalDateTime.of(2024, 06, 16, 21, 00, 00);
 		long productId = 621654;
 
+		//WHEN; THEN
 		assertThrows(Exception.class, ()->getPricesUseCase.execute(date, productId));
 	}
 	
 	
 	@Test
 	void priceForInvalidDate() {
+		//GIVEN
 		when(priceRepositoryJpa.findAll())
 				.thenReturn(List.of(
 						buildPrice((float)1245.50, Timestamp.valueOf("2024-01-01 00:00:00"), Timestamp.valueOf("2024-12-31 23:59:59"), 0, 6216547),
@@ -129,6 +147,7 @@ class GetPricesUseCaseTest {
 		LocalDateTime date = LocalDateTime.of(2025, 06, 16, 21, 00, 00);
 		long productId = 6216547;
 
+		//WHEN; THEN
 		assertThrows(Exception.class, ()->getPricesUseCase.execute(date, productId));
 	}
 	
