@@ -23,8 +23,7 @@ public class GetPricesUseCase {
 				.filter(price -> price.getProductId() == productId)
 				.filter(price -> price.getStartDate().isBefore(date))
 				.filter(price -> price.getEndDate().isAfter(date))
-				.sorted(Comparator.comparingInt(Price::getPriority).reversed())
-				.findFirst()
+				.max(Comparator.comparingInt(Price::getPriority))
 				.map(priceMapper::toOutput)
 				.orElseThrow(() -> new Exception("No tenemos ningún precio para los datos introducidos. Compruébalos de nuevo."));
 	}
