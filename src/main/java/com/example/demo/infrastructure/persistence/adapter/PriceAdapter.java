@@ -16,7 +16,7 @@ import com.example.demo.domain.model.Price;
 @Service
 public class PriceAdapter implements PricesPort{
 	
-	private PriceRepositoryJpa priceRepositoryJpa;
+	private final PriceRepositoryJpa priceRepositoryJpa;
 
 	public PriceAdapter (PriceRepositoryJpa priceRepositoryJpa) {
 		this.priceRepositoryJpa=priceRepositoryJpa;
