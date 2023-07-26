@@ -16,7 +16,7 @@ public class ProductMapperTest {
     private final ProductMapper productMapper = new ProductMapper();
 
     @Test
-    void should_transform_from_Product_to_ProductOutput() {
+    void should_transform_from_domain_to_output() {
         //GIVEN
         Product product = Product.builder()
                 .productId(9136275)

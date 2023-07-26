@@ -13,7 +13,7 @@ public class PriceMapperTest {
     private final PriceMapper priceMapper = new PriceMapper();
 
     @Test
-    void should_transform_from_Price_to_PriceOutput() {
+    void should_transform_from_domain_to_output() {
         //GIVEN
         Price price = Price.builder()
                 .priceList(1)

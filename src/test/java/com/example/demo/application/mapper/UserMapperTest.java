@@ -9,10 +9,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class UserMapperTest {
 
-    private UserMapper userMapper = new UserMapper();
+    private final UserMapper userMapper = new UserMapper();
 
     @Test
-    void should_transform_from_User_to_UserOutput() {
+    void should_transform_from_domain_to_output() {
         //GIVEN
         User user = User.builder()
                 .id((long)1)
@@ -38,7 +38,7 @@ public class UserMapperTest {
     }
 
     @Test
-    void should_transform_from_UserInput_to_User() {
+    void should_transform_from_input_to_domain() {
         //GIVEN
         UserInput userInput = UserInput.builder()
                 .id((long)1)
