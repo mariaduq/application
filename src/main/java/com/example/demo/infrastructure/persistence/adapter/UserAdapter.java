@@ -131,7 +131,6 @@ public class UserAdapter implements UsersPort {
     }
 
     private boolean checkPassword(User userFound, String loginPassword) {
-        if(userFound.getPassword().equals(loginPassword)) return true;
-        else return false;
+        return userFound.getPassword().equals(loginPassword);
     }
 }
