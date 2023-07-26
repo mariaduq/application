@@ -33,6 +33,7 @@ public class ProductMapper {
         }
 
         return ProductEntity.builder()
+                .productId(product.getProductId())
                 .productType(product.getProductType())
                 .brandName(product.getBrandName())
                 .brandId(product.getBrandId())
