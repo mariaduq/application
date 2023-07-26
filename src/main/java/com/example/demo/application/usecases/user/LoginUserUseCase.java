@@ -4,7 +4,6 @@ import com.example.demo.application.input.UserInput;
 import com.example.demo.application.mapper.UserMapper;
 import com.example.demo.application.output.UserOutput;
 import com.example.demo.domain.port.UsersPort;
-import com.example.demo.domain.model.User;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

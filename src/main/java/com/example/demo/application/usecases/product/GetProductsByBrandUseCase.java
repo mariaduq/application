@@ -6,7 +6,6 @@ import com.example.demo.domain.port.ProductsPort;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 public class GetProductsByBrandUseCase {

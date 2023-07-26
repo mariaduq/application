@@ -72,8 +72,8 @@ public class ApplicationConfig {
 	}
 
 	@Bean
-	public UpdateForgotPasswordUseCase updateForgotPasswordUseCase(UsersPort usersPort, UserMapper userMapper) {
-		return new UpdateForgotPasswordUseCase(usersPort, userMapper);
+	public UpdateForgotPasswordUseCase updateForgotPasswordUseCase(UsersPort usersPort) {
+		return new UpdateForgotPasswordUseCase(usersPort);
 	}
 
 	@Bean

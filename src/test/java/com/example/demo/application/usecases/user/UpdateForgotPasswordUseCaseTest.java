@@ -22,7 +22,7 @@ public class UpdateForgotPasswordUseCaseTest {
 
     UserAdapter userAdapter = new UserAdapter(userRepositoryJpa, new UserMapper(), bCryptPasswordEncoder);
 
-    UpdateForgotPasswordUseCase updateForgotPasswordUseCase = new UpdateForgotPasswordUseCase(userAdapter, new com.example.demo.application.mapper.UserMapper());
+    UpdateForgotPasswordUseCase updateForgotPasswordUseCase = new UpdateForgotPasswordUseCase(userAdapter);
 
     @Test
     void should_update_forgot_password() throws Exception {

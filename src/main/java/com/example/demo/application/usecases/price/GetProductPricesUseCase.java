@@ -3,7 +3,6 @@ package com.example.demo.application.usecases.price;
 import com.example.demo.application.mapper.PriceMapper;
 import com.example.demo.application.output.PriceOutput;
 import com.example.demo.domain.port.PricesPort;
-import com.example.demo.domain.model.Price;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
