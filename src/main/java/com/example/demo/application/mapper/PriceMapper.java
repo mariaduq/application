@@ -1,9 +1,7 @@
 package com.example.demo.application.mapper;
 
 import com.example.demo.application.output.PriceOutput;
-import com.example.demo.application.output.ProductOutput;
 import com.example.demo.domain.model.Price;
-import com.example.demo.domain.model.Product;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
