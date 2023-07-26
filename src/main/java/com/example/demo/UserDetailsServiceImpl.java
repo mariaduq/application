@@ -33,8 +33,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         GrantedAuthority grantedAuthority = new SimpleGrantedAuthority("USER");
         grantList.add(grantedAuthority);
 
-        UserDetails userDetails = (UserDetails) new User(username, user.getPassword(), grantList);
-
-        return userDetails;
+        return (UserDetails) new User(username, user.getPassword(), grantList);
     }
 }
