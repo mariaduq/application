@@ -75,7 +75,7 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="email">Email : </label>
-                        <input id="email" type="email" class="form-control" th:field="${user.email}" required autofocus="autofocus">
+                        <input id="email" type="email" class="form-control" th:field="${user.email}" required autofocus="autofocus" th:readonly="${editMode}">
                         <div class="alert-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</div>
                     </div>
                     <div class="form-group">
