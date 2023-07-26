@@ -4,19 +4,19 @@ import com.example.demo.domain.model.User;
 
 public interface UsersPort {
 
-    public User save(User newUser) throws Exception;
+    User save(User newUser) throws Exception;
 
-    public User login(User userLogin) throws Exception;
+    User login(User userLogin) throws Exception;
 
-    public User getUserById(Long id);
+    User getUserById(Long id);
 
-    public User update(User userToUpdate) throws Exception;
+    User update(User userToUpdate) throws Exception;
 
-    public User getUserByEmail(String email) throws Exception;
+    User getUserByEmail(String email) throws Exception;
 
-    public void deleteUser(Long id) throws Exception;
+    void deleteUser(Long id) throws Exception;
 
-    public void updateForgotPassword(String newPassword, String email) throws Exception;
+    void updateForgotPassword(String newPassword, String email) throws Exception;
 
-    public void changePassword(String email, String oldPassword, String newPassword, String confirmNewPassword) throws Exception;
+    void changePassword(String email, String oldPassword, String newPassword, String confirmNewPassword) throws Exception;
 }

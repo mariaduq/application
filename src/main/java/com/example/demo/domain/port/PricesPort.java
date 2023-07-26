@@ -6,7 +6,7 @@ import com.example.demo.domain.model.Price;
 
 public interface PricesPort {
 	
-	public List<Price> getPrices();
+	List<Price> getPrices();
 
-	public List<Price> getProductPrices(Long productId);
+	List<Price> getProductPrices(Long productId);
 }
