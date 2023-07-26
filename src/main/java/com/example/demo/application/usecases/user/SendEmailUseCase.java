@@ -2,6 +2,7 @@ package com.example.demo.application.usecases.user;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
+import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -22,7 +23,11 @@ public class SendEmailUseCase {
         this.templateEngine = templateEngine;
     }
 
-    public void execute(String to, String subject, String content, Context context) throws MessagingException {
+    public void execute(String to, String subject, String content, Context context) throws Exception {
+
+        if (!isValidEmailAddress(to)) {
+            throw new Exception("La dirección de correo no existe.");
+        }
 
         MimeMessage message = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
@@ -35,5 +40,10 @@ public class SendEmailUseCase {
         helper.setText(htmlContent, true);
 
         javaMailSender.send(message);
+    }
+
+    private boolean isValidEmailAddress(String email) {
+        EmailValidator validator = EmailValidator.getInstance();
+        return validator.isValid(email);
     }
 }
