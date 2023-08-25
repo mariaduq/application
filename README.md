@@ -6,7 +6,7 @@ Project that provides the price of a product of an appliance store at any time o
 
 ### Prerequisites 1️⃣
 
-To run it, you need to have Docker installed locally. 
+To run it, you need to have Java 17 and Docker installed locally. 
 
 ### Installing 📲
 
